@@ -1,13 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter , Navigate , Route , Routes } from 'react-router-dom';
 import './assets/fomantic/dist/semantic.css';
+import {routes} from './route';
+
 function App() {
   return (
-    <div class="ui raised very padded text container segment">
-      <h2 class="ui header">Dogs Roles with Humans</h2>
-      <p></p>
-      <p></p>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      {routes.map((route, index) =>
+        <Route
+          key={"route-" + index}
+          path={route.path}
+          element={route.element}
+        />
+      )}
+        <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 

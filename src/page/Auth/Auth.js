@@ -1,12 +1,26 @@
+import { useNavigate } from "react-router-dom";
+
 // import '../../assets/fomantic/dist/semantic.min.css';
+function Authentification(){
+    const navigate = useNavigate();
+
+    const handleAuth = () =>{
+        navigate('/home');
+    };
+
+    return { handleAuth };
+}
+
 export default function Auth(){
     
+    const {handleAuth} = Authentification();
+
     return(
-        <div className="ui middle aligned container" style={{width : '35rem'}}>        
+        <div className="ui container" style={{width : '35rem'}}>        
             <div className="">
                 <div className="ui raised segment">
 
-                    <div className="ui small image" style={{display:'flex',justifyItems:'center',width:'100%'}}>
+                    <div className="ui centered small image" style={{display:'flex',justifyItems:'center',width:'100%'}}>
                         <img src="./logo.png" alt="" style={{width:'30%',margin:'0 auto'}}/>
                     </div>
 
@@ -19,15 +33,14 @@ export default function Auth(){
                             <label>Mot de passe</label>
                             <input type="password" />
                         </div>
-                        <button className="fluid ui small red button" style={{marginTop:'20px',padding:'12px 0px'}}>
+                        <button className="fluid ui small red button" onClick={handleAuth} style={{marginTop:'20px',padding:'12px 0px'}}>
                            Connexion
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
-       
-
 
     );
 }

@@ -1,8 +1,9 @@
-import '../../assets/fomantic/dist/semantic.min.css';
+// import '../../assets/fomantic/dist/semantic.min.css';
+import Navbar from "../../components/navbar/Navbar";
 export default function Home(){
     return(
         <>
-            <p>Home pr</p>
+            <Navbar></Navbar>
         </>
     );
 }

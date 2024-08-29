@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-// import '../../assets/fomantic/dist/semantic.min.css';
 function Authentification(){
     const navigate = useNavigate();
 
@@ -16,7 +15,7 @@ export default function Auth(){
     const {handleAuth} = Authentification();
 
     return(
-        <div className="ui container" style={{width : '35rem'}}>        
+        <div className="ui container" style={{width : '35rem',paddingTop:'15vh'}}>        
             <div className="">
                 <div className="ui raised segment">
 

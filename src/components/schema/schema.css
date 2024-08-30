@@ -1,22 +1,107 @@
 .ui.container .grid-shema{
     background-color: beige;
-    height: 40vh;
+    height: fit-content;
+    min-width: 50vw;
+    min-height: 10vh;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
 }
 
+/*######   2e colonne    #######*/
+
+/** 1ere ligne **/
 .grid-shema .row-one{
-    background-color: chocolate;
-    height: 50%;
+    column-gap:1em;
+    height: fit-content;
     display: grid;
     grid-template-columns: 30% 70%;
 }
 
+/** 1ere ligne gauche **/
 .row-one .column-left{
     background-color: aqua;
     height: 100%;
-    unicode-bidi: isolate;
+    padding: 0.5rem;
 }
 
+.row-one .column-left .cl-row-horizontal{
+    background-color: coral;
+    height: 100%;
+}
+
+
+/* 1ere ligne droite */
 .row-one .column-right{
     background-color: blueviolet;
     height: 100%;
+    padding: 0.5rem;
+    width: 97%;
+    display: grid;
+    row-gap: 0.5rem;
+}
+
+.row-one .column-right .cr-row-vertical{
+    background-color: thistle;
+    height: 70px; /* ovaina apres */
+}
+
+
+/** 2eme ligne **/
+.grid-shema .row-two{
+    column-gap:1em;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+
+/* 2eme ligne gauche */
+.row-two .column-left{
+    background-color: palevioletred;
+    height: 100%;
+    unicode-bidi: isolate;
+    padding: 0.5rem;
+}
+
+.row-two .column-left .cl-row-horizontal{
+    background-color: snow;
+    height: 100%;
+}
+
+/* 2eme ligne droite */
+
+.row-two .column-right{
+    background-color: mediumspringgreen;
+    height: 100%;
+    padding: 0.5rem;
+    display: grid;
+    width: 97%;
+    row-gap: 0.5rem;
+}
+
+.row-two .column-right .cr-row-vertical{
+    background-color: beige ;
+    height: 70px; /* ovaina apres */
+}
+
+
+/*######   1ere colonne    #######*/
+
+.column-one{
+    background-color: rgb(32, 176, 32);
+    height: 65%;
+    width: 70%;
+    border-radius: 20px;
+    margin: auto auto;
+}
+
+
+/*######   3eme colonne    #######*/
+
+.column-three{
+    background-color: rgb(32, 176, 32);
+    height: 65%;
+    width: 70%;
+    border-radius: 20px;
+    margin: auto auto;
 }

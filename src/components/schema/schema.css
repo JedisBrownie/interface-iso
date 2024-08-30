@@ -1,0 +1,22 @@
+.ui.container .grid-shema{
+    background-color: beige;
+    height: 40vh;
+}
+
+.grid-shema .row-one{
+    background-color: chocolate;
+    height: 50%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.row-one .column-left{
+    background-color: aqua;
+    height: 100%;
+    unicode-bidi: isolate;
+}
+
+.row-one .column-right{
+    background-color: blueviolet;
+    height: 100%;
+}

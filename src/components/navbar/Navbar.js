@@ -13,7 +13,7 @@ export default function Navbar(){
                     </div>
                 </div>
 
-                <div className="item" style={{display:'flex',justifyContent:'center',columnGap:'1.6rem',fontSize:'0.85rem'}}>
+                <div className="item" style={{display:'flex',justifyContent:'center',columnGap:'1.6rem',fontSize:'0.9rem'}}>
                     <a className="item">
                         Mes brouillons
                     </a>
@@ -26,7 +26,7 @@ export default function Navbar(){
                         MMI
                     </a>
                     
-                    <div className ="ui dropdown item" style={{fontSize:'0.85rem'}} >
+                    <div className ="ui dropdown item" style={{fontSize:'0.9rem'}} >
                         Archives <i className ="dropdown icon"></i>
                         <div className ="menu">
                             <a className ="item">Par processus</a>
@@ -34,7 +34,7 @@ export default function Navbar(){
                         </div>
                     </div>
 
-                    <div className ="ui dropdown item" style={{fontSize:'0.85rem'}}>
+                    <div className ="ui dropdown item" style={{fontSize:'0.9rem'}}>
                         Création document <i className ="dropdown icon"></i>
                         <div className ="menu">
                             <a className ="item">Processus</a>
@@ -47,11 +47,10 @@ export default function Navbar(){
 
                 <div className="right menu" >
                     <div className="item">
-                        <i className="bell outline icon" style={{visibility:'visible',fontSize:'1em'}} ></i>
-                        
+                        <i className="bell outline icon" style={{visibility:'visible',fontSize:'1.15em'}} ></i>
                     </div>
 
-                    <div className="item" style={{fontSize:'0.85rem'}}>
+                    <div className="item" style={{fontSize:'0.9rem'}}>
                         <div className="ui icon input">
                             <i className="search link icon"></i>
                             <input type="text" placeholder="Rechercher document..." style={{borderRadius:'4rem'}}/>

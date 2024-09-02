@@ -1,7 +1,15 @@
 import './navbar.css';
-
+import { Dropdown, DropdownItem , DropdownMenu} from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 export default function Navbar(){
-      
+    
+    const navigate = useNavigate();
+
+    const handleClickArchivesProcessus = () =>{
+        navigate('/brouillon');
+    }
+
+
     return(
         <div className="ui inverted large top fixed text menu" style={{padding:'5px 30px 5px 30px',marginBottom:'20vh'}} id="menu">
                 <div className="left menu">
@@ -23,23 +31,21 @@ export default function Navbar(){
                         MMI
                     </a>
                     
-                    <div className ="ui dropdown item" style={{fontSize:'0.9rem'}} >
-                        Archives <i className ="dropdown icon"></i>
-                        <div className ="menu">
-                            <a href = "/" lassName ="item">Par processus</a>
-                            <a href = "/" lassName ="item">Par date</a>
-                        </div>
-                    </div>
+                    <Dropdown text="Archives" style={{fontSize:'0.9rem'}} >
+                        <DropdownMenu>
+                            <DropdownItem floating text="Par processus" onClick={handleClickArchivesProcessus}></DropdownItem>
+                            <DropdownItem floating text="Par date"></DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
 
-                    <div className ="ui dropdown item" style={{fontSize:'0.9rem'}}>
-                        Création document <i className ="dropdown icon"></i>
-                        <div className ="menu">
-                            <a href = "/" lassName ="item">Processus</a>
-                            <a href = "/" lassName ="item">Sous Processus</a>
-                            <a href = "/" lassName ="item">Fiche d'instruction</a>
-                            <a href = "/" lassName ="item">Document</a>
-                        </div>
-                    </div>
+                    <Dropdown text='Création document ' style={{fontSize:'0.9rem'}}>
+                        <DropdownMenu>
+                            <DropdownItem floating text="Processus"></DropdownItem>
+                            <DropdownItem floating text="Sous Processus"></DropdownItem>
+                            <DropdownItem floating text="Fiche d'instruction"></DropdownItem>
+                            <DropdownItem floating text="Document"></DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
                 </div>
 
                 <div className="right menu" >

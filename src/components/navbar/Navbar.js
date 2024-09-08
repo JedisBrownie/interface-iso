@@ -11,7 +11,7 @@ export default function Navbar(){
 
 
     return(
-        <div className="ui inverted large top fixed text menu" style={{padding:'5px 30px 5px 30px',marginBottom:'20vh'}} id="menu">
+        <div className="ui inverted large top fixed text menu" style={{padding:'5px 50px 5px 50px',marginBottom:'20vh'}} id="menu">
                 <div className="left menu">
                     <div className="ui tiny image" style={{marginTop:'6px'}}>
                         <img src="./logo_blanc.png" alt="logo"></img>    
@@ -38,7 +38,7 @@ export default function Navbar(){
                         </DropdownMenu>
                     </Dropdown>
 
-                    <Dropdown text='Création document ' style={{fontSize:'0.9rem'}}>
+                    <Dropdown text='Création document' style={{fontSize:'0.9rem'}}>
                         <DropdownMenu>
                             <DropdownItem floating text="Processus"></DropdownItem>
                             <DropdownItem floating text="Sous Processus"></DropdownItem>

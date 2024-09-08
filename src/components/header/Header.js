@@ -9,7 +9,7 @@ export default function Header(){
                 <div className="item" style={{fontSize:'1rem',paddingTop:'1em'}}>
                     <div className="ui icon input">
                         <i className="search link icon"></i>
-                        <input type="text" placeholder="Rechercher document dans MDG-1000" style={{borderRadius:'0.8rem',width:'35vw',height:'5vh'}}/>
+                        <input type="text" placeholder="Rechercher document dans MDG-1000" style={{borderRadius:'0.8rem',width:'35vw',height:'3rem'}}/>
                     </div>
                 </div>
             </div>

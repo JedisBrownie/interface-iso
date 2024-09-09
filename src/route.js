@@ -2,6 +2,7 @@ import React from "react";
 import Auth from "./page/Auth/Auth";
 import Home from "./page/Home/Home";
 import Brouillon from "./page/Brouillon/Brouillon";
+import Creation from "./page/Creation/Creation";
 
 export const routes = [
     {
@@ -15,5 +16,9 @@ export const routes = [
     {
         path : '/brouillon',
         element : <Brouillon />
+    },
+    {
+        path : '/creation',
+        element : <Creation />
     }
 ]

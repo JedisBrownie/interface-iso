@@ -19,7 +19,7 @@ export default function Auth(){
             <div className="">
                 <div className="ui raised segment">
 
-                    <div className="ui centered small image" style={{display:'flex',justifyItems:'center',width:'100%'}}>
+                    <div className="ui centered small image" style={{display:'flex',justifyItems:'center',width:'100%',paddingTop:'1.5rem'}}>
                         <img src="./logo.png" alt="" style={{width:'30%',margin:'0 auto'}}/>
                     </div>
 

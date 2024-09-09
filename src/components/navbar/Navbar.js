@@ -23,11 +23,11 @@ export default function Navbar(){
                         Mes brouillons
                     </a>
 
-                    <a href = "/" lassName ="item">
+                    <a href = "/" className ="item">
                         Accès rapide navigateur
                     </a>
 
-                    <a href = "/" lassName ="item">
+                    <a href = "/" className ="item">
                         MMI
                     </a>
                     
@@ -40,7 +40,7 @@ export default function Navbar(){
 
                     <Dropdown text='Création document' style={{fontSize:'0.9rem'}}>
                         <DropdownMenu>
-                            <DropdownItem floating text="Processus"></DropdownItem>
+                            <DropdownItem floating text="Processus" href="/creation"></DropdownItem>
                             <DropdownItem floating text="Sous Processus"></DropdownItem>
                             <DropdownItem floating text="Fiche d'instruction"></DropdownItem>
                             <DropdownItem floating text="Document"></DropdownItem>

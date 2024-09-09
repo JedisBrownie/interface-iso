@@ -1,4 +1,4 @@
-import { useEffect , useRef } from 'react';
+import { useEffect } from 'react';
 import './list.css';
 export default function ListContent(props){
 
@@ -21,10 +21,9 @@ export default function ListContent(props){
             <div className="ui grid container liste" key={index}>
               <div className="row">
                 
-                <div className="nine wide column">
-                    {item.confidentiel === true && <i class="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}
-                    
-                    {item.nom}
+                <div className="nine wide column" style={{display:'flex'}}>
+                    {item.confidentiel === true && <div><i class="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i></div> }
+                    <div>{item.nom}</div>
                 </div>
 
                 <div className="two wide column">
@@ -32,11 +31,11 @@ export default function ListContent(props){
                 </div>
 
                 <div className="one wide column">
-                  {item.revision}
+                  {item.revision !== 0 && <span>{item.revision}</span>}
                 </div>
 
                 <div className="three wide column">
-                  <i className="check circle outline icon" style={{ visibility: 'visible', marginRight: '10px', color: 'limegreen', fontSize: '1.1em' }}></i>
+                  <i className="check circle outline icon" style={{ visibility: 'visible', marginRight: '10px', color: 'limegreen', fontSize: '1.1em'}}></i>
                     {item.status}
                     {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red', fontSize: '1.65em' , fontWeight:'bold' }}>*</span>}
                 </div>

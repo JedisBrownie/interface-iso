@@ -1,5 +1,7 @@
 .ui.container .grid-shema{
-    background-color: beige;
+    /* background-color: beige; */
+    padding-top: 1em;
+    padding-bottom : 2em;
     height: fit-content;
     min-width: 50vw;
     min-height: 10vh;
@@ -7,48 +9,101 @@
     grid-template-columns: 15% 70% 15%;
 }
 
-/*######   2e colonne    #######*/
+/*######   2e colonne (schema)    #######*/
 
 /** 1ere ligne **/
 .grid-shema .row-one{
-    column-gap:1em;
+    column-gap:0.5em;
     height: fit-content;
     display: grid;
     grid-template-columns: 30% 70%;
 }
 
-/** 1ere ligne gauche **/
-.row-one .column-left{
-    background-color: aqua;
-    height: 100%;
-    padding: 0.5rem;
-}
+.grid-shema .title{
+    text-align: center;
+    color: white;
+    font-size: 0.7em;
+    width: 60%;
+    height: fit-content;
+    margin: auto auto;
+    line-height: 1.4;
+    font-weight: 600;
+} 
 
-.row-one .column-left .cl-row-horizontal{
-    background-color: coral;
-    height: 100%;
-}
+.grid-shema .title-black{
+    text-align: center;
+    color: black;
+    font-size: 0.7em;
+    width: 60%;
+    height: fit-content;
+    margin: auto auto;
+    line-height: 1.4;
+    font-weight: 600;
+} 
+
+
+
+    /*::: 3000 - Processus Commercial :::*/
+    .row-one .column-left .cl-row-commercial{
+        padding-top: 6em;
+        background-color: coral;
+        height: 100%;
+        
+    }
 
 
 /* 1ere ligne droite */
 .row-one .column-right{
-    background-color: blueviolet;
     height: 100%;
-    padding: 0.5rem;
-    width: 97%;
+    width: 98%;
     display: grid;
     row-gap: 0.5rem;
 }
 
-.row-one .column-right .cr-row-vertical{
-    background-color: thistle;
-    height: 70px; /* ovaina apres */
-}
+    /*::: 1000 - Processus Management :::*/
+    .row-one .column-right .cr-row-management{
+        background-color: #37bd37;
+        padding-top: 0.5em;
+        height: 70px; 
+    }
+
+    /*::: 2000 - Processus Ressources :::*/
+    .row-one .column-right .cr-row-ressources{
+        background-color: #a5f8f8;
+        padding-top: 0.5em;
+        height: 90px; 
+    }
+
+
+    /*::: 4000 - Processus Production :::*/
+    .row-one .column-right .cr-row-production{
+        background-color: #60c8f8;
+        padding-top: 0.5em;
+        height: 120px; 
+    }
+        
+
+    /*::: 5000 - Processus Activité Supports :::*/
+    .row-one .column-right .cr-row-support{
+        background-color: #f8f860;
+        padding-top: 0.5em;
+        height: 90px; 
+    }
+    
+    
+    /*::: 5100 - Processus administrative et financières :::*/
+    .row-one .column-right .cr-row-administrative{
+        background-color: #f8f860;
+        padding-top: 0.5em;
+        height: 90px; 
+    }
+
+
 
 
 /** 2eme ligne **/
 .grid-shema .row-two{
-    column-gap:1em;
+    column-gap:0.5em;
     height: fit-content;
     display: grid;
     grid-template-columns: 30% 70%;
@@ -57,42 +112,73 @@
 
 /* 2eme ligne gauche */
 .row-two .column-left{
-    background-color: palevioletred;
     height: 100%;
     unicode-bidi: isolate;
-    padding: 0.5rem;
+    padding-top: 0.5rem;
 }
+    /*::: 6000 - Gestion de crise :::*/
+    .row-two .column-left .cl-row-crise{
+        padding-top: 0.5rem;
+        background-color: coral;
+        height: 100%;
+    }
 
-.row-two .column-left .cl-row-horizontal{
-    background-color: snow;
-    height: 100%;
-}
+
 
 /* 2eme ligne droite */
 
 .row-two .column-right{
-    background-color: mediumspringgreen;
+    /* background-color: mediumspringgreen; */
     height: 100%;
-    padding: 0.5rem;
     display: grid;
-    width: 97%;
+    width: 98%;
     row-gap: 0.5rem;
+    padding-top: 0.5rem;
+
 }
+    /*::: 9000 - Surveillance et mesures :::*/
+    .row-two .column-right .cr-row-surveillance{
+        background-color: #25a325 ;
+        padding-top: 0.5rem;
+        height: 140px;
+    }
 
-.row-two .column-right .cr-row-vertical{
-    background-color: beige ;
-    height: 70px; /* ovaina apres */
-}
+    /*::: 9200 - Non conformités :::*/
+    .row-two .column-right .cr-row-conformites{
+        background-color: #229f22 ;
+        padding-top: 0.5rem;
+        height: 70px; /* ovaina apres */
+    }
 
 
-/*######   1ere colonne    #######*/
+
+
+
+/*######   1ere colonne (client/partie interesse)    #######*/
 
 .column-one{
     background-color: rgb(32, 176, 32);
-    height: 65%;
+    height: 50%;
     width: 70%;
     border-radius: 20px;
     margin: auto auto;
+}
+
+.column-one .co-horizontal{
+    color: white;
+    font-size: 0.7em;
+    text-align: center;
+    display: grid;
+    height: 100%;
+    grid-template-rows: 50% 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.column-one .co-horizontal .down{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 
@@ -100,8 +186,26 @@
 
 .column-three{
     background-color: rgb(32, 176, 32);
-    height: 65%;
+    height: 50%;
     width: 70%;
     border-radius: 20px;
     margin: auto auto;
 }
+
+.column-three .co-horizontal{
+    color: white;
+    font-size: 0.7em;
+    text-align: center;
+    display: grid;
+    height: 100%;
+    grid-template-rows: 50% 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.column-three .co-horizontal .up{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+

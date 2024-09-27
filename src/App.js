@@ -1,6 +1,7 @@
 import { BrowserRouter , Navigate , Route , Routes } from 'react-router-dom';
 import './assets/fomantic/dist/semantic.css';
 import {routes} from './route';
+// require('dotenv').config()
 
 function App() {
   return (

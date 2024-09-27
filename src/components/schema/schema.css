@@ -9,6 +9,59 @@
     grid-template-columns: 15% 70% 15%;
 }
 
+    /*######   Liste processus et contenu    #######*/
+
+        .liste-processus-vertical .contenu-vertical{
+            background-color: white;
+            font-size: 0.7em;
+            line-height: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            padding: 0.5em 0.5em 0.5em 0.5em;
+            width: 60%;
+            margin: auto auto;
+        }
+
+        .contenu-vertical:hover{
+            cursor:pointer;
+        }
+
+        .contenu-horizontal:hover{
+            cursor:pointer;
+        }
+
+        .liste-processus-vertical{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            row-gap: 0.5em;
+            column-gap: 1em;
+            margin-top: 1em;
+        }
+
+        .liste-processus-horizontal .contenu-horizontal{
+            background-color: white;
+            font-size: 0.7em;
+            line-height: 1.5em;
+            text-align: center;
+            font-weight: bold;
+            padding: 0.5em 0.5em 0.5em 0.5em;
+            width: 27%;
+            margin: auto auto;
+        }
+
+        .liste-processus-horizontal{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            row-gap: 0.5em;
+            column-gap: 1em;
+            margin-top: 1em;
+        }
+
+    /*######   Fin processus et contenu    #######*/
+
+
 /*######   2e colonne (schema)    #######*/
 
 /** 1ere ligne **/
@@ -19,27 +72,29 @@
     grid-template-columns: 30% 70%;
 }
 
-.grid-shema .title{
-    text-align: center;
-    color: white;
-    font-size: 0.7em;
-    width: 60%;
-    height: fit-content;
-    margin: auto auto;
-    line-height: 1.4;
-    font-weight: 600;
-} 
+    .grid-shema .title{
+        text-align: center;
+        color: white;
+        font-size: 0.75em;
+        width: 60%;
+        height: fit-content;
+        margin: auto auto;
+        line-height: 1.4;
+        font-weight: 600;
+    } 
 
-.grid-shema .title-black{
-    text-align: center;
-    color: black;
-    font-size: 0.7em;
-    width: 60%;
-    height: fit-content;
-    margin: auto auto;
-    line-height: 1.4;
-    font-weight: 600;
-} 
+    .grid-shema .title-black{
+        text-align: center;
+        color: black;
+        font-size: 0.75em;
+        width: 60%;
+        height: fit-content;
+        margin: auto auto;
+        line-height: 1.4;
+        font-weight: 600;
+    }
+
+
 
 
 
@@ -48,7 +103,6 @@
         padding-top: 6em;
         background-color: coral;
         height: 100%;
-        
     }
 
 
@@ -64,14 +118,17 @@
     .row-one .column-right .cr-row-management{
         background-color: #37bd37;
         padding-top: 0.5em;
-        height: 70px; 
+        height: fit-content;
+        padding-bottom: 0.6em; 
     }
+
 
     /*::: 2000 - Processus Ressources :::*/
     .row-one .column-right .cr-row-ressources{
         background-color: #a5f8f8;
         padding-top: 0.5em;
-        height: 90px; 
+        height: fit-content;
+        padding-bottom: 0.6em; 
     }
 
 
@@ -79,7 +136,8 @@
     .row-one .column-right .cr-row-production{
         background-color: #60c8f8;
         padding-top: 0.5em;
-        height: 120px; 
+        height: fit-content;
+        padding-bottom: 0.6em; 
     }
         
 
@@ -87,7 +145,8 @@
     .row-one .column-right .cr-row-support{
         background-color: #f8f860;
         padding-top: 0.5em;
-        height: 90px; 
+        height: fit-content;
+        padding-bottom: 0.6em; 
     }
     
     
@@ -95,7 +154,8 @@
     .row-one .column-right .cr-row-administrative{
         background-color: #f8f860;
         padding-top: 0.5em;
-        height: 90px; 
+        height: fit-content;
+        padding-bottom: 0.6em; 
     }
 
 
@@ -139,15 +199,17 @@
     /*::: 9000 - Surveillance et mesures :::*/
     .row-two .column-right .cr-row-surveillance{
         background-color: #25a325 ;
-        padding-top: 0.5rem;
-        height: 140px;
+        padding-top: 0.5em;
+        height: fit-content;
+        padding-bottom: 0.6em; 
     }
 
     /*::: 9200 - Non conformités :::*/
     .row-two .column-right .cr-row-conformites{
         background-color: #229f22 ;
-        padding-top: 0.5rem;
-        height: 70px; /* ovaina apres */
+        padding-top: 0.5em;
+        height: fit-content;
+        padding-bottom: 0.6em; 
     }
 
 

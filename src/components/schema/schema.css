@@ -30,6 +30,10 @@
             cursor:pointer;
         }
 
+        .contenu-title{
+            margin-bottom: 0.4em;
+        }
+
         .liste-processus-vertical{
             display: flex;
             flex-wrap: wrap;
@@ -42,11 +46,11 @@
         .liste-processus-horizontal .contenu-horizontal{
             background-color: white;
             font-size: 0.7em;
-            line-height: 1.5em;
+            line-height: 1.2em;
             text-align: center;
             font-weight: bold;
             padding: 0.5em 0.5em 0.5em 0.5em;
-            width: 27%;
+            width: 22%;
             margin: auto auto;
         }
 
@@ -57,6 +61,8 @@
             row-gap: 0.5em;
             column-gap: 1em;
             margin-top: 1em;
+            margin-left: 0.4em;
+            margin-right: 0.4em;
         }
 
     /*######   Fin processus et contenu    #######*/

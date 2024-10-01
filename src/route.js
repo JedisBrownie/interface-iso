@@ -3,6 +3,7 @@ import Auth from "./page/Auth/Auth";
 import Home from "./page/Home/Home";
 import Brouillon from "./page/Brouillon/Brouillon";
 import Creation from "./page/Creation/Creation";
+import DocumentValable from "./page/Home/DocumentValable";
 
 export const routes = [
     {
@@ -16,6 +17,10 @@ export const routes = [
     {
         path : '/brouillon',
         element : <Brouillon />
+    },
+    {
+        path : '/valable',
+        element : <DocumentValable></DocumentValable>
     },
     {
         path : '/creation',

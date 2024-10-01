@@ -5,10 +5,10 @@ import {
   Accordion,
   Icon
 } from 'semantic-ui-react'
-import ListContent from './ListContent';
+import ListContentType from './ListContentType';
 import './list.css';
 
-export default class AccordionList extends Component {
+export default class AccordionListType extends Component {
   state = { activeIndex: 0 };
 
   handleClick = (e, titleProps) => {
@@ -32,13 +32,11 @@ export default class AccordionList extends Component {
             </AccordionTitle>
 
             <AccordionContent active={activeIndex === index} className="accordion content">
-              <ListContent dataList={item.document}></ListContent>
+              <ListContentType dataList={item.document}></ListContentType>
             </AccordionContent>
           </>
         ))}
       </Accordion>
-
-      
     )
   }
 }

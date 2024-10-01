@@ -1,6 +1,7 @@
 import './navbar.css';
 import { Dropdown, DropdownItem , DropdownMenu} from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 export default function Navbar(){
     
     const navigate = useNavigate();
@@ -21,13 +22,12 @@ export default function Navbar(){
                 <div className="item" style={{display:'flex',justifyContent:'center',columnGap:'1.6rem',fontSize:'0.9rem'}}>
                     <a href = "/brouillon" className="item">
                         Mes brouillons
-                    </a>
-
-                    <a href = "/" className ="item">
+                    </a>    
+                    <a href = "/navigateur" className ="item">
                         Accès rapide navigateur
                     </a>
 
-                    <a href = "/" className ="item">
+                    <a href = "/valable" className ="item">
                         MMI
                     </a>
                     

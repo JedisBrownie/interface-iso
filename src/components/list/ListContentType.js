@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import './list.css';
-export default function ListContent(props){
+export default function ListContentType(props){
 
     
     useEffect(() => {
@@ -22,8 +22,8 @@ export default function ListContent(props){
               <div className="row">
                 
                 <div className="nine wide column" style={{display:'flex'}}>
-                    {item.confidentiel === true && <div><i class="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i></div> }
-                    <div>{item.nom}</div>
+                  <div className="key">{item.confidentiel === true && <i class="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}</div>
+                  <div>{item.nom}</div>
                 </div>
 
                 <div className="two wide column">

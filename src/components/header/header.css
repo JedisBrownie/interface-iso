@@ -1,4 +1,19 @@
-#menu{
+#menu-header{
     background-color: rgb(236, 34, 34);
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    padding-right: 6vw;
+    padding-left: 6vw;
 }
 
+.item-right{
+    float: right;
+    display: grid;
+    justify-content: end;
+    row-gap: 0.6em;
+}
+
+.list-button{
+    padding-left: 15vh;
+}

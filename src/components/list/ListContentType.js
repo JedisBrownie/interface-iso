@@ -22,16 +22,16 @@ export default function ListContentType(props){
               <div className="row">
                 
                 <div className="nine wide column" style={{display:'flex'}}>
-                  <div className="key">{item.confidentiel === true && <i class="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}</div>
+                  <div className="key">{item.confidentiel === true && <i className="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}</div>
                   <div>{item.nom}</div>
                 </div>
 
                 <div className="two wide column">
-                    {item.date}
+                    {item.dateApplication}
                 </div>
 
                 <div className="one wide column">
-                  {item.revision !== 0 && <span>{item.revision}</span>}
+                  {item.nombreRevision !== 0 && <span>{item.nombreRevision}</span>}
                 </div>
 
                 <div className="three wide column">

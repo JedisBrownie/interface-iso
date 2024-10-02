@@ -7,17 +7,18 @@ export default function Header({type}){
                 return (
                     <>
                         <div className="title header" style={{color:'white',paddingTop:'1em',paddingBottom:'1.5em'}}>
-                            <h3> Mes documents </h3>
+                            <h2> Mes documents </h2>
+                            <h3 style={{marginTop:'0.2em'}}>Aina Razafindrakoto</h3>
                         </div>
                         <div className="item-right">
                             <div className="ui icon input">
                                 <input type="text" placeholder="Rechercher document" style={{borderRadius:'2rem',width:'22em',height:'2.5em',fontSize:'0.95em'}}/>
                                 <i className="search link icon" style={{marginRight:'0.2em'}}></i>
                             </div>
-                            {/* <div className='list-button'>
-                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
-                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
-                            </div> */}
+                            <div className='list-button' style={{minHeight:'0.5em'}}>
+                                {/* <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
+                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button> */}
+                            </div>
                         </div>
                     </>
                 );
@@ -40,11 +41,6 @@ export default function Header({type}){
                         </div>
                     </>
                 );
-            default:
-                return (
-                    // Contenu par défaut
-                    <h2>Documents</h2>
-                );
         }
     };
 
@@ -52,7 +48,6 @@ export default function Header({type}){
         
         <div className="ui inverted large top fixed text menu" id="menu-header">
             {renderContent()}
-            
         </div>
     );
 }

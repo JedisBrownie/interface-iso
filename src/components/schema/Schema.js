@@ -1,6 +1,13 @@
 import './schema.css';
+import { useNavigate } from 'react-router-dom';
 export default function Schema(props){
     const {data} = props;
+    const navigate = useNavigate();
+
+    const seeDocumentValable = (identifiant) => {
+        navigate(`/valable/${identifiant}`);
+    };
+
     return(
         <>
             <div className="ui container" style={{paddingTop:'4.5em'}}>
@@ -21,7 +28,7 @@ export default function Schema(props){
 
                                     <div className="liste-processus-vertical">
                                         {data[3000]?.map((processusLie) => (
-                                            <div className="contenu-vertical">
+                                            <div className="contenu-vertical" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} key={processusLie.idProcessusLie}>
                                                 <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                                 {processusLie.nom}
                                             </div>
@@ -37,7 +44,7 @@ export default function Schema(props){
                                     <div className="liste-processus-horizontal">
                                                                         
                                     {data[1000]?.map((processusLie) => (
-                                        <div className="contenu-horizontal">
+                                        <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                             <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                             {processusLie.nom}
                                         </div>
@@ -48,10 +55,10 @@ export default function Schema(props){
 
                                 <div className="cr-row-ressources">
                                     <div className='title-black'>2000 - Ressources</div>
-                                    <div className="liste-processus-horizontal">
+                                    <div className="liste-processus-horizontal" >
                                                                         
                                         {data[2000]?.map((processusLie) => (
-                                            <div className="contenu-horizontal">
+                                            <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                                 <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                                 {processusLie.nom}
                                             </div>
@@ -65,7 +72,7 @@ export default function Schema(props){
                                     <div className="liste-processus-horizontal">
                                                                         
                                     {data[4000]?.map((processusLie) => (
-                                        <div className="contenu-horizontal">
+                                        <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                             <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                             {processusLie.nom}
                                         </div>
@@ -79,7 +86,7 @@ export default function Schema(props){
                                     <div className="liste-processus-horizontal">
                                                                         
                                     {data[5000]?.map((processusLie) => (
-                                        <div className="contenu-horizontal">
+                                        <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                             <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                             {processusLie.nom}
                                         </div>
@@ -93,7 +100,7 @@ export default function Schema(props){
                                     <div className="liste-processus-horizontal">
                                                                        
                                         {data[5100]?.map((processusLie) => (
-                                            <div className="contenu-horizontal">
+                                            <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                                 <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                                 {processusLie.nom}
                                             </div>
@@ -110,7 +117,7 @@ export default function Schema(props){
                                     <div className='title'>6000 - Gestion de crise</div>
                                     <div className="liste-processus-vertical">
                                         {data[6000]?.map((processusLie) => (
-                                            <div className="contenu-vertical">
+                                            <div className="contenu-vertical" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                                 <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                                 {processusLie.nom}
                                             </div>
@@ -125,7 +132,7 @@ export default function Schema(props){
                                     <div className="liste-processus-horizontal">
                                                                        
                                         {data[9000]?.map((processusLie) => (
-                                            <div className="contenu-horizontal">
+                                            <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                                 <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                                 {processusLie.nom}
                                             </div>
@@ -138,7 +145,7 @@ export default function Schema(props){
                                     <div className="liste-processus-horizontal">
                                                                        
                                         {data[9200]?.map((processusLie) => (
-                                            <div className="contenu-horizontal">
+                                            <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
                                                 <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                                 {processusLie.nom}
                                             </div>

@@ -1,6 +1,8 @@
 import './navbar.css';
 import { Dropdown, DropdownItem , DropdownMenu} from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import Badge from '@mui/material/Badge';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { Link } from 'react-router-dom';
 export default function Navbar(){
     
@@ -48,9 +50,11 @@ export default function Navbar(){
                     </Dropdown>
                 </div>
 
-                <div className="right menu" >
+                <div className="right menu">
                     <div className="item">
-                        <i className="bell outline icon" style={{visibility:'visible',fontSize:'1.15em'}} ></i>
+                        <Badge badgeContent={1} max={9} color='primary'>
+                            <NotificationsNoneIcon  style={{color:'white',fontSize:'1.5em'}} fontSize='medium' className='icons'></NotificationsNoneIcon>   
+                        </Badge>
                     </div>
 
                     <div className="item" style={{fontSize:'0.9rem'}}>

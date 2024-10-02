@@ -19,7 +19,7 @@ export const routes = [
         element : <Brouillon />
     },
     {
-        path : '/valable',
+        path : '/valable/:identifiant',
         element : <DocumentValable></DocumentValable>
     },
     {

@@ -24,6 +24,8 @@ export default function Home(){
         fetchData();
     },[]);
 
+    console.log(listeProcessus);
+    
 
     return(
         <>

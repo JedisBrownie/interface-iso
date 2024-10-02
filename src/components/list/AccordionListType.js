@@ -26,15 +26,15 @@ export default class AccordionListType extends Component {
     return (
       <Accordion>
         {data.map((item,index) =>(
-          <>
-            <AccordionTitle active={activeIndex === index} index={index} onClick={this.handleClick} >
-              <section style={{fontWeight:'bold',fontSize:'1.1em',color:' '}}><Icon name='dropdown' />{item.type} </section>
+          <div key={item.id}>
+            <AccordionTitle active={activeIndex === index} index={index} onClick={this.handleClick}>
+              <section style={{fontWeight:'bold',fontSize:'1.1em',color:' '}}><Icon name='dropdown' />{item.nomTypeDocument} </section>
             </AccordionTitle>
 
             <AccordionContent active={activeIndex === index} className="accordion content">
-              <ListContentType dataList={item.document}></ListContentType>
+              <ListContentType dataList={item.listeDocument}></ListContentType>
             </AccordionContent>
-          </>
+          </div>
         ))}
       </Accordion>
     )

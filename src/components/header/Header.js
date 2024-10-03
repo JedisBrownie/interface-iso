@@ -1,5 +1,7 @@
 import './header.css';
-export default function Header({type}){
+
+export default function Header({type,entete}){
+
 
     const renderContent = () =>{
         switch (type) {
@@ -26,8 +28,8 @@ export default function Header({type}){
                 return (
                     <>
                         <div className="title header" style={{color:'white',paddingTop:'1em',paddingBottom:'1em'}}>
-                            <h2>1000 - Processus Management </h2>
-                            <h3 style={{marginTop:'0.2em'}}>1100 - Planification</h3>
+                            <h2>{entete.idProcessusGlobal} - {entete.nomProcessusGlobal}</h2>
+                            <h3 style={{marginTop:'0.2em'}}>{entete.idProcessusLie} - {entete.nomProcessusLie}</h3>
                         </div>
                         <div className="item-right">
                             <div className="ui tiny icon input">
@@ -35,8 +37,8 @@ export default function Header({type}){
                                 <i className="search link icon" style={{marginTop:'0.4em',marginRight:'0.2em'}}></i>
                             </div>
                             <div className='list-button'>
-                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
-                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
+                                <button className='ui mini button' style={{backgroundColor:'white'}} >Tout développer</button>
+                                <button className='ui mini button' style={{backgroundColor:'white'}} >Tout réduire</button>
                             </div>
                         </div>
                     </>

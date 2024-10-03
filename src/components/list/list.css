@@ -26,3 +26,7 @@ body{
     width: 2.5em;
     height: 100%;
 }
+
+.accordion-section:hover{
+    cursor: pointer;
+}

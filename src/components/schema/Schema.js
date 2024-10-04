@@ -44,7 +44,7 @@ export default function Schema(props){
                                     <div className="liste-processus-horizontal">
                                                                         
                                     {data[1000]?.map((processusLie) => (
-                                        <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} >
+                                        <div className="contenu-horizontal" onClick={()=> seeDocumentValable(processusLie.idProcessusLie)} key={processusLie.idProcessusLie}>
                                             <section className='contenu-title'>{processusLie.idProcessusLie}</section>
                                             {processusLie.nom}
                                         </div>

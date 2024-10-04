@@ -6,6 +6,8 @@ import { getDataFromUrl } from "../../function";
 export default function Home(){
 
     const[listeProcessus , setListeProcessus] = useState([]);
+    const[isLoading , setIsLoading] = useState(true);
+
     const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(()=>{
@@ -19,18 +21,23 @@ export default function Home(){
                 setListeProcessus(result);
             } catch (error) {
                 console.error("Erreur lors de la récupération des données : ",error.message);
+            }finally{
+                setIsLoading(false);
             }
         };
         fetchData();
     },[]);
 
-    console.log(listeProcessus);
     
-
     return(
         <>
             <Navbar></Navbar>
-            <Schema data={listeProcessus}></Schema>
+            {isLoading ?(
+                <></>
+            ): (
+                <Schema data={listeProcessus}></Schema>
+            )}
+            
         </>
     );
 }

@@ -3,7 +3,6 @@ import { Dropdown, DropdownItem , DropdownMenu} from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import { Link } from 'react-router-dom';
 export default function Navbar(){
     
     const navigate = useNavigate();
@@ -33,19 +32,19 @@ export default function Navbar(){
                         MMI
                     </a>
                     
-                    <Dropdown text="Archives" style={{fontSize:'0.9rem'}} >
+                    <Dropdown text={"Archives"} style={{fontSize:'0.9rem'}} >
                         <DropdownMenu>
-                            <DropdownItem floating text="Par processus" onClick={handleClickArchivesProcessus}></DropdownItem>
-                            <DropdownItem floating text="Par date"></DropdownItem>
+                            <DropdownItem text={"Par processus"} onClick={handleClickArchivesProcessus}></DropdownItem>
+                            <DropdownItem text={"Par date"}></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
 
-                    <Dropdown text='Création document' style={{fontSize:'0.9rem'}}>
+                    <Dropdown text={'Création document'} style={{fontSize:'0.9rem'}}>
                         <DropdownMenu>
-                            <DropdownItem floating text="Processus" href="/creation"></DropdownItem>
-                            <DropdownItem floating text="Sous Processus"></DropdownItem>
-                            <DropdownItem floating text="Fiche d'instruction"></DropdownItem>
-                            <DropdownItem floating text="Enregistrement"></DropdownItem>
+                            <DropdownItem text={"Processus"} href="/creation"></DropdownItem>
+                            <DropdownItem text={"Sous Processus"}></DropdownItem>
+                            <DropdownItem text={"Fiche d'instruction"}></DropdownItem>
+                            <DropdownItem text={"Enregistrement"}></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

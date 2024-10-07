@@ -1,18 +1,25 @@
 import "jodit";
 import { useState,useRef, useMemo,useEffect} from "react";
 import JoditEditor from "jodit-react";
+import JoditIsma from "jodit-react";
 import HTMLReactParser from "html-react-parser/lib/index";
+import ReactDOMServer from 'react-dom/server';
 import Processus from "../../components/creation/Processus";
 import "./creation.css";
 
 export default function Creation({ placeholder }) {
 
-
-    const handleButton = ()=>{
-      console.log("Voakitika pr");
-    }
     const editor = useRef(null);
-    const[content,setContent] = useState('<p contenteditable="false"><button class="button-jodit" onclick={}>Hello Contenu</button></p><div contenteditable="true" style="min-height:10vh;height:auto;widht:200px;"></div>');
+    const contenu =  ReactDOMServer.renderToString(<Processus></Processus>);
+    const[content,setContent] = useState(contenu);
+    console.log(contenu);
+
+    // useEffect(() => {
+    //   const processHtml = HTMLReactParser(<Processus />);
+    //   setContent(processHtml.toString());
+    // }, []);
+
+    
 
     const buttons = [
         "undo",
@@ -59,14 +66,15 @@ export default function Creation({ placeholder }) {
         };
       }, [placeholder]);
 
- 
+
+
 
     return(
         <>
-          <JoditEditor ref={editor} value={content} onChange={newContent =>setContent(newContent)} config={config}>
+          <JoditEditor ref={editor} value={content} onChange={newContent =>setContent(newContent)} config={config} component={<Processus></Processus>}>
           </JoditEditor>
 
-          <div>{HTMLReactParser(content)}</div>
+          {/* <div>{HTMLReactParser(content)}</div> */}
         </>
 
     );

@@ -1,0 +1,15 @@
+.title-test{
+    background-color: blue;
+    color: white;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+}
+
+.data-no-format {
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+    pointer-events: none; 
+}

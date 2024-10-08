@@ -13,12 +13,24 @@ export default function Creation({ placeholder }) {
     const contenu =  ReactDOMServer.renderToString(<Processus></Processus>);
     const[content,setContent] = useState(contenu);
     console.log(contenu);
-
+    
     // useEffect(() => {
     //   const processHtml = HTMLReactParser(<Processus />);
     //   setContent(processHtml.toString());
     // }, []);
 
+    // const joditEditorRef = useRef(null);
+
+    // useEffect(() => {
+    //   const joditEditor = joditEditorRef.current;
+    //   if (joditEditor) {
+    //     lockEditor(joditEditor);
+    //   }
+    // }, [joditEditorRef.current]);
+  
+    // const lockEditor = (editor) => {
+    //   editor.setAttribute('contentEditable', false);
+    // };
     
 
     const buttons = [
@@ -66,6 +78,8 @@ export default function Creation({ placeholder }) {
         };
       }, [placeholder]);
 
+
+      
 
 
 

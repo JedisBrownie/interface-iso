@@ -5,6 +5,7 @@ import Brouillon from "./page/Brouillon/Brouillon";
 import Creation from "./page/Creation/Creation";
 import DocumentValable from "./page/Home/DocumentValable";
 import Processus from "./components/creation/Processus";
+import Edition from "./page/Creation/Edition";
 
 export const routes = [
     {
@@ -30,6 +31,10 @@ export const routes = [
     {
         path : '/processus',
         element : <Processus/>
+    },
+    {
+        path : '/edition',
+        element : <Edition/>
     }
 
 ]

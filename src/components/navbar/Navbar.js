@@ -44,7 +44,7 @@ export default function Navbar(){
                             <DropdownItem text={"Processus"} href="/creation"></DropdownItem>
                             <DropdownItem text={"Sous Processus"}></DropdownItem>
                             <DropdownItem text={"Fiche d'instruction"}></DropdownItem>
-                            <DropdownItem text={"Enregistrement"}></DropdownItem>
+                            <DropdownItem text={"Enregistrement"} href="/edition"></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

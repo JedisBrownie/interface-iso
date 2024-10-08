@@ -4,6 +4,7 @@
     text-align: center;
     display: grid;
     grid-template-columns: 20% 50% 30%;
+    position: fixed;
 }
 
 .data-no-format {

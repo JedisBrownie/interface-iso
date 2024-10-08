@@ -3,7 +3,7 @@
     margin: auto auto;
     justify-content: center;
     position: sticky;
-    width: 80%;
+    width: 90%;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     top: 0;
@@ -17,7 +17,7 @@
 
 .jodit-workplace{
     width: 8.5in;
-    min-height: 11vh;
+    min-height: 44vh;
     padding: 0.1in;
     margin: auto;
     /* box-shadow: 0 0 5px 0 rgb(175, 240, 240); */
@@ -25,3 +25,6 @@
     background-color: white; 
 }
 
+.jodit-wysiwyg:hover{
+    cursor: pointer;
+}

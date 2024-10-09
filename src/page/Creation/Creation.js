@@ -1,8 +1,6 @@
 import "jodit";
 import { useState,useRef, useMemo,useEffect} from "react";
 import JoditEditor from "jodit-react";
-import JoditIsma from "jodit-react";
-import HTMLReactParser from "html-react-parser/lib/index";
 import ReactDOMServer from 'react-dom/server';
 import Processus from "../../components/creation/Processus";
 import "./creation.css";

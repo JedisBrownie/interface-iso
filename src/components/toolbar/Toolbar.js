@@ -261,9 +261,7 @@ export default function Toolbar(){
 
             if (startNode.nodeType === Node.TEXT_NODE) {
                 const parentNode = startNode.parentNode;
-    
                 const selectedText = range.toString();
-    
                 const newElement = document.createElement('span');
                 newElement.className = 'span-edited'; 
                 newElement.innerText = selectedText;
@@ -319,6 +317,11 @@ export default function Toolbar(){
                 rangeForNode.setStart(node, startOffset);
                 rangeForNode.setEnd(node, endOffset);
                 rangeForNode.deleteContents();
+
+                // Vérifier si le nœud est vide après la suppression
+                if (node.textContent.trim() === '') {
+                    parentNode.removeChild(node); // Supprimer le nœud s'il est vide
+                }
     
                 // Si le span n'a pas encore été inséré
                 if (!alreadyInserted) {
@@ -326,10 +329,7 @@ export default function Toolbar(){
                     alreadyInserted = true; // Marquer comme inséré
                 }
 
-                // Vérifier si le nœud est vide après la suppression
-                if (node.textContent.trim() === '') {
-                    parentNode.removeChild(node); // Supprimer le nœud s'il est vide
-                }
+
             });
         }
     };
@@ -418,6 +418,11 @@ export default function Toolbar(){
                     <option value={'24'}>24</option>
                 </select>
 
+                <div class="color-picker-container">
+                    <button id="textColorBtn" onClick={() => document.getElementById('textColor').click()}>Choisir une couleur</button>
+                    <input type="color" id="textColor" class="color-picker" hidden />
+                    <div id="selectedColor" class="selected-color"></div>
+                </div>
 
             </div>
         </>

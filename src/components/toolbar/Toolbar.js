@@ -28,6 +28,7 @@ export default function Toolbar(){
           const row = document.createElement('tr');
           for (let j = 0; j < tableCols; j++) {
             const cell = document.createElement('td');
+            cell.className = 'td-content-editable';
             row.appendChild(cell);
           }
           table.appendChild(row);
@@ -210,34 +211,166 @@ export default function Toolbar(){
         
     // }
 
-    const handleFontSizeChange = (event) => {
-        const newSize = event.target.value;
-        const selection = window.getSelection();
+    // const handleFontSizeChange = (event) => {
+    //     const newSize = event.target.value;
+    //     const selection = window.getSelection();
     
+    //     if (selection.rangeCount > 0) {
+    //         const range = selection.getRangeAt(0);
+    //         const selectedNode = range.commonAncestorContainer;
+    
+    //         // Trouver le premier span parent avec une taille de police définie
+    //         let parentSpan = selectedNode;
+    //         while (parentSpan && parentSpan.tagName === 'SPAN' && getComputedStyle(parentSpan).fontSize) {
+    //             parentSpan = parentSpan.parentNode;
+    //         }
+    
+    //         // Si un span parent avec une taille de police existe, mettre à jour le contenu
+    //         if (parentSpan && parentSpan.tagName === 'SPAN') {
+    //             const newContent = document.createElement('span');
+    //             newContent.style.fontSize = `${newSize}px`;
+    //             newContent.appendChild(range.extractContents());
+    //             parentSpan.appendChild(newContent);
+    //         } else {
+    //             // Sinon, créer un nouveau span
+    //             const newSpan = document.createElement('span');
+    //             newSpan.style.fontSize = `${newSize}px`;
+    //             range.surroundContents(newSpan);
+    //         }
+    //     }
+    // };
+
+    function getContainingDivInfo(selection) {
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+      
+        // Monter dans l'arbre DOM jusqu'à trouver un élément div
+        let current = container;
+        while (current && (current.nodeName !== 'DIV' && current.nodeName !== 'SPAN' && current.nodeName !== 'TD')){
+          current = current.parentNode;
+        }
+        return current;
+    }
+
+    const wrapSelection = () => {
+        const selection = window.getSelection();
+        
         if (selection.rangeCount > 0) {
             const range = selection.getRangeAt(0);
-            const selectedNode = range.commonAncestorContainer;
+            const startNode = range.startContainer;
+
+            if (startNode.nodeType === Node.TEXT_NODE) {
+                const parentNode = startNode.parentNode;
     
-            // Trouver le premier span parent avec une taille de police définie
-            let parentSpan = selectedNode;
-            while (parentSpan && parentSpan.tagName === 'SPAN' && getComputedStyle(parentSpan).fontSize) {
-                parentSpan = parentSpan.parentNode;
-            }
+                const selectedText = range.toString();
     
-            // Si un span parent avec une taille de police existe, mettre à jour le contenu
-            if (parentSpan && parentSpan.tagName === 'SPAN') {
-                const newContent = document.createElement('span');
-                newContent.style.fontSize = `${newSize}px`;
-                newContent.appendChild(range.extractContents());
-                parentSpan.appendChild(newContent);
-            } else {
-                // Sinon, créer un nouveau span
-                const newSpan = document.createElement('span');
-                newSpan.style.fontSize = `${newSize}px`;
-                range.surroundContents(newSpan);
+                const newElement = document.createElement('span');
+                newElement.className = 'span-edited'; 
+                newElement.innerText = selectedText;
+    
+                range.deleteContents();
+                range.insertNode(newElement);
             }
         }
     };
+
+    const updateSelection = () =>{
+
+    }
+
+    const wrapMixedSelection = () => {
+        const selection = window.getSelection();
+        
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            const selectedNodes = [];
+            const selectedText = range.toString();
+    
+            // Récupérer les nœuds dans la sélection
+            const commonAncestor = range.commonAncestorContainer;
+    
+            // Vérifier les nœuds sélectionnés
+            const walker = document.createTreeWalker(commonAncestor, NodeFilter.SHOW_TEXT, null, false);
+            while (walker.nextNode()) {
+                const currentNode = walker.currentNode;
+    
+                // Si le nœud contient le texte sélectionné
+                if (selection.containsNode(currentNode, true)) {
+                    selectedNodes.push(currentNode);
+                }
+            }
+    
+            // Remplacer le texte sélectionné par un nouveau span
+            const newSpan = document.createElement('span');
+            newSpan.className = 'edited';
+            newSpan.innerText = selectedText;
+    
+            // Vérifier si le span a déjà été inséré
+            let alreadyInserted = false;
+    
+            // Remplacer le contenu sélectionné dans chaque nœud
+            selectedNodes.forEach((node) => {
+                const parentNode = node.parentNode;
+                const startOffset = node === selectedNodes[0] ? range.startOffset : 0;
+                const endOffset = node === selectedNodes[selectedNodes.length - 1] ? range.endOffset : node.length;
+    
+                // Supprimer le texte sélectionné
+                const rangeForNode = document.createRange();
+                rangeForNode.setStart(node, startOffset);
+                rangeForNode.setEnd(node, endOffset);
+                rangeForNode.deleteContents();
+    
+                // Si le span n'a pas encore été inséré
+                if (!alreadyInserted) {
+                    rangeForNode.insertNode(newSpan.cloneNode(true)); // cloneNode pour insérer un nouveau span
+                    alreadyInserted = true; // Marquer comme inséré
+                }
+
+                // Vérifier si le nœud est vide après la suppression
+                if (node.textContent.trim() === '') {
+                    parentNode.removeChild(node); // Supprimer le nœud s'il est vide
+                }
+            });
+        }
+    };
+
+    const handleFontSizeChange = (event) =>{
+        const newSize = event.target.value;
+        const selection = window.getSelection();
+
+        if(selection.rangeCount > 0){
+            const range = selection.getRangeAt(0);
+            const startContainer = range.startContainer;
+            const endContainer = range.endContainer;
+            
+            console.log(startContainer.nodeType);
+            console.log(endContainer.nodeType);
+            
+            // ** scene 1 **//
+            if(startContainer.parentNode === endContainer.parentNode){
+
+                // ** raha mbl ao am parent source **//
+                if(getContainingDivInfo(selection).classList.contains('div-content-editable') || getContainingDivInfo(selection).classList.contains('td-content-editable')){        
+                    wrapSelection();
+                    console.log("Div parent");
+                }
+
+                if(getContainingDivInfo(selection).classList.contains('span-edited')){
+                    updateSelection();
+                    console.log("Span parent");
+                }
+            }
+
+            if(startContainer.parentNode !=  endContainer.parentNode){
+                wrapMixedSelection();
+                console.log("not the same parent bro");
+            }
+
+            
+            
+        }
+        
+    }
 
 
 

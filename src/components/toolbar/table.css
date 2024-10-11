@@ -27,3 +27,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.font-color-picker{
+  display: inline-grid;
+}
+
+#font-color{
+  display: none;
+  justify-content: center;
+}

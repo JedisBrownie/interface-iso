@@ -181,21 +181,21 @@ export default function Toolbar(){
 
 
 // ***  Font family (size , choice ) *** //    
-    const handleFontChange = (event) =>{
-        const value = event.target.value;
+    // const handleFontChange = (event) =>{
+    //     const value = event.target.value;
 
-        const selection = window.getSelection();
-        if (selection.rangeCount > 0) {
-            const range = selection.getRangeAt(0);
+    //     const selection = window.getSelection();
+    //     if (selection.rangeCount > 0) {
+    //         const range = selection.getRangeAt(0);
 
-            // Create a new span element to apply the font style
-            const span = document.createElement('span');
-            span.style.fontFamily = value;
+    //         // Create a new span element to apply the font style
+    //         const span = document.createElement('span');
+    //         span.style.fontFamily = value;
 
-            // Wrap the selected text in the span
-            range.surroundContents(span);
-        }
-    }
+    //         // Wrap the selected text in the span
+    //         range.surroundContents(span);
+    //     }
+    // }
 
     // const handleFontSizeChange = (event) =>{
     //     const value = event.target.value;
@@ -252,7 +252,7 @@ export default function Toolbar(){
         return current;
     }
 
-    const wrapSelection = () => {
+    const wrapSelection = (style,value) => {
         const selection = window.getSelection();
         
         if (selection.rangeCount > 0) {
@@ -265,18 +265,51 @@ export default function Toolbar(){
                 const newElement = document.createElement('span');
                 newElement.className = 'span-edited'; 
                 newElement.innerText = selectedText;
-    
+                newElement.style[style] = value;
                 range.deleteContents();
                 range.insertNode(newElement);
             }
         }
     };
 
-    const updateSelection = () =>{
 
-    }
+    const updateSelection = (newStyle, newValue) => {
+        const selection = window.getSelection();
+        
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            const startNode = range.startContainer;
+            const endNode = range.endContainer;
+    
+            // Vérifier si la sélection est dans un même parent (span, div, etc.)
+            const parentSpan = startNode.parentNode === endNode.parentNode ? startNode.parentNode : null;
+            
+            if (parentSpan && parentSpan.tagName === 'SPAN') {
+                const selectedText = range.toString();
+                const parentText = parentSpan.textContent;
+                
+                console.log("parent text : " + parentText);
+                console.log("selected : " + selectedText);
+                // Si la sélection n'est pas le texte entier du span parent
+                if (selectedText !== parentText) {
+                    wrapSelection(newStyle,newValue)
+                    // Supprimer le parent span s'il devient vide
+                    if (parentSpan.textContent.trim() === '') {
+                        parentSpan.remove();
+                    }
+                    console.log("wrapp again");
+                } else {
+                    // Si tout le texte du span est sélectionné, appliquer directement le style
+                    parentSpan.style[newStyle] = newValue;
+                    // wrapMixedSelection(newStyle,newValue);
+                    console.log("update again");
+                }
+            }
+        }
+    };
+    
 
-    const wrapMixedSelection = () => {
+    const wrapMixedSelection = (newStyle,newValue) => {
         const selection = window.getSelection();
         
         if (selection.rangeCount > 0) {
@@ -300,9 +333,9 @@ export default function Toolbar(){
     
             // Remplacer le texte sélectionné par un nouveau span
             const newSpan = document.createElement('span');
-            newSpan.className = 'edited';
+            newSpan.className = 'span-edited';
             newSpan.innerText = selectedText;
-    
+            newSpan.style[newStyle] = newValue;
             // Vérifier si le span a déjà été inséré
             let alreadyInserted = false;
     
@@ -316,13 +349,8 @@ export default function Toolbar(){
                 const rangeForNode = document.createRange();
                 rangeForNode.setStart(node, startOffset);
                 rangeForNode.setEnd(node, endOffset);
-                rangeForNode.deleteContents();
+                rangeForNode.extractContents();
 
-                // Vérifier si le nœud est vide après la suppression
-                if (node.textContent.trim() === '') {
-                    parentNode.removeChild(node); // Supprimer le nœud s'il est vide
-                }
-    
                 // Si le span n'a pas encore été inséré
                 if (!alreadyInserted) {
                     rangeForNode.insertNode(newSpan.cloneNode(true)); // cloneNode pour insérer un nouveau span
@@ -334,8 +362,7 @@ export default function Toolbar(){
         }
     };
 
-    const handleFontSizeChange = (event) =>{
-        const newSize = event.target.value;
+    const handleCursorChange = (newStyle,newValue) =>{
         const selection = window.getSelection();
 
         if(selection.rangeCount > 0){
@@ -343,33 +370,51 @@ export default function Toolbar(){
             const startContainer = range.startContainer;
             const endContainer = range.endContainer;
             
-            console.log(startContainer.nodeType);
-            console.log(endContainer.nodeType);
-            
+            console.log("debut : " + startContainer.nodeType);
+            console.log("fin :  " + endContainer.nodeType);
+            console.log("parent debut : " + startContainer.parentNode.nodeType);
+            console.log("parent fin : " + endContainer.parentNode.nodeType);
+
             // ** scene 1 **//
             if(startContainer.parentNode === endContainer.parentNode){
-
+                console.log("miray contenaire kambony reo");
                 // ** raha mbl ao am parent source **//
                 if(getContainingDivInfo(selection).classList.contains('div-content-editable') || getContainingDivInfo(selection).classList.contains('td-content-editable')){        
-                    wrapSelection();
                     console.log("Div parent");
-                }
-
-                if(getContainingDivInfo(selection).classList.contains('span-edited')){
-                    updateSelection();
+                    wrapSelection(newStyle,newValue);
+                    window.getSelection().removeAllRanges()
+                }else if(getContainingDivInfo(selection).classList.contains('span-edited') || getContainingDivInfo(selection).classList.contains('div-content-editable') || getContainingDivInfo(selection).classList.contains('td-content-editable')){
                     console.log("Span parent");
+                    updateSelection(newStyle,newValue);
+                    window.getSelection().removeAllRanges()
                 }
             }
-
-            if(startContainer.parentNode !=  endContainer.parentNode){
-                wrapMixedSelection();
+            else if(startContainer.parentNode !== endContainer.parentNode){
                 console.log("not the same parent bro");
+                wrapMixedSelection(newStyle,newValue);
+                window.getSelection().removeAllRanges()
+            }else{
+                console.log("Efa hoe ajanony pr io");
             }
+        }   
 
-            
-            
-        }
-        
+    }
+   
+
+    const handleFontSizeChange = (event) =>{
+        const newSize = event.target.value;
+        handleCursorChange('fontSize',newSize);
+    }
+
+    const handleFontColorChange = (event) =>{
+        const newColor = `'${event.target.value}'`;
+        console.log(newColor);
+        handleCursorChange('color', newColor);
+    }
+
+    const handleFontChange = (event) =>{
+        const newFont = event.target.value;
+        handleCursorChange('font',newFont);
     }
 
 
@@ -377,7 +422,7 @@ export default function Toolbar(){
 
     return(
         <>
-            <div style={{marginTop:'2em',columnGap:'10px'}}>
+            <div style={{marginTop:'2em',columnGap:'10px',color:'#ff00ea'}}>
                 <button style={{marginLeft:'10px'}} id="boldButton" onClick={() => toggleButton("bold")}>Bold</button>
                 <button style={{marginLeft:'10px'}} id="italicButton" onClick={() => toggleButton("italic")}>Italic</button>
                 <button style={{marginLeft:'10px'}} id="underlineButton" onClick={() => toggleButton("underline")}>Underline</button>
@@ -409,19 +454,18 @@ export default function Toolbar(){
                 </select>
 
                 <select className='font-size-selecor' onChange={handleFontSizeChange}>
-                    <option value={'8'}>8</option>
-                    <option value={'10'}>10</option>
-                    <option value={'12'}>12</option>
-                    <option value={'14'}>14</option>
-                    <option value={'18'}>18</option>
-                    <option value={'20'}>20</option>
-                    <option value={'24'}>24</option>
+                    <option value={'8px'}>8</option>
+                    <option value={'10px'}>10</option>
+                    <option value={'12px'}>12</option>
+                    <option value={'14px'}>14</option>
+                    <option value={'18px'}>18</option>
+                    <option value={'20px'}>20</option>
+                    <option value={'24px'}>24</option>
                 </select>
 
-                <div class="color-picker-container">
-                    <button id="textColorBtn" onClick={() => document.getElementById('textColor').click()}>Choisir une couleur</button>
-                    <input type="color" id="textColor" class="color-picker" hidden />
-                    <div id="selectedColor" class="selected-color"></div>
+                <div className='font-color-picker'>
+                    <button onClick={() => document.getElementById('font-color').click()}>Font color</button>
+                    <input type='color' id='font-color' onChange={handleFontColorChange}></input>
                 </div>
 
             </div>

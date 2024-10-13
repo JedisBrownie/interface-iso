@@ -174,71 +174,34 @@ export default function Toolbar(){
     };
 
 // ***  Superscript and SubScript removal *** //    
-    const removeScript = () =>{
-        document.execCommand('superscript', false, null);
-        document.execCommand('subscript', false, null);
+
+    const toggleSuperSubScript = (type) => {
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+    
+            // Créer le nouvel élément
+            const newElement = document.createElement(type);
+    
+            // Envelopper le contenu de la sélection dans le nouvel élément
+            range.surroundContents(newElement);
+    
+            const tempElement = document.createElement('span');
+            tempElement.className = 'span-edited';
+            tempElement.innerHTML = '&nbsp;';
+        
+            newElement.parentNode.insertBefore(tempElement, newElement.nextSibling);
+
+            // Déplacer le curseur au début du nouveau nœud texte
+            range.setStart(tempElement , 1);
+            range.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
     };
 
 
 // ***  Font family (size , choice ) *** //    
-    // const handleFontChange = (event) =>{
-    //     const value = event.target.value;
-
-    //     const selection = window.getSelection();
-    //     if (selection.rangeCount > 0) {
-    //         const range = selection.getRangeAt(0);
-
-    //         // Create a new span element to apply the font style
-    //         const span = document.createElement('span');
-    //         span.style.fontFamily = value;
-
-    //         // Wrap the selected text in the span
-    //         range.surroundContents(span);
-    //     }
-    // }
-
-    // const handleFontSizeChange = (event) =>{
-    //     const value = event.target.value;
-    //     document.execCommand("fontSize",null,value);
-    //     // const selection = window.getSelection();
-    //     // if (selection.rangeCount > 0) {
-    //     //     const range = selection.getRangeAt(0);
-    //     //     const span = document.createElement('span');
-    //     //     span.style.fontSize = `${value}px`;
-    //     //     range.surroundContents(span);
-    //     // }
-
-        
-    // }
-
-    // const handleFontSizeChange = (event) => {
-    //     const newSize = event.target.value;
-    //     const selection = window.getSelection();
-    
-    //     if (selection.rangeCount > 0) {
-    //         const range = selection.getRangeAt(0);
-    //         const selectedNode = range.commonAncestorContainer;
-    
-    //         // Trouver le premier span parent avec une taille de police définie
-    //         let parentSpan = selectedNode;
-    //         while (parentSpan && parentSpan.tagName === 'SPAN' && getComputedStyle(parentSpan).fontSize) {
-    //             parentSpan = parentSpan.parentNode;
-    //         }
-    
-    //         // Si un span parent avec une taille de police existe, mettre à jour le contenu
-    //         if (parentSpan && parentSpan.tagName === 'SPAN') {
-    //             const newContent = document.createElement('span');
-    //             newContent.style.fontSize = `${newSize}px`;
-    //             newContent.appendChild(range.extractContents());
-    //             parentSpan.appendChild(newContent);
-    //         } else {
-    //             // Sinon, créer un nouveau span
-    //             const newSpan = document.createElement('span');
-    //             newSpan.style.fontSize = `${newSize}px`;
-    //             range.surroundContents(newSpan);
-    //         }
-    //     }
-    // };
 
     function getContainingDivInfo(selection) {
         const range = selection.getRangeAt(0);
@@ -252,7 +215,7 @@ export default function Toolbar(){
         return current;
     }
 
-    const wrapSelection = (style,value) => {
+    const wrapSelection = (newStyle,newValue) => {
         const selection = window.getSelection();
         
         if (selection.rangeCount > 0) {
@@ -265,7 +228,10 @@ export default function Toolbar(){
                 const newElement = document.createElement('span');
                 newElement.className = 'span-edited'; 
                 newElement.innerText = selectedText;
-                newElement.style[style] = value;
+                newElement.style[newStyle] = newValue;
+                console.log("Applying : " + newStyle + " with value : " + newValue );
+                console.log(newElement.style[newStyle] +  " : " + newValue);
+                // newElement.style.color ='#ef0606';
                 range.deleteContents();
                 range.insertNode(newElement);
             }
@@ -344,9 +310,22 @@ export default function Toolbar(){
                 const parentNode = node.parentNode;
                 const startOffset = node === selectedNodes[0] ? range.startOffset : 0;
                 const endOffset = node === selectedNodes[selectedNodes.length - 1] ? range.endOffset : node.length;
-    
-                // Supprimer le texte sélectionné
+
                 const rangeForNode = document.createRange();
+
+                const isImage = parentNode.tagName === 'IMG';
+                if(isImage === true){
+                    alreadyInserted = true;
+                }
+
+                const isTable = parentNode.tagName === 'TABLE';
+                if(isTable === true){
+                    alreadyInserted = true;
+                }
+
+                // Supprimer le texte sélectionné
+                
+
                 rangeForNode.setStart(node, startOffset);
                 rangeForNode.setEnd(node, endOffset);
                 rangeForNode.extractContents();
@@ -356,11 +335,19 @@ export default function Toolbar(){
                     rangeForNode.insertNode(newSpan.cloneNode(true)); // cloneNode pour insérer un nouveau span
                     alreadyInserted = true; // Marquer comme inséré
                 }
+            });
 
-
+            selectedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE && (node.tagName === 'IMG' || node.tagName === 'TABLE')) {
+                    const rangeForNode = document.createRange();
+                    rangeForNode.setStartBefore(node);
+                    rangeForNode.insertNode(node.cloneNode(true));
+                }
             });
         }
     };
+
+
 
     const handleCursorChange = (newStyle,newValue) =>{
         const selection = window.getSelection();
@@ -382,19 +369,20 @@ export default function Toolbar(){
                 if(getContainingDivInfo(selection).classList.contains('div-content-editable') || getContainingDivInfo(selection).classList.contains('td-content-editable')){        
                     console.log("Div parent");
                     wrapSelection(newStyle,newValue);
-                    window.getSelection().removeAllRanges()
+                    window.getSelection().removeAllRanges();
                 }else if(getContainingDivInfo(selection).classList.contains('span-edited') || getContainingDivInfo(selection).classList.contains('div-content-editable') || getContainingDivInfo(selection).classList.contains('td-content-editable')){
                     console.log("Span parent");
+                    wrapMixedSelection(newStyle,newValue);
                     updateSelection(newStyle,newValue);
-                    window.getSelection().removeAllRanges()
+                    window.getSelection().removeAllRanges();
                 }
             }
             else if(startContainer.parentNode !== endContainer.parentNode){
                 console.log("not the same parent bro");
                 wrapMixedSelection(newStyle,newValue);
-                window.getSelection().removeAllRanges()
+                window.getSelection().removeAllRanges();
             }else{
-                console.log("Efa hoe ajanony pr io");
+                console.log("Efa hoe ajanony io");
             }
         }   
 
@@ -407,16 +395,19 @@ export default function Toolbar(){
     }
 
     const handleFontColorChange = (event) =>{
-        const newColor = `'${event.target.value}'`;
+        // const newColor = `'${event.target.value}'`;
+        const newColor = event.target.value;
         console.log(newColor);
         handleCursorChange('color', newColor);
     }
 
     const handleFontChange = (event) =>{
         const newFont = event.target.value;
-        handleCursorChange('font',newFont);
+        console.log(event.target.value);
+        handleCursorChange('fontFamily',newFont);
     }
 
+    
 
 
 
@@ -439,12 +430,12 @@ export default function Toolbar(){
                     ref={fileInputRef}
                     accept="image/*"
                     onChange={handleFileChange}
-                    style={{ marginTop: '10px' }} />
+                    style={{ marginTop: '10px',color:'black'}} />
 
                 <button onClick={() => toggleButton("indent") }>Indent</button>
                 <button onClick={() => toggleButton("outdent") }>Outdent</button>
-                <button onClick={() => toggleButton("superscript") }>Superscript</button>
-                <button onClick={() => toggleButton("subscript") }>SubScript</button>
+                <button onClick={() => toggleSuperSubScript("sup") }>Superscript</button>
+                <button onClick={() => toggleSuperSubScript("sub") }>SubScript</button>
 
                 {/* <button onClick={() => execCommand("fontName","serif")}>Change font</button> */}
                 <select className='font-selecor' onChange={handleFontChange }>
@@ -466,6 +457,13 @@ export default function Toolbar(){
                 <div className='font-color-picker'>
                     <button onClick={() => document.getElementById('font-color').click()}>Font color</button>
                     <input type='color' id='font-color' onChange={handleFontColorChange}></input>
+                </div>
+
+                <div className='align-content' style={{marginTop:'10px',marginLeft:'10px'}}>
+                    <button onClick={() => toggleButton("justifyCenter")}>Align Center</button>
+                    <button onClick={() => toggleButton("justifyLeft")}>Align Left</button>
+                    <button onClick={() => toggleButton("justifyRight")}>Align Right</button>
+                    <button onClick={() => toggleButton("justifyFull")}>Align Full</button>
                 </div>
 
             </div>

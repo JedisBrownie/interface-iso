@@ -34,10 +34,69 @@ export default function Enregistrement(){
                     </div>
                 </div>
 
+            {/* début section 1 presentation */}
                 <div className='presentation'>
                     <div className='title'>Présentation</div>
-                    <div ></div>
+                    
+                    <div className='presentation-grid'>
+                        <div className='presentrow-one'>
+                            <div className='champ'>Mise en application le</div>
+                            <div className='valeur-champ'><input type='date'/></div>
+                            
+                            <div className='champ'>Pays</div>
+                            <div className='valeur-champ'>Madagascar</div>
+                        </div>
+
+                        <div className='presentrow-two'>
+                            <div className='champ'>&nbsp;</div>
+                            <div className='valeur-champ'>&nbsp;</div>
+                            
+                            <div className='champ'>Confidentiel</div>
+                            <div className='valeur-champ' style={{display:'flex'}}>
+                                <input type='radio' name='confidentiel' value={'Oui'} id='oui'/><label for='oui'>Oui</label>
+                                <input type='radio' name='confidentiel' style={{marginLeft:'20px'}} value={'Non'} id='non'/><label for='non'>Non</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            {/* fin section 1 presentation */}
+
+            {/* début section 2 liste iso */}
+                <div className='liste-iso'>
+                    <div className='title'>
+                        <div></div>
+                        <div style={{paddingLeft:'1em'}}>ISO 9001</div>
+                        <div style={{paddingLeft:'1em'}}>ISO 14001</div>
+                        <div style={{paddingLeft:'1em'}}>Sécurité</div>
+                    </div>
+                    <div className='activité'>
+                        <div className='champ'>Activités</div>
+                        <div className='valeur-champ'>&nbsp;</div>
+                        <div className='valeur-champ'>&nbsp;</div>
+                        <div className='valeur-champ'>&nbsp;</div>
+                    </div>
+                    <div className='site'>
+                        <div className='champ'>Site</div>
+                        <div className='valeur-champ'>&nbsp;</div>
+                        <div className='valeur-champ'>&nbsp;</div>
+                        <div className='valeur-champ'>&nbsp;</div>
+                    </div>
+                </div>
+            {/* fin section 2 liste iso */}
+
+            {/* début section 3 liste processus iso */}
+                <div className='liste-processus'>
+                    <div className='title'>
+                        <div style={{paddingLeft:'1.5em'}}>Processus Global</div>
+                        <div style={{paddingLeft:'1.5em'}}>Processus Lie</div>
+                    </div>
+                    <div className='processus'>
+                        <div className='valeur-champ'>&nbsp;</div>
+                        <div className='valeur-champ'>&nbsp;</div>
+                    </div>
+                </div>
+            {/* fin section 3 liste processus iso */}
+
             </div>
 
         </div>

@@ -2,7 +2,6 @@
     font-size: 14px;
     justify-content: center;
     display: flex;
-    
 }
 
 body{
@@ -20,14 +19,14 @@ body{
 
 .paper-one .entete{
     display: grid;
-    grid-template-columns: 16em 36em 14em;
+    grid-template-columns: 14em 37em 14em;
+    width: 100%;
 }
 
 .entete .information{
     padding-left: 3em;
-    font-size: 12px;
+    font-size: 13px;
     padding-top: 1em;
-    
 }
 
 .entete .logo{
@@ -44,7 +43,88 @@ body{
 .presentation .title{
     background-color: rgb(254, 62, 62);
     color: white;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: bolder;
     text-align: center;
     padding: 7px 0px 7px 0px;
+}
+
+.presentation-grid{
+    display: grid;
+}
+
+.presentrow-one{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.presentrow-two{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.champ{
+    padding: 0.5em;
+    background-color: rgb(234, 234, 234);
+    border: rgb(183, 183, 183) 1px solid;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.valeur-champ{
+    padding: 0.5em;
+    border: rgb(183, 183, 183) 1px solid;
+}
+
+.valeur-champ label{
+    margin-left: 5px;
+}
+
+
+/*### section 2 liste iso ###*/
+.liste-iso{
+    margin-top: 1.7em;
+}
+
+.liste-iso .title{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: rgb(254, 62, 62);
+    font-size: 14px;
+    font-weight: bolder;
+    padding: 7px 0px 7px 0px;
+    color: white;
+}
+
+.liste-iso .activité{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.liste-iso .site{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+
+/*### section 3 liste processus ###*/
+
+.liste-processus{
+    margin-top: 1.7em;
+}
+
+.liste-processus .title{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: rgb(254, 62, 62);
+    font-size: 14px;
+    font-weight: bolder;
+    padding: 7px 0px 7px 0px;
+    color: white;
+}
+
+.liste-processus .processus{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 3.5em;
 }

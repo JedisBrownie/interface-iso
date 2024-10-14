@@ -1,0 +1,50 @@
+.list-paper{
+    font-size: 14px;
+    justify-content: center;
+    display: flex;
+    
+}
+
+body{
+    background-color: #fdfdfd;
+}
+
+.paper-one{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 68em;
+    padding: 1.5em;
+    max-width: 68em;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.paper-one .entete{
+    display: grid;
+    grid-template-columns: 16em 36em 14em;
+}
+
+.entete .information{
+    padding-left: 3em;
+    font-size: 12px;
+    padding-top: 1em;
+    
+}
+
+.entete .logo{
+    margin-left: 2em;
+    padding-top: 0.5em;
+}
+
+/*### section 1 presentation ###*/
+
+.presentation{
+    margin-top: 1.5em;
+}
+
+.presentation .title{
+    background-color: rgb(254, 62, 62);
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    padding: 7px 0px 7px 0px;
+}

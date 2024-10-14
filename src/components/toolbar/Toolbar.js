@@ -1,6 +1,24 @@
-import './table.css';
+import './toolbar.css';
 import { useEffect, useRef , useState } from 'react';
 import interact from 'interactjs';
+import FormatBoldOutlinedIcon from '@mui/icons-material/FormatBoldOutlined';
+import FormatItalicOutlinedIcon from '@mui/icons-material/FormatItalicOutlined';
+import FormatUnderlinedOutlinedIcon from '@mui/icons-material/FormatUnderlinedOutlined';
+import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import FormatListNumberedOutlinedIcon from '@mui/icons-material/FormatListNumberedOutlined';
+import FormatIndentIncreaseOutlinedIcon from '@mui/icons-material/FormatIndentIncreaseOutlined';
+import FormatIndentDecreaseOutlinedIcon from '@mui/icons-material/FormatIndentDecreaseOutlined';
+import SuperscriptRoundedIcon from '@mui/icons-material/SuperscriptRounded';
+import SubscriptRoundedIcon from '@mui/icons-material/SubscriptRounded';
+import FormatAlignCenterRoundedIcon from '@mui/icons-material/FormatAlignCenterRounded';
+import FormatAlignJustifyRoundedIcon from '@mui/icons-material/FormatAlignJustifyRounded';
+import FormatAlignLeftRoundedIcon from '@mui/icons-material/FormatAlignLeftRounded';
+import FormatAlignRightRoundedIcon from '@mui/icons-material/FormatAlignRightRounded';
+import FormatColorTextOutlinedIcon from '@mui/icons-material/FormatColorTextOutlined';
+import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutlined';
+import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+
 export default function Toolbar(){
 
     const fileInputRef = useRef(null);
@@ -412,61 +430,79 @@ export default function Toolbar(){
 
 
     return(
-        <>
-            <div style={{marginTop:'2em',columnGap:'10px',color:'#ff00ea'}}>
-                <button style={{marginLeft:'10px'}} id="boldButton" onClick={() => toggleButton("bold")}>Bold</button>
-                <button style={{marginLeft:'10px'}} id="italicButton" onClick={() => toggleButton("italic")}>Italic</button>
-                <button style={{marginLeft:'10px'}} id="underlineButton" onClick={() => toggleButton("underline")}>Underline</button>
-                <button onClick={() => toggleButton("insertUnorderedList")}>
-                    Bullet Points
-                </button>
-                <button onClick={() => toggleButton("insertOrderedList")}>
-                    Order points
-                </button>
-                <button onClick={() => createTable()}>Create Table</button>
+        <div className='header-editor' >
+            <div style={{marginTop:'0em',columnGap:'10px',color:''}} className='toolbar-editor'>
+                <div className='toolbar-text'>
+                    <button className='toolbar-button'  onClick={() => toggleButton("bold")} ><FormatBoldOutlinedIcon sx={{fontSize:17}}/> </button>
+                    <button className='toolbar-button'  onClick={() => toggleButton("italic")}><FormatItalicOutlinedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button'  onClick={() => toggleButton("underline")}><FormatUnderlinedOutlinedIcon sx={{fontSize:17}}/></button>
+                    
+                    <select className='font-selecor' onChange={handleFontChange }>
+                        <option value={'arial'}>Arial</option>
+                        <option value={'serif'}>Avec Serif</option>
+                        <option value={'monospace'}>Monospace</option>
+                    </select>
 
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    style={{ marginTop: '10px',color:'black'}} />
+                    <select className='font-size-selecor' onChange={handleFontSizeChange}>
+                        <option value={'8px'}>8</option>
+                        <option value={'10px'}>10</option>
+                        <option value={'12px'}>12</option>
+                        <option value={'14px'}>14</option>
+                        <option value={'18px'}>18</option>
+                        <option value={'20px'}>20</option>
+                        <option value={'24px'}>24</option>
+                    </select>
 
-                <button onClick={() => toggleButton("indent") }>Indent</button>
-                <button onClick={() => toggleButton("outdent") }>Outdent</button>
-                <button onClick={() => toggleSuperSubScript("sup") }>Superscript</button>
-                <button onClick={() => toggleSuperSubScript("sub") }>SubScript</button>
+                    <div className='font-color-picker'>
+                        <button className='toolbar-button' onClick={() => document.getElementById('font-color-text').click()}><FormatColorTextOutlinedIcon sx={{fontSize:17}}/></button>
+                        <input type='color' hidden id='font-color-text' onChange={handleFontColorChange}></input>
+                    </div>
 
-                {/* <button onClick={() => execCommand("fontName","serif")}>Change font</button> */}
-                <select className='font-selecor' onChange={handleFontChange }>
-                    <option value={'arial'}>Arial</option>
-                    <option value={'serif'}>Avec Serif</option>
-                    <option value={'monospace'}>Monospace</option>
-                </select>
-
-                <select className='font-size-selecor' onChange={handleFontSizeChange}>
-                    <option value={'8px'}>8</option>
-                    <option value={'10px'}>10</option>
-                    <option value={'12px'}>12</option>
-                    <option value={'14px'}>14</option>
-                    <option value={'18px'}>18</option>
-                    <option value={'20px'}>20</option>
-                    <option value={'24px'}>24</option>
-                </select>
-
-                <div className='font-color-picker'>
-                    <button onClick={() => document.getElementById('font-color').click()}>Font color</button>
-                    <input type='color' id='font-color' onChange={handleFontColorChange}></input>
+                    <div className='font-color-picker'>
+                        <button className='toolbar-button' onClick={() => document.getElementById('font-color-background').click()}><FormatColorFillOutlinedIcon sx={{fontSize:17}} /></button>
+                        <input type='color' hidden id='font-color-background'></input>
+                    </div>
                 </div>
 
-                <div className='align-content' style={{marginTop:'10px',marginLeft:'10px'}}>
-                    <button onClick={() => toggleButton("justifyCenter")}>Align Center</button>
-                    <button onClick={() => toggleButton("justifyLeft")}>Align Left</button>
-                    <button onClick={() => toggleButton("justifyRight")}>Align Right</button>
-                    <button onClick={() => toggleButton("justifyFull")}>Align Full</button>
+                <div className='toolbar-paraph'>
+                    <button className='toolbar-button' onClick={() => toggleButton("outdent") }><FormatIndentDecreaseOutlinedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button' onClick={() => toggleButton("indent") }><FormatIndentIncreaseOutlinedIcon sx={{fontSize:17}}/></button>
+                </div>
+
+                <div className='toolbar-assets'>
+                    <button className='toolbar-button' onClick={() => createTable()}><TableChartOutlinedIcon sx={{fontSize:17}}/></button>
+
+                    <label for="image-upload" class="custom-image-upload">
+                        <InsertPhotoOutlinedIcon sx={{fontSize:17}} />
+                    </label>
+                    <input
+                        id="image-upload"
+                        type="file"
+                        ref={fileInputRef}
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        style={{ marginTop: '10px',color:'black'}} />
+                </div>
+
+                <div className='toolbar-formatage'>
+                    <button className='toolbar-button' onClick={() => toggleButton("insertUnorderedList")}>
+                        < FormatListBulletedOutlinedIcon sx={{fontSize:17}}/>
+                    </button>
+                    <button className='toolbar-button' onClick={() => toggleButton("insertOrderedList")}>
+                        <FormatListNumberedOutlinedIcon sx={{fontSize:17}}/>
+                    </button>
+                    <button className='toolbar-button' onClick={() => toggleSuperSubScript("sup") }><SuperscriptRoundedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button' onClick={() => toggleSuperSubScript("sub") }><SubscriptRoundedIcon sx={{fontSize:17}}/></button>
+                </div>
+
+                <div className='align-content' >
+                    <button className='toolbar-button' onClick={() => toggleButton("justifyCenter")}><FormatAlignCenterRoundedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button' onClick={() => toggleButton("justifyLeft")}><FormatAlignLeftRoundedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button' onClick={() => toggleButton("justifyRight")}><FormatAlignRightRoundedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button' onClick={() => toggleButton("justifyFull")}><FormatAlignJustifyRoundedIcon sx={{fontSize:17}}/></button>
                 </div>
 
             </div>
-        </>
+        </div>
     );
 }

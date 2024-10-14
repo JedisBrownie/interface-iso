@@ -1,0 +1,154 @@
+
+/** Start Toolbar **/
+/* body{
+  overflow-y: hidden;
+} */
+
+.header-editor{
+  width: 100%;
+  height: fit-content;
+  background-color: #fdfdfd;
+  padding-top: 20px;
+  position: fixed;
+  top: 0px;
+  padding-bottom: 1em;
+}
+
+.toolbar-editor{
+  margin-top: 2em;
+  background-color: white;
+  width: 62em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 2;
+  margin: auto auto;
+  padding: 5px 5px 5px 5px;
+  border-radius: 1.5em;
+  display: flex;
+  justify-content: center;
+}
+
+
+.toolbar-button{
+  border: none;
+  background-color: transparent;
+  padding: 8px 8px;
+  border-radius: 6px;
+}
+
+.toolbar-button:hover{
+  cursor: pointer;
+  background-color: rgb(244, 244, 244);
+}
+
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-image-upload {
+  display: inline-block;
+  padding: 8px 8px;
+  border-radius: 6px;
+  background-color: transparent;
+}
+
+.custom-image-upload:hover{
+  cursor: pointer;
+  background-color:  rgb(244, 244, 244);
+}
+
+
+
+
+
+
+
+
+
+
+/** End Toolbar **/
+
+
+
+
+
+
+/* Align the select option with buttons */
+select {
+  background-color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 10px;
+  margin-right: 10px; /* Adjusts space between elements */
+  cursor: pointer;
+  color: #333;
+}
+
+
+/* Align select with toolbar buttons */
+.font-selecor, .font-size-selecor {
+  display: inline-block;
+}
+
+/* Style options inside select */
+select option {
+  background-color: white;
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+img {
+  display: inline-block;
+  max-width: 100%; /* Pour éviter les débordements */
+  cursor: pointer; /* Indiquer qu'elles sont interactives */
+}
+
+table{
+  max-width: 95%;
+  min-width: 80%;
+  table-layout: fixed;
+}
+
+th, td {
+  vertical-align: top;
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Optional: show ellipsis for overflowed text */
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+-moz-appearance: textfield;
+}
+
+.font-color-picker{
+display: inline-grid;
+}
+
+#font-color{
+display: none;
+justify-content: center;
+}
+

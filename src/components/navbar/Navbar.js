@@ -50,11 +50,11 @@ export default function Navbar(){
                 </div>
 
                 <div className="right menu">
-                    <div className="item">
+                    {/* <div className="item">
                         <Badge badgeContent={1} max={9} color='primary'>
                             <NotificationsNoneIcon  style={{color:'white',fontSize:'1.5em'}} fontSize='medium' className='icons'></NotificationsNoneIcon>   
                         </Badge>
-                    </div>
+                    </div> */}
 
                     <div className="item" style={{fontSize:'0.9rem'}}>
                         <div className="ui icon input">

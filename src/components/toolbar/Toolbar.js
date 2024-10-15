@@ -472,7 +472,7 @@ export default function Toolbar(){
                 <div className='toolbar-assets'>
                     <button className='toolbar-button' onClick={() => createTable()}><TableChartOutlinedIcon sx={{fontSize:17}}/></button>
 
-                    <label for="image-upload" class="custom-image-upload">
+                    <label for="image-upload" className="custom-image-upload">
                         <InsertPhotoOutlinedIcon sx={{fontSize:17}} />
                     </label>
                     <input
@@ -503,6 +503,8 @@ export default function Toolbar(){
                 </div>
 
             </div>
+
+            
         </div>
     );
 }

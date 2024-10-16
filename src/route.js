@@ -4,7 +4,6 @@ import Home from "./page/Home/Home";
 import Brouillon from "./page/Brouillon/Brouillon";
 import CreationJodit from "./page/Creation/CreationJodit";
 import DocumentValable from "./page/Home/DocumentValable";
-import Processus from "./components/creation/Processus";
 import Edition from "./page/Creation/Edition";
 
 export const routes = [
@@ -27,10 +26,6 @@ export const routes = [
     {
         path : '/jodit',
         element : <CreationJodit />
-    },
-    {
-        path : '/processus',
-        element : <Processus/>
     },
     {
         path : '/creation/:type',

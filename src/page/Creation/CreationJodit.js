@@ -2,13 +2,13 @@ import "jodit";
 import { useState,useRef, useMemo,useEffect} from "react";
 import JoditEditor from "jodit-react";
 import ReactDOMServer from 'react-dom/server';
-import Processus from "../../components/creation/Processus";
+import TestJodit from "../../components/creation/TestJodit";
 import "./creation.css";
 
 export default function CreationJodit({ placeholder }) {
 
     const editor = useRef(null);
-    const contenu =  ReactDOMServer.renderToString(<Processus></Processus>);
+    const contenu =  ReactDOMServer.renderToString(<TestJodit></TestJodit>);
     const[content,setContent] = useState(contenu);
     console.log(contenu);
     
@@ -83,7 +83,7 @@ export default function CreationJodit({ placeholder }) {
 
     return(
         <>
-          <JoditEditor ref={editor} value={content} onChange={newContent =>setContent(newContent)} config={config} component={<Processus></Processus>}>
+          <JoditEditor ref={editor} value={content} onChange={newContent =>setContent(newContent)} config={config} component={<TestJodit></TestJodit>}>
           </JoditEditor>
 
           {/* <div>{HTMLReactParser(content)}</div> */}

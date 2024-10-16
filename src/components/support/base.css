@@ -1,0 +1,246 @@
+
+/*#### {paper-one debut } ####*/
+
+.paper-one{
+    box-shadow: var(--boxShadow);
+    border: 1px solid rgb(229, 229, 229);
+    width: 58em;
+    padding: 1.5em;
+    max-width: 58em;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.paper-one .entete{
+    display: grid;
+    grid-template-columns: 12em 29em 14em;
+    width: 100%;
+}
+
+.entete .information{
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 12px;
+    padding-top: 0.5em;
+}
+
+.entete .logo{
+    margin-left: 1em;
+    padding-top: 0.5em;
+}
+
+.entete .information .information-value{
+    float: right;
+}
+
+.entete .information .information-list{
+    font-weight: bolder;
+}
+
+
+/*### section 1 presentation ###*/
+
+    .presentation{
+        margin-top: 1.5em;
+    }
+
+    .presentation .title{
+        background-color: var(--rouge);
+        color: white;
+        font-size: 12px;
+        font-weight: bolder;
+        text-align: center;
+        padding: 4px 0px 4px 0px;
+    }
+
+    .presentation-grid{
+        display: grid;
+    }
+
+    .presentrow-one{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .presentrow-two{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .champ{
+        padding: 0.5em;
+        background-color: var(--gris);
+        border: var(--grisBordure) 1px solid;
+        font-weight: 800;
+        font-size: 12px;
+    }
+
+    .valeur-champ{
+        padding-top: 0.5em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        font-size: 13px;
+        font-weight: 500;
+        border: var(--grisBordure) 1px solid;
+    }
+
+    .valeur-champ label{
+        margin-left: 5px;
+    }
+
+    .div-content-editable .valeur-champ{
+        line-height: 5px;
+    }
+    
+
+
+    /*### section 2 liste iso ###*/
+        .liste-iso{
+            margin-top: 1.5em;
+        }
+
+        .liste-iso .title{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background-color: var(--rouge);
+            font-size: 12px;
+            font-weight: bolder;
+            padding: 4px 0px 4px 0px;
+            color: white;
+        }
+
+        .liste-iso .activité{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+        }
+
+        .liste-iso .site{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+        }
+
+
+    /*### section 3 liste processus ###*/
+
+        .liste-processus{
+            margin-top: 1.5em;
+        }
+
+        .liste-processus .title{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: var(--rouge);
+            font-size: 12px;
+            font-weight: bolder;
+            padding: 4px 0px 4px 0px;
+            color: white;
+        }
+
+        .liste-processus .processus{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            min-height: 2.5em;
+        }
+
+    /*### section 4 finalité ###*/
+
+        .finalite{
+            margin-top: 1.5em;
+        }
+
+        .finalite-row{
+            display: grid;
+            grid-template-columns: 25% 75%;
+        }
+
+    /*### section 5 finalité ###*/
+
+        .donnees{
+            margin-top: 1.5em;
+        }
+
+        .donnees-titre{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: var(--rouge);
+            font-size: 12px;
+            font-weight: bolder;
+            padding: 4px 0px 4px 0px;
+            color: white;
+        }
+
+        .donnees-valeur{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            min-height: 2.5em;
+        }
+
+    /*### section 6 processus-appel ###*/
+
+        .processus-appel{
+            margin-top: 20px;
+        }
+
+        .processus-appel .titre{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: var(--rouge);
+            font-size: 12px;
+            font-weight: bolder;
+            padding: 4px 0px 4px 0px;
+            color: white;
+        }
+
+        .processus-appel .valeur{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            min-height: 2.5em;
+        }
+
+        .processus-appel .valeur div{
+            border: var(--grisBordure) 1px solid;
+        }
+
+
+    /*### section 7 diffusion ###*/
+        .diffusion{
+            margin-top: 1.5em;
+        }
+
+        .diffusion-titre{
+            display: grid;
+            background-color: var(--rouge);
+            font-size: 12px;
+            font-weight: bolder;
+            padding: 4px 0px 4px 0px;
+            color: white;
+            text-align: center;
+        }
+
+        .diffusion-row{
+            display: grid;
+            grid-template-columns: 25% 75%;
+        }
+
+    /*### section 8 workflow ###*/
+        .workflow{
+            margin-top: 1.5em;
+        }
+
+        .workflow-titre{
+            display: grid;
+            background-color: var(--rouge);
+            font-size: 12px;
+            font-weight: bolder;
+            padding: 4px 0px 4px 0px;
+            color: white;
+            text-align: center;
+        }
+
+        .workflow-row{
+            display: grid;
+            min-height: 2.8em;
+            grid-template-columns: 25% 50% 25%;
+        }
+
+/*#### { paper-one fin } ####*/

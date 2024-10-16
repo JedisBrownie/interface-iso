@@ -41,10 +41,10 @@ export default function Navbar(){
 
                     <Dropdown text={'Création document'} style={{fontSize:'0.9rem'}}>
                         <DropdownMenu>
-                            <DropdownItem text={"Processus"} href="/creation"></DropdownItem>
-                            <DropdownItem text={"Sous Processus"}></DropdownItem>
-                            <DropdownItem text={"Fiche d'instruction"}></DropdownItem>
-                            <DropdownItem text={"Enregistrement"} href="/edition"></DropdownItem>
+                            <DropdownItem text={"Processus"} href="/creation/processus"></DropdownItem>
+                            <DropdownItem text={"Sous Processus"} href="creation/sous-processus"></DropdownItem>
+                            <DropdownItem text={"Fiche d'instruction"} href="creation/fiche"></DropdownItem>
+                            <DropdownItem text={"Enregistrement"} href="/creation/enregistrement"></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

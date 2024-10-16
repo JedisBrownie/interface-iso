@@ -1,0 +1,64 @@
+/*#### { paper-four debut } ####*/
+.paper-four{
+    box-shadow: var(--boxShadow);
+    border: 1px solid rgb(229, 229, 229);
+    width: 58em;
+    padding: 1.5em;
+    max-width: 58em;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.paper-four .entete{
+    display: grid;
+    grid-template-columns: 14em 27em 14em;
+    width: 100%;
+}
+
+    /*### section 10 performance ###*/
+    .evaluation{
+        margin-top: 1.5em;
+    }
+
+    .evaluation .head-title{
+        text-align: center;
+        background-color: var(--rouge);
+        font-size: 13px;
+        font-weight: bolder;
+        padding: 4px 0px 4px 0px;
+        color: white;
+    }
+
+    .evaluation .title-one{
+        background-color: var(--rouge);
+        color: white;
+        font-weight: 500;
+        padding: 4px 0px 4px 8px;
+    }
+
+    .evaluation .performance-row{
+        display: grid;
+        grid-template-columns: repeat(3 , 1fr);
+    }
+
+    .evaluation .performance-row .div-content-editable{
+        min-height: 8em;
+    }
+
+    .evaluation .title-two{
+        background-color: var(--rouge);
+        color: white;
+        font-weight: 500;
+        padding: 8px 0px 8px 8px;
+    }
+
+
+    .evaluation .surveillance-row{
+        display: grid;
+        grid-template-columns: repeat(4 , 1fr);
+    }
+
+    .evaluation .surveillance-row .div-content-editable{
+        min-height: 8em;
+    }
+

@@ -7,7 +7,8 @@
 .header-editor{
   width: 100%;
   height: fit-content;
-  background-color: #fdfdfd;
+  display: flex;
+  background-color: #f7f7f7;
   padding-top: 20px;
   position: fixed;
   top: 0px;
@@ -17,8 +18,8 @@
 .toolbar-editor{
   margin-top: 2em;
   background-color: white;
-  width: 62em;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  min-width: 60em;
+  box-shadow: rgba(163, 163, 163, 0.2) 0px 2px 8px 0px;
   z-index: 2;
   margin: auto auto;
   padding: 5px 5px 5px 5px;
@@ -41,7 +42,7 @@
 }
 
 
-input[type="file"] {
+.toolbar-editor input[type="file"] {
   display: none;
 }
 
@@ -74,7 +75,7 @@ input[type="file"] {
 
 
 /* Align the select option with buttons */
-select {
+.toolbar-editor select {
   background-color: white;
   border: none;
   padding: 6px 10px;
@@ -100,19 +101,6 @@ select option {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 img {
   display: inline-block;
   max-width: 100%; /* Pour éviter les débordements */
@@ -120,7 +108,7 @@ img {
 }
 
 table{
-  max-width: 95%;
+  max-width: 99%;
   min-width: 80%;
   table-layout: fixed;
 }
@@ -132,16 +120,7 @@ th, td {
 }
 
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
 
-/* Firefox */
-input[type=number] {
--moz-appearance: textfield;
-}
 
 .font-color-picker{
 display: inline-grid;
@@ -152,3 +131,63 @@ display: none;
 justify-content: center;
 }
 
+
+
+/*### Choice ###*/
+
+.choice option{
+  box-shadow: none;
+}
+
+.choice .custom-select {
+  position: relative;
+  width: 10em;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  /* background-color: #fff; */
+  background-color: none;
+  border: none;
+}
+
+.choice .selected-option {
+  padding: 0.8em;
+  text-align: center;
+  background-color: rgb(53, 53, 255);
+  color: white;
+  width: 13em;
+  border-radius: 0.5em;
+}
+
+.choice .options-container {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.choice .option {
+  padding: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.choice .option:hover {
+  background-color: #ececec;
+}
+
+.choice .custom-select:hover .options-container {
+  display: block;
+}
+
+.choice .custom-select .file {
+  margin-right: 10px;
+}

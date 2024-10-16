@@ -2,7 +2,6 @@ import './header.css';
 
 export default function Header({type,entete}){
 
-
     const renderContent = () =>{
         switch (type) {
             case 'Brouillon':

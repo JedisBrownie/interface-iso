@@ -18,6 +18,8 @@ import FormatColorTextOutlinedIcon from '@mui/icons-material/FormatColorTextOutl
 import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutlined';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import { Dropdown, Select } from 'semantic-ui-react';
+import { Button, Tooltip } from '@mui/material';
 
 export default function Toolbar(){
 
@@ -431,9 +433,21 @@ export default function Toolbar(){
 
     return(
         <div className='header-editor' >
+            {/* <div className='choice'>
+                <div class="custom-select">
+                    <div class="selected-option"><i class="file outline icon" ></i> Document</div>
+                    
+                    <div class="options-container">
+                        <div class="option" onClick={() =>console.log("Enregistrer le brouillon")}>Enregitrer brouillon</div>
+                        <div class="option" onClick={() =>console.log("Visualiser le document")} >Visualiser document</div>
+                        <div class="option" onClick={() =>console.log("Valider la rédaction")}>Valider rédaction</div>
+                    </div>
+                </div>
+            </div>             */}
+            
             <div style={{marginTop:'0em',columnGap:'10px',color:''}} className='toolbar-editor'>
                 <div className='toolbar-text'>
-                    <button className='toolbar-button'  onClick={() => toggleButton("bold")} ><FormatBoldOutlinedIcon sx={{fontSize:17}}/> </button>
+                    <button className='toolbar-button'  onClick={() => toggleButton("bold")} ><FormatBoldOutlinedIcon sx={{fontSize:17}} /> </button>    
                     <button className='toolbar-button'  onClick={() => toggleButton("italic")}><FormatItalicOutlinedIcon sx={{fontSize:17}}/></button>
                     <button className='toolbar-button'  onClick={() => toggleButton("underline")}><FormatUnderlinedOutlinedIcon sx={{fontSize:17}}/></button>
                     
@@ -453,6 +467,7 @@ export default function Toolbar(){
                         <option value={'24px'}>24</option>
                     </select>
 
+                    
                     <div className='font-color-picker'>
                         <button className='toolbar-button' onClick={() => document.getElementById('font-color-text').click()}><FormatColorTextOutlinedIcon sx={{fontSize:17}}/></button>
                         <input type='color' hidden id='font-color-text' onChange={handleFontColorChange}></input>
@@ -472,7 +487,7 @@ export default function Toolbar(){
                 <div className='toolbar-assets'>
                     <button className='toolbar-button' onClick={() => createTable()}><TableChartOutlinedIcon sx={{fontSize:17}}/></button>
 
-                    <label for="image-upload" className="custom-image-upload">
+                    <label htmlFor="image-upload" className="custom-image-upload">
                         <InsertPhotoOutlinedIcon sx={{fontSize:17}} />
                     </label>
                     <input
@@ -504,7 +519,12 @@ export default function Toolbar(){
 
             </div>
 
+
+
+            
+
             
         </div>
     );
 }
+

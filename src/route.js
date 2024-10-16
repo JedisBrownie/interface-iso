@@ -2,7 +2,7 @@ import React from "react";
 import Auth from "./page/Auth/Auth";
 import Home from "./page/Home/Home";
 import Brouillon from "./page/Brouillon/Brouillon";
-import Creation from "./page/Creation/Creation";
+import CreationJodit from "./page/Creation/CreationJodit";
 import DocumentValable from "./page/Home/DocumentValable";
 import Processus from "./components/creation/Processus";
 import Edition from "./page/Creation/Edition";
@@ -25,15 +25,15 @@ export const routes = [
         element : <DocumentValable></DocumentValable>
     },
     {
-        path : '/creation',
-        element : <Creation />
+        path : '/jodit',
+        element : <CreationJodit />
     },
     {
         path : '/processus',
         element : <Processus/>
     },
     {
-        path : '/edition',
+        path : '/creation/:type',
         element : <Edition/>
     }
 

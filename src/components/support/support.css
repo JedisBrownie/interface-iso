@@ -1,0 +1,41 @@
+
+/*#### { paper-five debut } ####*/
+
+.paper-five{
+    box-shadow: var(--boxShadow);
+    border: 1px solid rgb(229, 229, 229);
+    width: 58em;
+    padding: 1.5em;
+    max-width: 58em;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.paper-five .entete{
+    display: grid;
+    grid-template-columns: 14em 27em 14em;
+    width: 100%;
+}
+
+    /*### section 11 support ###*/
+    .support .head-title{
+        text-align: center;
+        background-color: var(--rouge);
+        font-size: 13px;
+        margin-top: 10px;
+        font-weight: bolder;
+        padding: 4px 0px 4px 0px;
+        color: white;
+    }
+
+    .support .liste-champ{
+        width: 100%;
+        min-height: 8em;
+        border: 1px solid rgb(225, 225, 225);
+    }
+
+    .fichier-upload{
+        z-index: 3;
+    }
+
+    

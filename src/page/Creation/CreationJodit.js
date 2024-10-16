@@ -5,7 +5,7 @@ import ReactDOMServer from 'react-dom/server';
 import Processus from "../../components/creation/Processus";
 import "./creation.css";
 
-export default function Creation({ placeholder }) {
+export default function CreationJodit({ placeholder }) {
 
     const editor = useRef(null);
     const contenu =  ReactDOMServer.renderToString(<Processus></Processus>);

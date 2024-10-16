@@ -1,0 +1,40 @@
+/*#### { paper-three debut } ####*/
+.paper-three{
+    box-shadow: var(--boxShadow);
+    border: 1px solid rgb(229, 229, 229);
+    width: 58em;
+    padding: 1.5em;
+    max-width: 58em;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.paper-three .entete{
+    display: grid;
+    grid-template-columns: 14em 27em 14em;
+    width: 100%;
+}
+
+    /*### section 9 commentaire ###*/
+    .commentaire{
+        margin-top: 1.5em;
+    }
+
+    .commentaire .titre{
+        text-align: center;
+        display: grid;
+        background-color: var(--rouge);
+        font-size: 12px;
+        font-weight: bolder;
+        padding: 4px 0px 4px 0px;
+        color: white;
+    }
+
+    .commentaire .commentaire-row{
+        display: grid;
+        grid-template-columns: 75% 25%;
+    }
+
+    .commentaire .commentaire-row .div-content-editable{
+        min-height: 10em;
+    }

@@ -3,20 +3,22 @@ import Commentaire from '../support/Commentaire';
 import Description from '../support/Description';
 import Evaluation from '../support/Evaluation';
 import Support from '../support/Support';
-import './enregistrement.css';
+import './document.css';
 export default function Processus(){
+
+    const processus = {type: "Processus" , idType: 1}
     return(
         <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>
 
-            <Base></Base>
+            <Base type={processus.type}></Base>
 
-            <Description></Description>
+            <Description type={processus.type}></Description>
 
-            <Commentaire></Commentaire>
+            <Commentaire type={processus.type}></Commentaire>
             
-            <Evaluation></Evaluation>
+            <Evaluation type={processus.type}></Evaluation>
             
-            <Support></Support>
+            <Support type={processus.type}></Support>
             
         </div>
     );

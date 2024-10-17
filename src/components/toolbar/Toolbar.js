@@ -18,8 +18,7 @@ import FormatColorTextOutlinedIcon from '@mui/icons-material/FormatColorTextOutl
 import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutlined';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-import { Dropdown, Select } from 'semantic-ui-react';
-import { Button, Tooltip } from '@mui/material';
+import Option from './Option';
 
 export default function Toolbar(){
 
@@ -433,19 +432,12 @@ export default function Toolbar(){
 
     return(
         <div className='header-editor' >
-            {/* <div className='choice'>
-                <div class="custom-select">
-                    <div class="selected-option"><i class="file outline icon" ></i> Document</div>
-                    
-                    <div class="options-container">
-                        <div class="option" onClick={() =>console.log("Enregistrer le brouillon")}>Enregitrer brouillon</div>
-                        <div class="option" onClick={() =>console.log("Visualiser le document")} >Visualiser document</div>
-                        <div class="option" onClick={() =>console.log("Valider la rédaction")}>Valider rédaction</div>
-                    </div>
-                </div>
-            </div>             */}
+            <div className='choice' >
+                <Option></Option>    
+            </div>  
             
             <div style={{marginTop:'0em',columnGap:'10px',color:''}} className='toolbar-editor'>
+                
                 <div className='toolbar-text'>
                     <button className='toolbar-button'  onClick={() => toggleButton("bold")} ><FormatBoldOutlinedIcon sx={{fontSize:17}} /> </button>    
                     <button className='toolbar-button'  onClick={() => toggleButton("italic")}><FormatItalicOutlinedIcon sx={{fontSize:17}}/></button>
@@ -520,6 +512,9 @@ export default function Toolbar(){
             </div>
 
 
+            <div className='choice' style={{display:'none'}}>
+                <Option></Option>    
+            </div>  
 
             
 

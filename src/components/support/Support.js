@@ -2,7 +2,9 @@ import { useState } from 'react';
 import './support.css';
 
 
-export default function Support(){
+export default function Support(props){
+
+    const {type} = props;
 
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
@@ -31,7 +33,7 @@ export default function Support(){
         <div className='paper-five'>
             <div className="entete" contentEditable='false'>
                 <div contentEditable='false' className="logo">
-                    <img src="./logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                    <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
                 </div>
                 <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                     <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
@@ -39,7 +41,7 @@ export default function Support(){
                     </div>
                     
                     <div style={{marginTop:'0.8em',fontWeight:'800'}}>
-                        <h3>Processus</h3> 
+                        <h3>{type}</h3> 
                     </div>
 
                     <div >Ce document est en cours de rédaction !</div >

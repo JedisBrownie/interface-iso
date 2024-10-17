@@ -1,9 +1,10 @@
-import './description.css';
-export default function Description(props){
-    const {type} = props; 
+import './champ.css';
+export default function Champ(props){
+
+    const {type} = props;
     return(
-        <>
-            <div className="paper-two">
+        <>  
+            <div className="paper-six">
                 <div className="entete" contentEditable='false'>
                     <div contentEditable='false' className="logo">
                         <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
@@ -42,23 +43,12 @@ export default function Description(props){
 
                 </div>
 
-                <div className='description'>
-                    <div className='titre'>Description</div>
-                    
-                    <div className='description-row'>
-                        <div className='champ'> Qui réalise </div>
-                        <div className='champ'> Qui décide </div>
-                        <div className='champ'> Faits quoi </div>
-                        <div className='champ'> Lien(s) / Moyen(s) </div>
-                    </div>
-                    
-                    <div className='description-row' contentEditable="false">
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                <div className="contenu-doc">
+                    <div className='div-content-editable contenu' role='textbox' contentEditable={true} data-text = "Rédiger le contenu de votre document ici">
+                        
                     </div>
                 </div>
+
             </div>
         </>
     );

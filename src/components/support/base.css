@@ -200,6 +200,17 @@
         .processus-appel .valeur div{
             border: var(--grisBordure) 1px solid;
         }
+    
+    /*### intersection redacteur ###*/
+
+    .redacteur-row{
+        margin-top: 1.5em;
+        display: grid;
+        grid-template-columns: 25% 75%;
+        min-height: 8em;
+    }
+
+
 
 
     /*### section 7 diffusion ###*/

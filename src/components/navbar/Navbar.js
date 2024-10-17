@@ -33,14 +33,14 @@ export default function Navbar(){
                     </a>
                     
                     <Dropdown text={"Archives"} style={{fontSize:'0.9rem'}} >
-                        <DropdownMenu>
+                        <DropdownMenu style = {{marginTop:'1em',marginLeft:'-0.5em'}}>
                             <DropdownItem text={"Par processus"} onClick={handleClickArchivesProcessus}></DropdownItem>
                             <DropdownItem text={"Par date"}></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
 
                     <Dropdown text={'Création document'} style={{fontSize:'0.9rem'}}>
-                        <DropdownMenu>
+                        <DropdownMenu style = {{marginTop:'1em',marginLeft:'-0.5em'}}>
                             <DropdownItem text={"Processus"} href="/creation/processus"></DropdownItem>
                             <DropdownItem text={"Sous Processus"} href="creation/sous-processus"></DropdownItem>
                             <DropdownItem text={"Fiche d'instruction"} href="creation/fiche"></DropdownItem>

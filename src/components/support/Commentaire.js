@@ -1,11 +1,13 @@
 import './commentaire.css';
-export default function Commentaire(){
+export default function Commentaire(props){
+
+    const {type} = props;
     return(
         <>
             <div className="paper-three">
                 <div className="entete" contentEditable='false'>
                     <div contentEditable='false' className="logo">
-                        <img src="./logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                        <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
                     </div>
                     <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                         <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
@@ -13,7 +15,7 @@ export default function Commentaire(){
                         </div>
                         
                         <div style={{marginTop:'0.8em',fontWeight:'800'}}>
-                            <h3>Processus</h3> 
+                            <h3>{type}</h3> 
                         </div>
 
                         <div >Ce document est en cours de rédaction !</div >
@@ -40,7 +42,12 @@ export default function Commentaire(){
                 </div>
 
                 <div className='commentaire' contentEditable='false'>
-                    <div className='titre'>Commentaire</div>
+                    {type === "Fiche d'instruction" ? (
+                        <div className='titre'>Description</div>
+                    ) : (
+                        <div className='titre'>Commentaire</div>
+                    )}
+                    
 
                     <div className='commentaire-row'>
                         <div className='champ' style={{textAlign:'center'}}> Faits quoi </div>

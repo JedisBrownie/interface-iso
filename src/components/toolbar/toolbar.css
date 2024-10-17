@@ -13,6 +13,8 @@
   position: fixed;
   top: 0px;
   padding-bottom: 1em;
+  justify-content: center;
+  column-gap: 1em;
 }
 
 .toolbar-editor{
@@ -21,8 +23,7 @@
   min-width: 60em;
   box-shadow: rgba(163, 163, 163, 0.2) 0px 2px 8px 0px;
   z-index: 2;
-  margin: auto auto;
-  padding: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;;
   border-radius: 1.5em;
   display: flex;
   justify-content: center;
@@ -108,7 +109,7 @@ img {
 }
 
 table{
-  max-width: 99%;
+  max-width: 100%;
   min-width: 80%;
   table-layout: fixed;
 }

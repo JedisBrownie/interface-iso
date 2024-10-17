@@ -1,0 +1,43 @@
+/*#### {paper-six debut } ####*/
+
+.paper-six{
+    box-shadow: var(--boxShadow);
+    border: 1px solid rgb(229, 229, 229);
+    width: 58em;
+    padding: 1.5em;
+    max-width: 58em;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.paper-six .entete{
+    display: grid;
+    grid-template-columns: 12em 29em 14em;
+    width: 100%;
+}
+
+
+.contenu-doc{
+    width: 100%;
+    margin-top: 1.5em;
+    min-height: 12em;
+    border: 1px solid snow;
+}
+
+.contenu{
+    min-height: 12em;
+    padding: 0.5em;
+}
+
+.div-content-editable.contenu[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
+}
+
+.div-content-editable.contenu[contentEditable=true]:empty:not(:focus):before {
+    color: rgb(132, 132, 132);
+    width: 100%;
+    min-height: 12em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

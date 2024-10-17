@@ -1,11 +1,12 @@
 import './evaluation.css';
-export default function Evaluation(){
+export default function Evaluation(props){
+    const{type} = props;
     return(
         <>
             <div className="paper-four">
                 <div className="entete" contentEditable='false'>
                     <div contentEditable='false' className="logo">
-                        <img src="./logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                        <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
                     </div>
                     <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                         <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
@@ -13,7 +14,7 @@ export default function Evaluation(){
                         </div>
                         
                         <div style={{marginTop:'0.8em',fontWeight:'800'}}>
-                            <h3>Processus</h3> 
+                            <h3>{type}</h3> 
                         </div>
 
                         <div >Ce document est en cours de rédaction !</div >

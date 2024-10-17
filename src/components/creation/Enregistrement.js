@@ -1,23 +1,19 @@
 import Base from '../support/Base';
-import Commentaire from '../support/Commentaire';
-import Description from '../support/Description';
-import Evaluation from '../support/Evaluation';
+import Champ from '../support/Champ';
 import Support from '../support/Support';
-import './enregistrement.css';
+import './document.css';
+
 export default function Enregistrement(){
+
+
+    const enregistrement = {type: "Enregistrement" , idType: 4}
     return(
-        <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>
+        <div className='list-paper' style={{marginTop:'7em'}}>
 
-            <Base></Base>
+            <Base type={enregistrement.type}></Base>
+            <Champ type={enregistrement.type}></Champ>
+            <Support type={enregistrement.type}></Support>
 
-            <Description></Description>
-
-            <Commentaire></Commentaire>
-            
-            <Evaluation></Evaluation>
-            
-            <Support></Support>
-            
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './list.css';
 export default function ListContentType(props){
-
+    const {dataList} = props;
     
     useEffect(() => {
         const gridContainers = document.querySelectorAll('.liste');
@@ -13,7 +13,7 @@ export default function ListContentType(props){
         });
       }, []);
 
-      const {dataList} = props;
+
 
       return (
         <div className="content">

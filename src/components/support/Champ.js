@@ -1,4 +1,4 @@
-import './champ.css';
+import './css/champ.css';
 export default function Champ(props){
 
     const {type} = props;

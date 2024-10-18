@@ -439,9 +439,9 @@ export default function Toolbar(){
             <div style={{marginTop:'0em',columnGap:'10px',color:''}} className='toolbar-editor'>
                 
                 <div className='toolbar-text'>
-                    <button className='toolbar-button'  onClick={() => toggleButton("bold")} ><FormatBoldOutlinedIcon sx={{fontSize:17}} /> </button>    
-                    <button className='toolbar-button'  onClick={() => toggleButton("italic")}><FormatItalicOutlinedIcon sx={{fontSize:17}}/></button>
-                    <button className='toolbar-button'  onClick={() => toggleButton("underline")}><FormatUnderlinedOutlinedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button' onClick={() => toggleButton("bold")} ><FormatBoldOutlinedIcon sx={{fontSize:17}} /> </button>    
+                    <button className='toolbar-button' onClick={() => toggleButton("italic")}><FormatItalicOutlinedIcon sx={{fontSize:17}}/></button>
+                    <button className='toolbar-button' onClick={() => toggleButton("underline")}><FormatUnderlinedOutlinedIcon sx={{fontSize:17}}/></button>
                     
                     <select className='font-selecor' onChange={handleFontChange }>
                         <option value={'arial'}>Arial</option>

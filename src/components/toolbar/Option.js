@@ -79,7 +79,7 @@ export default function Option() {
                   placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
-              <Paper style={{marginTop:'0.2em',minWidth:'12em'}}>
+              <Paper style={{marginTop:'0.2em',minWidth:'10em'}}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
@@ -87,11 +87,11 @@ export default function Option() {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown} >
 
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.90em',fontWeight:'600'}}>Sauvegarder brouillon</span></MenuItem>
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.90em',fontWeight:'600'}}>Visualiser document</span></MenuItem>
+                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'400'}}>Sauvegarder brouillon</span></MenuItem>
+                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'400'}}>Visualiser document</span></MenuItem>
                     
                     
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.90em',fontWeight:'600'}}>Valider rédaction</span></MenuItem>
+                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'400'}}>Valider rédaction</span></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

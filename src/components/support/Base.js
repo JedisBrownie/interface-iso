@@ -1,8 +1,13 @@
-import './base.css';
+import './css/base.css';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useState } from 'react';
+import ValeurModal from './ValeurModal';
 export default function Base(props){
 
     const {type} = props;
     
+
+
     return(
         <>
             <div className="paper-one">
@@ -97,16 +102,41 @@ export default function Base(props){
                         </div>
                         <div className='activité'>
                             <div className='champ'>Activités</div>
-                            <div className='valeur-champ'>&nbsp;</div>
-                            <div className='valeur-champ'>&nbsp;</div>
-                            <div className='valeur-champ'>&nbsp;</div>
+
+                            <div className='valeur-champ-choice'>
+                                <span className='span-value'>Granulat , Pouzzolane </span>
+                                <span className='span-arrow iso' ><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
+                            </div>
+
+                            
+                            <ValeurModal></ValeurModal>
+
+                            <div className='valeur-champ-choice'>
+                                <span className='span-value'>Granulat  </span>
+                                <span className='span-arrow iso'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
+                            </div>                        
                         </div>
+
+                        
+
                         <div className='site'>
                             <div className='champ'>Site</div>
-                            <div className='valeur-champ'>&nbsp;</div>
-                            <div className='valeur-champ'>&nbsp;</div>
-                            <div className='valeur-champ'>&nbsp;</div>
-                        </div>
+
+                            <div className='valeur-champ-choice'>
+                                <span className='span-value'> Tana , Tamatave </span>
+                                <span className='span-arrow site'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
+                            </div>
+
+                            <div className='valeur-champ-choice'>
+                                <span className='span-value'> Ibity </span>
+                                <span className='span-arrow site'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
+                            </div>
+
+                            <div className='valeur-champ-choice'>
+                                <span className='span-value'> Tout les sites </span>
+                                <span className='span-arrow site'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
+                            </div>                        
+                        </div> 
                     </div>
                 {/* fin section 2 liste iso */}
 
@@ -117,7 +147,12 @@ export default function Base(props){
                             <div style={{paddingLeft:'1.5em'}}>Processus Lie</div>
                         </div>
                         <div className='processus'>
-                            <div className='valeur-champ'>&nbsp;</div>
+
+                            <div className='valeur-champ-choice'>
+                                <span className='span-value'> </span>
+                                <span className='span-arrow choix-processus'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
+                            </div>
+
                             <div className='valeur-champ'>&nbsp;</div>
                         </div>
                     </div>
@@ -159,7 +194,7 @@ export default function Base(props){
                 {/* fin section 4 finalité */}
 
                 {/* début section 5 données */}
-                {type === 'Enregistrement' || type === 'Navigateur' ? (
+                {type === 'Enregistrement' || type === 'Navigateur' || type === "Fiche d'instruction" ? (
                     <></>
                 ) : (
                     <div className='donnees' contentEditable="false">
@@ -178,7 +213,7 @@ export default function Base(props){
                 {/* fin section 5 données */}
 
                 {/* début section 6 processus appel*/}
-                { type === 'Enregistrement' || type === 'Navigateur' ? (
+                { type === 'Enregistrement' || type === 'Navigateur' || type === "Fiche d'instruction" ? (
                     <></>
                 ) : ( 
                     <div className='processus-appel'>
@@ -277,3 +312,4 @@ export default function Base(props){
         </>
     );
 }
+

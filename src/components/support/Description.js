@@ -1,4 +1,4 @@
-import './description.css';
+import './css/description.css';
 export default function Description(props){
     const {type} = props; 
     return(

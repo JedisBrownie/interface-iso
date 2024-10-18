@@ -1,4 +1,4 @@
-import './commentaire.css';
+import './css/commentaire.css';
 export default function Commentaire(props){
 
     const {type} = props;

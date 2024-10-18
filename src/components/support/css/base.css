@@ -79,9 +79,20 @@
         padding-top: 0.5em;
         padding-left: 0.5em;
         padding-right: 0.5em;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
         border: var(--grisBordure) 1px solid;
+    }
+
+    .valeur-champ-choice{
+        padding-top: 0em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        font-size: 12px;
+        font-weight: 500;
+        border: var(--grisBordure) 1px solid;
+        display: flex;
+        align-items: center;
     }
 
     .valeur-champ label{
@@ -253,5 +264,31 @@
             min-height: 2.8em;
             grid-template-columns: 25% 50% 25%;
         }
+
+
+.span-value{
+    width: 90%;
+    line-height: 1.4em;
+}
+
+.span-arrow{
+    /* background-color: var(--spanGris); */
+    border: 1px solid var(--grisBordure);
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+.span-arrow:hover{
+    cursor: pointer;
+}
+
+
+
+
 
 /*#### { paper-one fin } ####*/

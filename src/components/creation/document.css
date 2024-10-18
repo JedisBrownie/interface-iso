@@ -2,6 +2,7 @@
 :root{
     --gris: rgb(243, 243, 243);
     --grisBordure : rgb(208, 207, 207);
+    --spanGris : #d2d2d2;
     --rouge: rgb(255, 81, 81);
     --boxShadow:  rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; 
 }

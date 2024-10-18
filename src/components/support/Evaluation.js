@@ -1,4 +1,4 @@
-import './evaluation.css';
+import './css/evaluation.css';
 export default function Evaluation(props){
     const{type} = props;
     return(

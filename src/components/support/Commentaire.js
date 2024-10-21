@@ -55,8 +55,8 @@ export default function Commentaire(props){
                     </div>
                     
                     <div className='commentaire-row' contentEditable="false">
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
                     </div>
 
                 </div>

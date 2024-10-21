@@ -44,7 +44,7 @@ export default function Champ(props){
                 </div>
 
                 <div className="contenu-doc">
-                    <div className='div-content-editable contenu' role='textbox' contentEditable={true} data-text = "Rédiger le contenu de votre document ici">
+                    <div className='div-content-editable contenu' role='textbox' suppressContentEditableWarning={true} contentEditable={true} data-text = "Rédiger le contenu de votre document ici">
                         
                     </div>
                 </div>

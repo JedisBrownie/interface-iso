@@ -9,96 +9,42 @@ import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Divider from '@mui/material/Divider';
+import { useEffect , useState , useRef , useCallback} from 'react';
+import { Dropdown, DropdownItem , DropdownMenu} from 'semantic-ui-react';
 
-export default function Option() {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+export default function Option({ handleSaveBrouillon }) {
+
+  // { **  props fonction   ** }
+  const [hover, setHover] = useState(false); // Track hover state
+
+  const handleMouseEnter = () => {
+    setHover(true); // Set hover state to true when mouse enters
   };
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
+  const handleMouseLeave = () => {
+    setHover(false); // Set hover state to false when mouse leaves
   };
 
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    } else if (event.key === 'Escape') {
-      setOpen(false);
-    }
-  }
 
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
+  console.log("option 1 : " + handleSaveBrouillon);
 
-    prevOpen.current = open;
-  }, [open]);
+  const test = useCallback(() => {
+    console.log("option 3 : " + handleSaveBrouillon);
+  }, []);
+
+  
+  console.log("option 2 : " + handleSaveBrouillon);
 
   return (
-    <Stack direction="row" spacing={2} >
-      
-      <div>
-        <Button
-          ref={anchorRef}
-          id="composition-button"
-          aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-          style={{backgroundColor:'white',color:'black',minWidth:'12em',boxShadow:'rgba(163, 163, 163, 0.2) 0px 2px 8px 0px',padding:'0.5em 0.8em',fontWeight:700,minHeight:'4em',borderRadius:'4em',marginTop: '0em'}}
-          endIcon={<KeyboardArrowDownIcon />}
-        >
-          <TaskOutlinedIcon fontSize='small' style={{marginRight:'0.7em'}}></TaskOutlinedIcon><span style={{textTransform:'none',fontFamily:'Lato',fontSize:'0.95em'}}>Document</span>
-        </Button>
 
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          placement="bottom-start"
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
-              }}
-            >
-              <Paper style={{marginTop:'0.2em',minWidth:'10em'}}>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id="composition-menu"
-                    aria-labelledby="composition-button"
-                    onKeyDown={handleListKeyDown} >
-
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'400'}}>Sauvegarder brouillon</span></MenuItem>
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'400'}}>Visualiser document</span></MenuItem>
-                    
-                    
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'400'}}>Valider rédaction</span></MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-    </Stack>
+    <Dropdown text='Document' style={{backgroundColor:'white',color:'black',minWidth:'10.5em',boxShadow:'rgba(163, 163, 163, 0.2) 0px 2px 8px 0px',padding:'0.5em 0.8em',fontWeight:700,minHeight:'3.5em',borderRadius:'0.5em'}} >
+    
+      <DropdownMenu style = {{marginTop:'0em',backgroundColor:'white',boxShadow:'rgba(163, 163, 163, 0.2) 0px 2px 8px 0px'}}>
+          <DropdownItem style={{fontSize:'12px'}}> <span >Sauvegarder brouillon</span></DropdownItem>
+          <DropdownItem ></DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
   );
 }
+

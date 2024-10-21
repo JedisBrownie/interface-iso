@@ -52,9 +52,9 @@ export default function Evaluation(props){
                         <div className='champ'>Indicateur éventuels</div>
                     </div>
                     <div className='performance-row'>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
                     </div>
 
                     <div className='title-two'>Surveillance et amélioration du processus</div>
@@ -65,10 +65,10 @@ export default function Evaluation(props){
                             <div className='champ'>Documents</div>
                         </div>
                         <div className='surveillance-row'>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true" style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
                         </div>
                 </div>
 

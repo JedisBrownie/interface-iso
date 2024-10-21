@@ -53,10 +53,10 @@ export default function Description(props){
                     </div>
                     
                     <div className='description-row' contentEditable="false">
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
                     </div>
                 </div>
             </div>

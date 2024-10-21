@@ -78,12 +78,12 @@ export default function Base(props){
                                 <div className='valeur-champ' style={{paddingTop:'0.2em',display:'flex'}}>
                                     <div style={{display:'flex',alignItems:'center'}}>
                                         <input type='radio' name='confidentiel' value={'Oui'} id='oui'/>
-                                        <label for='oui'>Oui</label>
+                                        <label htmlFor='oui'>Oui</label>
                                     </div>
 
                                     <div style={{display:'flex',alignItems:'center',marginLeft:'20px'}}>
                                         <input type='radio' name='confidentiel' value={'Non'} id='non'/>
-                                        <label for='non'>Non</label>
+                                        <label htmlFor='non'>Non</label>
                                     </div>
                                     
                                 </div>
@@ -165,12 +165,12 @@ export default function Base(props){
                     <div className='finalite' contentEditable="false">
                         <div className='finalite-row'>
                             <div className='champ'>Finalités</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
 
                         <div className='finalite-row'>
                             <div className='champ'>Domaine d'application</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
                         
                         {type === "Fiche d'instruction" ?(
@@ -185,7 +185,7 @@ export default function Base(props){
 
                         <div className='finalite-row'>
                             <div className='champ'>Condition ou contrainte</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
                     </div>
                 )
@@ -204,8 +204,8 @@ export default function Base(props){
                         </div>
 
                         <div className='donnees-valeur'>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
                     </div>
                 )}
@@ -233,7 +233,7 @@ export default function Base(props){
                 { type === 'Enregistrement' || type === 'Navigateur' ?(
                     <div className='redacteur-row' contentEditable='false'>
                         <div className='champ'>Rédacteur</div>
-                        <div className='div-content-editable valeur-champ' role="textbox" contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
                     </div>
                 ) : (
                     <></>

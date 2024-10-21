@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Enregistrement from "../../components/creation/Enregistrement";
-import '../../function/function';
-import Toolbar from "../../components/toolbar/Toolbar";
 import { useParams } from "react-router-dom";
 import Processus from "../../components/creation/Processus";
 import SousProcessus from "../../components/creation/SousProcessus";
 import Fiche from "../../components/creation/Fiche";
 export default function Edition(){
+
     const [content,setContent] = useState("");
     
     const {type} = useParams();
@@ -24,11 +23,18 @@ export default function Edition(){
         }
     }
 
-    console.log(type);
+    console.error = (function() {
+        var error = console.error
+    
+        return function(exception) {
+            if ((exception + '').indexOf('Warning: A component is `contentEditable`') != 0) {
+                error.apply(console, arguments)
+            }
+        }
+    })()
 
     return(
         <>
-            <Toolbar></Toolbar>
             {renderContent()}
         </>
     );

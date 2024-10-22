@@ -1,12 +1,10 @@
 import './css/base.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useState } from 'react';
 import ValeurModal from './ValeurModal';
 export default function Base(props){
 
-    const {type} = props;
     
-
+    const {type , references} = props;
 
     return(
         <>
@@ -61,7 +59,7 @@ export default function Base(props){
                                 ) : (
                                     <>
                                         <div className='champ'>Mise en application le</div>
-                                        <div className='valeur-champ'><input type='date'/></div>
+                                        <div className='valeur-champ'><input type='date' ref={references.champMiseApplication}/></div>
                                     </>
                                 )}
 
@@ -75,7 +73,7 @@ export default function Base(props){
                                 <div className='valeur-champ'>&nbsp;</div>
                                 
                                 <div className='champ'>Confidentiel</div>
-                                <div className='valeur-champ' style={{paddingTop:'0.2em',display:'flex'}}>
+                                <div className='valeur-champ' ref={references.champConfidentiel} style={{paddingTop:'0.2em',display:'flex'}}>
                                     <div style={{display:'flex',alignItems:'center'}}>
                                         <input type='radio' name='confidentiel' value={'Oui'} id='oui'/>
                                         <label htmlFor='oui'>Oui</label>
@@ -103,18 +101,11 @@ export default function Base(props){
                         <div className='activité'>
                             <div className='champ'>Activités</div>
 
-                            <div className='valeur-champ-choice'>
-                                <span className='span-value'>Granulat , Pouzzolane </span>
-                                <span className='span-arrow iso' ><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
-                            </div>
+                            <ValeurModal type="activite"></ValeurModal>
 
-                            
-                            <ValeurModal></ValeurModal>
+                            <ValeurModal type="activite"></ValeurModal>
 
-                            <div className='valeur-champ-choice'>
-                                <span className='span-value'>Granulat  </span>
-                                <span className='span-arrow iso'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
-                            </div>                        
+                            <ValeurModal type="activite"></ValeurModal>       
                         </div>
 
                         
@@ -122,20 +113,11 @@ export default function Base(props){
                         <div className='site'>
                             <div className='champ'>Site</div>
 
-                            <div className='valeur-champ-choice'>
-                                <span className='span-value'> Tana , Tamatave </span>
-                                <span className='span-arrow site'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
-                            </div>
+                            <ValeurModal type="site"></ValeurModal>
 
-                            <div className='valeur-champ-choice'>
-                                <span className='span-value'> Ibity </span>
-                                <span className='span-arrow site'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
-                            </div>
+                            <ValeurModal type="site"></ValeurModal>
 
-                            <div className='valeur-champ-choice'>
-                                <span className='span-value'> Tout les sites </span>
-                                <span className='span-arrow site'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
-                            </div>                        
+                            <ValeurModal type="site"></ValeurModal>
                         </div> 
                     </div>
                 {/* fin section 2 liste iso */}

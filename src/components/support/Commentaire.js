@@ -50,7 +50,7 @@ export default function Commentaire(props){
                     
 
                     <div className='commentaire-row'>
-                        <div className='champ' style={{textAlign:'center'}}> Faits quoi </div>
+                        <div className='champ' style={{textAlign:'center'}}> Fait quoi </div>
                         <div className='champ' style={{textAlign:'center'}}> Lien(s) / Moyen(s) </div>
                     </div>
                     

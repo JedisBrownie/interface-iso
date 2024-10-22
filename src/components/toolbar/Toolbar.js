@@ -45,7 +45,6 @@ export default function Toolbar({ handleSaveBrouillon }){
                 
             <div className='choice'>
                 <Option handleSaveBrouillon={handleSaveBrouillon} ></Option>    
-                {console.log("toolbar : " + handleSaveBrouillon)}
             </div>  
     
             </div>  

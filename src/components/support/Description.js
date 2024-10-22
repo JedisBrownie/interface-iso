@@ -48,7 +48,7 @@ export default function Description(props){
                     <div className='description-row'>
                         <div className='champ'> Qui réalise </div>
                         <div className='champ'> Qui décide </div>
-                        <div className='champ'> Faits quoi </div>
+                        <div className='champ'> Fait quoi </div>
                         <div className='champ'> Lien(s) / Moyen(s) </div>
                     </div>
                     

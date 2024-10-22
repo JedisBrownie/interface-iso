@@ -2,6 +2,7 @@ import Base from '../support/Base';
 import Commentaire from '../support/Commentaire';
 import Support from '../support/Support';
 import Toolbar from '../toolbar/Toolbar';
+import './css/document.css';
 export default function Fiche(){
     
     const saveBrouillon = () =>{
@@ -12,7 +13,7 @@ export default function Fiche(){
     
     return(
         <>
-            <Toolbar saveBrouillon = {saveBrouillon}></Toolbar>
+            <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
             <div className='list-paper' style={{marginTop:'7em'}}>
                 <Base type={fiche.type}></Base>
                 <Commentaire type={fiche.type}></Commentaire>

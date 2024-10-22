@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import './document.css';
+import './css/document.css';
 const Base = lazy(() => import('../support/Base'));
 const Champ = lazy(() => import('../support/Champ'));
 const Support = lazy(() => import('../support/Support'));

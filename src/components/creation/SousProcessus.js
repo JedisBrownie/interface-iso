@@ -2,7 +2,7 @@ import Base from '../support/Base';
 import Description from '../support/Description';
 import Support from '../support/Support';
 import Toolbar from '../toolbar/Toolbar';
-import './document.css';
+import './css/document.css';
 export default function SousProcessus(){
 
     const saveBrouillon = () =>{

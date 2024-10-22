@@ -38,33 +38,16 @@ export default function Toolbar({ handleSaveBrouillon }){
         }
     };
 
-    // 
-    const brouillonMenuRef = useRef(null);
-
-    const handleMenuClick = () => {
-      console.log("Brouillon menu clicked!");
-      console.log("option : " + handleSaveBrouillon);
-    };
-  
-    useEffect(() => {
-      // Add event listener once component is mounted
-      const brouillonMenu = brouillonMenuRef.current;
-      if (brouillonMenu) {
-        brouillonMenu.addEventListener("click", handleMenuClick);
-      }
-  
-      // Cleanup event listener when component unmounts
-      return () => {
-        if (brouillonMenu) {
-          brouillonMenu.removeEventListener("click", handleMenuClick);
-        }
-      };
-    }, []);
 
     return(
         <div className='header-editor' >
             <div className='choice' >
-                <Option></Option>    
+                
+            <div className='choice'>
+                <Option handleSaveBrouillon={handleSaveBrouillon} ></Option>    
+                {console.log("toolbar : " + handleSaveBrouillon)}
+            </div>  
+    
             </div>  
             
             <div style={{marginTop:'0em',columnGap:'10px',color:''}} className='toolbar-editor'>
@@ -142,12 +125,6 @@ export default function Toolbar({ handleSaveBrouillon }){
 
             </div>
 
-
-            <div className='choice' style={{display:'none'}}>
-                <Option handleSaveBrouillon={handleSaveBrouillon} brouillonMenuRef={brouillonMenuRef}></Option>    
-                {console.log("toolbar : " + handleSaveBrouillon)}
-                
-            </div>  
 
             
 

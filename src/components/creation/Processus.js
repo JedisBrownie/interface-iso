@@ -4,7 +4,7 @@ import Description from '../support/Description';
 import Evaluation from '../support/Evaluation';
 import Support from '../support/Support';
 import Toolbar from '../toolbar/Toolbar';
-import './document.css';
+import './css/document.css';
 export default function Processus(){
 
     const saveBrouillon = () =>{
@@ -15,7 +15,7 @@ export default function Processus(){
     
     return(
         <>
-            <Toolbar saveBrouillon = {saveBrouillon}></Toolbar>
+            <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
 
 
             <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>

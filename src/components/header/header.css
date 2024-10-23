@@ -15,5 +15,6 @@
 }
 
 .list-button{
-    padding-left: 15vh;
+    display: flex;
+    justify-content: flex-end;
 }

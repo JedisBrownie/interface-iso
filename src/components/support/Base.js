@@ -35,12 +35,12 @@ export default function Base(props){
                             
                             <div > 
                                 <span className='information-list'>N° Révision :</span>
-                                <span className='information-value'>2</span>
+                                <span className='information-value'></span>
                             </div>
 
                             <div>
                                 <span className='information-list'>Date : </span>
-                                <span className='information-value'>23 / 06 / 2024</span>
+                                <span className='information-value'></span>
                             </div>
                         </div>
                     </div>
@@ -101,11 +101,11 @@ export default function Base(props){
                         <div className='activité'>
                             <div className='champ'>Activités</div>
 
-                            <ValeurModal type="activite"></ValeurModal>
+                            <ValeurModal type="activite" reference={references.choixIso9001}></ValeurModal>
+                            
+                            <ValeurModal type="activite" reference={references.choixIso14001}></ValeurModal>
 
-                            <ValeurModal type="activite"></ValeurModal>
-
-                            <ValeurModal type="activite"></ValeurModal>       
+                            <ValeurModal type="activite" reference={references.choixSecurite}></ValeurModal>       
                         </div>
 
                         
@@ -113,11 +113,11 @@ export default function Base(props){
                         <div className='site'>
                             <div className='champ'>Site</div>
 
-                            <ValeurModal type="site"></ValeurModal>
+                            <ValeurModal type="site" reference={references.choixSiteIso9001}></ValeurModal>
 
-                            <ValeurModal type="site"></ValeurModal>
+                            <ValeurModal type="site" reference={references.choixSiteIso14001}></ValeurModal>
 
-                            <ValeurModal type="site"></ValeurModal>
+                            <ValeurModal type="site" reference={references.choixSiteSecurite}></ValeurModal>
                         </div> 
                     </div>
                 {/* fin section 2 liste iso */}
@@ -147,12 +147,12 @@ export default function Base(props){
                     <div className='finalite' contentEditable="false">
                         <div className='finalite-row'>
                             <div className='champ'>Finalités</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champFinalite} suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
 
                         <div className='finalite-row'>
                             <div className='champ'>Domaine d'application</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDomaineApplication} suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
                         
                         {type === "Fiche d'instruction" ?(
@@ -160,14 +160,14 @@ export default function Base(props){
                         ) :  (
                             <div className='finalite-row'>
                                 <div className='champ'>Pilote du processus</div>
-                                <div className='div-content-editable valeur-champ' role="textbox"></div>
+                                <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixPilote}></div>
                             </div>
                         )}
                         
 
                         <div className='finalite-row'>
                             <div className='champ'>Condition ou contrainte</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champConditionContrainte} suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
                     </div>
                 )
@@ -186,8 +186,8 @@ export default function Base(props){
                         </div>
 
                         <div className='donnees-valeur'>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDonneeEntre} suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDonneeSortie} suppressContentEditableWarning={true} contentEditable="true"></div>
                         </div>
                     </div>
                 )}

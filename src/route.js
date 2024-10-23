@@ -30,6 +30,9 @@ export const routes = [
     {
         path : '/creation/:type',
         element : <Edition/>
+    },
+    {
+        path : '/document/:type/:reference/:version'
     }
 
 ]

@@ -13,7 +13,6 @@ const CreationJodit = React.lazy(() => import('./page/Creation/CreationJodit'));
 const DocumentValable = React.lazy(() => import('./page/Home/DocumentValable'));
 const Edition = React.lazy(() => import('./page/Creation/Edition'));
 
-const Shared = React.lazy(() => import('./components/shared/index'));
 
 function App() {
   

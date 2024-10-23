@@ -10,75 +10,125 @@ export default function SousProcessus(){
 
     const references = {
         // { ****  Ref Base début ****} //
-        champMiseApplication : useRef(null),
-        champConfidentiel : useRef(null),
+        champMiseApplication : useRef(),
+        champConfidentiel : useRef(),
     
-        choixIso9001 : useRef(null),
-        choixIso14001 : useRef(null),
-        choixSecurite : useRef(null),
+        choixIso9001 : useRef(),
+        choixIso14001 : useRef(),
+        choixSecurite : useRef(),
 
-        choixSiteIso9001 : useRef(null),
-        choixSiteIso14001 : useRef(null),
-        choixSiteSecurite : useRef(null),
+        choixSiteIso9001 : useRef(),
+        choixSiteIso14001 : useRef(),
+        choixSiteSecurite : useRef(),
 
-        choixProcessusGlobal : useRef(null),
-        choixProcessusLie : useRef(null),
+        choixProcessusGlobal : useRef(),
+        choixProcessusLie : useRef(),
 
-        champFinalite : useRef(null),
-        champDomaineApplication : useRef(null),
-        choixPilote : useRef(null),
-        champConditionContrainte : useRef(null),
+        champFinalite : useRef(),
+        champDomaineApplication : useRef(),
+        choixPilote : useRef(),
+        champConditionContrainte : useRef(),
 
-        champDonneeEntre : useRef(null),
-        champDonneeSortie : useRef(null),
+        champDonneeEntre : useRef(),
+        champDonneeSortie : useRef(),
 
-        champProcessusAppelant : useRef(null),
-        champProcessusAppele : useRef(null),
+        champProcessusAppelant : useRef(),
+        champProcessusAppele : useRef(),
 
-        choixDiffusionEmail : useRef(null),
-        choixDiffusionPapier : useRef(null),
+        choixDiffusionEmail : useRef(),
+        choixDiffusionPapier : useRef(),
 
-        choixRedacteur : useRef(null),
-        choixVerificateur : useRef(null),
-        choixApprobateur : useRef(null),
+        choixRedacteur : useRef(),
+        choixVerificateur : useRef(),
+        choixApprobateur : useRef(),
 
     // { ****  Ref description début **** } //
 
-        champQuiRealise : useRef(null),
-        champQuiDecide : useRef(null),
-        champFaitQuoiDescription : useRef(null),
-        champLienMoyenDescription : useRef(null),
-        champCommentaire : useRef(null),
+        champQuiRealise : useRef(),
+        champQuiDecide : useRef(),
+        champFaitQuoiDescription : useRef(),
+        champLienMoyenDescription : useRef(),
+        champCommentaire : useRef(),
 
     // { ****  Ref commentaire début **** } //
-        champFaitQuoiCommentaire : useRef(null),
-        champLienMoyenCommentaire : useRef(null),
+        champFaitQuoiCommentaire : useRef(),
+        champLienMoyenCommentaire : useRef(),
 
     // { ****  Ref évaluation du processus début **** } //
-        champPerformanceAttendues : useRef(null),
-        champPropositionSurveillance : useRef(null),
-        champIndicateurEventuel : useRef(null),
-        champEvenementFrequence : useRef(null),
-        champParticipant : useRef(null),
-        champPointAbordes : useRef(null),
-        champDocument : useRef(null)
+        champPerformanceAttendues : useRef(),
+        champPropositionSurveillance : useRef(),
+        champIndicateurEventuel : useRef(),
+        champEvenementFrequence : useRef(),
+        champParticipant : useRef(),
+        champPointAbordes : useRef(),
+        champDocument : useRef()
     }   
 
-    const champMiseApplication = useRef(null);
-    const champConfidentiel = useRef(null);
-   
+
     const saveBrouillon = () =>{
         console.log("enregistré ny sous-processus");
 
         const dateMiseApplication = references.champMiseApplication.current.value;
-        const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value;
-    
+        const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
+            ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
+        const iso9001 = references.choixIso9001.current.textContent;
+        const iso14001 = references.choixIso14001.current.textContent;
+        const securite = references.choixSecurite.current.textContent;
+        const siteIso9001 = references.choixSiteIso9001.current.textContent;
+        const siteIso14001 = references.choixSiteIso14001.current.textContent; 
+        const siteSecurite = references.choixSiteSecurite.current.textContent;
+        
+        const processusGlobal = '';
+        const processusLie = '';
+        
+        const finalite = references.champFinalite.current.innerHTML;
+        const domaineApplication = references.champDomaineApplication.current.innerHTML;
+        const piloteProcessus = '';
+        const conditionContrainte = references.champConditionContrainte.current.innerHTML;
 
-        const formData = {
-            dateApplication : dateMiseApplication,
-            confidentiel : confidentiel
-        };
+        const donneeEntree = references.champDonneeEntre.current.innerHTML;
+        const donneeSortie = references.champDonneeSortie.current.innerHTML;
+        const processusAppelant = '';
+        const procesussAppele = '';
 
+        const diffusionEmail = '';
+        const diffusionPapier = '';
+
+        const redacteur = '';
+        const verificateur = '';
+        const approbateur = '';
+
+
+
+
+        console.log(finalite);
+        const formData = [
+            {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication},
+            {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel},
+            {reference : 'choixIso9001' , champ : 'iso9001' , valeur : iso9001},
+            {reference : 'choixIso14001' , champ : 'iso14001' , valeur : iso14001},
+            {reference : 'choixSecurite' , champ : 'securite' , valeur : securite},
+            {reference : 'choixSiteIso9001' , champ : 'siteIso9001' , valeur : siteIso9001},
+            {reference : 'choixSiteIso14001' , champ : 'siteIso14001' , valeur : siteIso14001},
+            {reference : 'choixSiteSecurite' , champ : 'siteSecurite' , valeur : siteSecurite},
+            {reference : 'choixProcessusGlobal' , champ : 'processusGlobal' , valeur : processusGlobal},
+            {reference : 'choixProcessusLie' , champ : 'processusLie' , valeur : processusLie},
+            {reference : 'champFinalite' , champ : 'finalite' , valeur : finalite},
+            {reference : 'champDomaineApplication' , champ : 'domaineApplication' , valeur : domaineApplication},
+            {reference : 'choixPilote' , champ : 'piloteProcessus' , valeur : piloteProcessus},
+            {reference : 'champConditionContrainte' , champ : 'conditionContrainte' , valeur : conditionContrainte},
+            {reference : 'champDonneeEntre' , champ : 'donneeEntree' , valeur : donneeEntree},
+            {reference : 'champDonneeSortie' , champ : 'donneeSortie' , valeur : donneeSortie},
+            {reference : 'champDonneeSortie' , champ : 'donneeSortie' , valeur : donneeSortie},
+            {reference : 'champProcessusAppelant' , champ : 'processusAppelant' , valeur : processusAppelant},
+            {reference : 'champProcessusAppele' , champ : 'procesussAppele' , valeur : procesussAppele},
+            {reference : 'choixDiffusionEmail' , champ : 'diffusionEmail' , valeur : diffusionEmail},
+            {reference : 'choixDiffusionPapier' , champ : 'diffusionPapier' , valeur : diffusionPapier},
+            {reference : 'choixRedacteur' , champ : 'redacteur' , valeur : redacteur},
+            {reference : 'choixVerificateur' , champ : 'verificateur' , valeur : verificateur},
+            {reference : 'choixApprobateur' , champ : 'approbateur' , valeur : approbateur},
+        ];
+        
         console.log(formData);
     };
     

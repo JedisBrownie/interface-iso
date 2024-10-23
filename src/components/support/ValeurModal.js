@@ -13,7 +13,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: '20em',
     bgcolor: 'white',
-    borderRadius : '0.2em',
+    borderRadius : '0.5em',
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
     p: '1em 1.5em 1em 1.5em',
   };
@@ -34,14 +34,16 @@ const dataSite = [
     {id:'3',nom:"Diégo"},
     {id:'4',nom:"Ibity"},
     {id:'5',nom:"Tulear"},
-    {id:'6',nom:"Tous"},
+    {id:'6',nom:"Tous"}
 ];
 
 export default function ValeurModal(props){
 
-    const {type} = props;
+    const {type,reference} = props;
 
     const [selectedValues, setSelectedValues] = useState([]);
+
+
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -50,25 +52,39 @@ export default function ValeurModal(props){
 
     const refCheckBox = useRef();
 
+
     const handleCheckboxChange = (event) => {
         const { checked, value } = event.target;
     
         // Update selectedValues based on checkbox state
-        setSelectedValues((prevValues) => {
-          if (checked) {
-            return [...prevValues, value]; // Add value if checked
-          } else {
-            return prevValues.filter((item) => item !== value); // Remove value if unchecked
-          }
-        });
+        // setSelectedValues((prevValues) => {
+        //     if (checked) {
+        //         return prevValues.concat(value);
+        //     } else {
+        //         return prevValues.filter(item => item !== value);
+        //     }
+        // });
+
+        const updatedValues = checked
+            ? [...selectedValues, value]
+            : selectedValues.filter(item => item !== value);
+
+        setSelectedValues(updatedValues);
+
+        // Update the innerHTML or textContent of the ref
+        if (reference && reference.current) {
+            reference.current.textContent = updatedValues.join(', ');
+        }
     };
-    
+
+
 
 
     return(
         <>
             <div className='valeur-champ-choice'>
-                <span className='span-value'> 
+                {/* <span className='span-value' ref={reference}> 
+                    
                     {selectedValues.length > 0 ? (
                         selectedValues.map((value, index) => (
                             <React.Fragment key={index}>
@@ -76,11 +92,14 @@ export default function ValeurModal(props){
                             {value}
                             </React.Fragment>
                         ))
-                    ) : 
-                    (
+                    ) : (
                         ''
                     )}
+                </span> */}
+                <span className='span-value' ref={reference}>
+                    {selectedValues.join(', ')}
                 </span>
+
                 <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
             </div>
 
@@ -93,7 +112,7 @@ export default function ValeurModal(props){
                 {type === 'activite' ? (
                     <Box sx={style}>
                         <div >
-                            <div className='modal_entete' style={{display:'flex',justifyContent:'center',}}>
+                            <div className='modal_entete' style={{display:'flex',justifyContent:'center'}}>
                                 {/* <span ><img src='/logo.png' style={{width:'5em',height:'5em',objectFit:'contain'}}/></span> */}
                                 {/* <span style={{alignContent:'center',marginRight:'10px',marginTop:'5px'}}><h3>Activités</h3></span> */}
                             </div>
@@ -132,7 +151,7 @@ export default function ValeurModal(props){
                                 ))}
 
                                 <div className='choice_button' style={{marginTop:'15px',display:'flex',justifyContent:'end'}}>
-                                    <Button onClick={handleClose} size='small' variant="contained" style={{boxShadow:'none'}}><span style={{textTransform:'none',fontSize:'12px',padding:'2px 14px 2px 14px'}}>Fermer</span></Button>
+                                    <Button onClick={handleClose} size='small' variant="contained" style={{boxShadow:'none'}}><span style={{textTransform:'none',fontSize:'12px',fontFamily:'Lato',padding:'2px 14px 2px 14px'}}>Valider</span></Button>
                                 </div>
                                 
                             </form>

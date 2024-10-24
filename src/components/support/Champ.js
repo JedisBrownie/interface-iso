@@ -1,7 +1,7 @@
 import './css/champ.css';
 export default function Champ(props){
 
-    const {type} = props;
+    const {type,references,edition} = props;
     return(
         <>  
             <div className="paper-six">
@@ -32,24 +32,24 @@ export default function Champ(props){
                         
                         <div > 
                             <span className='information-list'>N° Révision :</span>
-                            <span className='information-value'>2</span>
+                            <span className='information-value'></span>
                         </div>
 
                         <div>
                             <span className='information-list'>Date : </span>
-                            <span className='information-value'>23 / 06 / 2024</span>
+                            <span className='information-value'></span>
                         </div>
                     </div>
 
                 </div>
 
                 <div className="contenu-doc">
-                    <div className='div-content-editable contenu' role='textbox' suppressContentEditableWarning={true} contentEditable={true} data-text = "Rédiger le contenu de votre document ici">
+                    <div className='div-content-editable contenu' role='textbox' suppressContentEditableWarning={true} contentEditable={edition} ref={references.champChampLibre} data-text = "Rédiger le contenu de votre document ici">
                         
                     </div>
                 </div>
 
             </div>
         </>
-    );
+    ); 
 }

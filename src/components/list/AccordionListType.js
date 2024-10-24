@@ -49,7 +49,7 @@ export default class AccordionListType extends Component {
             </AccordionTitle>
 
             <AccordionContent active={activeIndex === index} className="accordion content">
-              <ListContentType dataList={item.listeDocument}></ListContentType>
+              <ListContentType dataList={item.listeDocument} typeDocument={item.idTypeDocument}></ListContentType>
             </AccordionContent>
           </div>
         ))}

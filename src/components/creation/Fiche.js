@@ -4,8 +4,12 @@ import Support from '../support/Support';
 import Toolbar from '../toolbar/Toolbar';
 import './css/document.css';
 import { useRef } from 'react';
-export default function Fiche(){
+export default function Fiche(props){
     
+
+    const {edition,valeurChamp} = props;
+
+
     const saveBrouillon = () =>{
         console.log("enregistré ny fiche d'instruction");
     }
@@ -70,10 +74,14 @@ export default function Fiche(){
 
     return(
         <>
-            <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
+            {edition ? (
+                <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
+            ) : (
+                <></>
+            )}
             <div className='list-paper' style={{marginTop:'7em'}}>
-                <Base type={fiche.type} references={references}></Base>
-                <Commentaire type={fiche.type}></Commentaire>
+                <Base type={fiche.type} references={references} edition={edition}></Base>
+                <Commentaire type={fiche.type} references={references} edition={edition}></Commentaire>
                 <Support type={fiche.type}></Support>
             </div>
         </>

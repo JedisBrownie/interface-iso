@@ -10,16 +10,18 @@ export default function Edition(){
     
     const {type} = useParams();
 
+    const edition = true;
+
     const renderContent = () =>{
         switch(type) {
             case 'processus':
-                return <Processus></Processus>
+                return <Processus edition={edition}></Processus>
             case 'enregistrement':
-                return <Enregistrement></Enregistrement>
+                return <Enregistrement edition={edition}></Enregistrement>
             case 'fiche':
-                return <Fiche></Fiche>
+                return <Fiche edition={edition}></Fiche>
             case 'sous-processus':
-                return <SousProcessus></SousProcessus>
+                return <SousProcessus edition={edition}></SousProcessus>
         }
     }
 

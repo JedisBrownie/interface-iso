@@ -4,7 +4,7 @@ import './css/support.css';
 
 export default function Support(props){
 
-    const {type} = props;
+    const {type,edition} = props;
 
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
@@ -51,34 +51,42 @@ export default function Support(props){
             <div className='support'>
                 <div className='head-title'>Document support</div>
 
-                <div className='liste-champ'>
-                    {uploadedFiles.length > 0 ? (
-                        uploadedFiles.map((file, index) => (
-                            <div key={index} style={{marginBottom: '10px'}}>
-                                <a href={file} download={`uploaded-file-${index + 1}`}>
-                                    Fichier {index + 1}
-                                    {console.log(file.name)}
-                                </a>
-                            </div>
-                        ))
-                    ) : (
-                        <p>Aucun fichier téléchargé pour le moment.</p>
-                    )}
-                </div>
+                
+                {edition ? (
+                    <>
+                        <div className='liste-champ'>
+                        {uploadedFiles.length > 0 ? (
+                            uploadedFiles.map((file, index) => (
+                                <div key={index} style={{marginBottom: '10px'}}>
+                                    <a href={file} download={`uploaded-file-${index + 1}`}>
+                                        Fichier {index + 1}
+                                        {console.log(file.name)}
+                                    </a>
+                                </div>
+                            ))
+                        ) : (
+                            <p>Aucun fichier téléchargé pour le moment.</p>
+                        )}
+                        </div>
+                        <div className='fichier-upload'>
+                            <form  >
+                                <input
+                                    id="image-upload"
+                                    type="file"
+                                    multiple
+                                    onChange={handleUploadFile}
+                                    style={{ marginTop: '10px',color:'black'}} />
 
-
-                <div className='fichier-upload'>
-                    <form  >
-                        <input
-                            id="image-upload"
-                            type="file"
-                            multiple
-                            onChange={handleUploadFile}
-                            style={{ marginTop: '10px',color:'black'}} />
-
-                        <button type='submit'>Ajouter</button>
-                    </form>
-                </div>
+                                <button type='submit'>Ajouter</button>
+                            </form>
+                        </div>
+                    </>
+                ): (
+                    <>
+                        <div className='liste-champ'></div>
+                    </>
+                )}
+                
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import Brouillon from "./page/Brouillon/Brouillon";
 import CreationJodit from "./page/Creation/CreationJodit";
 import DocumentValable from "./page/Home/DocumentValable";
 import Edition from "./page/Creation/Edition";
+import Document from "./page/Document/Document";
 
 export const routes = [
     {
@@ -32,7 +33,8 @@ export const routes = [
         element : <Edition/>
     },
     {
-        path : '/document/:type/:reference/:version'
+        path : '/document/:type/:reference/:version/',
+        element : <Document />
     }
 
 ]

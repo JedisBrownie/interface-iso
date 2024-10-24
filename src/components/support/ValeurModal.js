@@ -37,9 +37,9 @@ const dataSite = [
     {id:'6',nom:"Tous"}
 ];
 
-export default function ValeurModal(props){
+export default function ValeurModal({type,reference,edition}){
 
-    const {type,reference} = props;
+    // const  = props;
 
     const [selectedValues, setSelectedValues] = useState([]);
 
@@ -55,15 +55,6 @@ export default function ValeurModal(props){
 
     const handleCheckboxChange = (event) => {
         const { checked, value } = event.target;
-    
-        // Update selectedValues based on checkbox state
-        // setSelectedValues((prevValues) => {
-        //     if (checked) {
-        //         return prevValues.concat(value);
-        //     } else {
-        //         return prevValues.filter(item => item !== value);
-        //     }
-        // });
 
         const updatedValues = checked
             ? [...selectedValues, value]
@@ -83,24 +74,19 @@ export default function ValeurModal(props){
     return(
         <>
             <div className='valeur-champ-choice'>
-                {/* <span className='span-value' ref={reference}> 
-                    
-                    {selectedValues.length > 0 ? (
-                        selectedValues.map((value, index) => (
-                            <React.Fragment key={index}>
-                            {index > 0 && ', '}
-                            {value}
-                            </React.Fragment>
-                        ))
-                    ) : (
-                        ''
-                    )}
-                </span> */}
+
+                
+
                 <span className='span-value' ref={reference}>
                     {selectedValues.join(', ')}
                 </span>
 
-                <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
+                {edition ?(
+                    <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
+                ) : (
+                    <></>
+                )}
+
             </div>
 
             <Modal

@@ -5,11 +5,7 @@ import ThreePointMenu from '../shared/ThreePointMenu';
 import { useNavigate } from 'react-router-dom';
 
 export default function ListContentType(props){
-    const {dataList} = props;
-    
-    const refDocument = useRef(null);
-    const refIdDocument = useRef(null);
-
+    const {dataList,typeDocument} = props;
     
     useEffect(() => {
         const gridContainers = document.querySelectorAll('.liste');
@@ -21,10 +17,11 @@ export default function ListContentType(props){
         });
     }, []);
 
+    const navigate = useNavigate();
 
     const handleShowDocument = (reference,id) => {
-      console.log("Affiché contenu document : " + reference + " , " + id);
-      
+      console.log("Affiché contenu document : " + reference + " , " + id + " , " + typeDocument);
+      navigate(`/document/${typeDocument}/${reference}/${id}`);        
     }
 
 
@@ -36,8 +33,6 @@ export default function ListContentType(props){
   
             <div className="ui grid container liste" key={index} >
               
-              <div hidden ref={refDocument}>{item.referenceDocument}</div>
-              <div hidden ref={refIdDocument}>{item.idDocument}</div>
               
               <div className="row" onClick={() =>handleShowDocument(item.referenceDocument,item.idDocument)}>
 

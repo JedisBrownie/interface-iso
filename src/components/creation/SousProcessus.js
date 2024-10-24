@@ -4,9 +4,9 @@ import Description from '../support/Description';
 import Support from '../support/Support';
 import Toolbar from '../toolbar/Toolbar';
 import './css/document.css';
-export default function SousProcessus(){
+export default function SousProcessus(props){
 
-
+    const {edition,valeurChamp} = props;
 
     const references = {
         // { ****  Ref Base début ****} //
@@ -65,9 +65,7 @@ export default function SousProcessus(){
     }   
 
 
-    const saveBrouillon = () =>{
-        console.log("enregistré ny sous-processus");
-
+    const getFormData = () =>{
         const dateMiseApplication = references.champMiseApplication.current.value;
         const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
             ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
@@ -98,10 +96,6 @@ export default function SousProcessus(){
         const verificateur = '';
         const approbateur = '';
 
-
-
-
-        console.log(finalite);
         const formData = [
             {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication},
             {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel},
@@ -128,7 +122,14 @@ export default function SousProcessus(){
             {reference : 'choixVerificateur' , champ : 'verificateur' , valeur : verificateur},
             {reference : 'choixApprobateur' , champ : 'approbateur' , valeur : approbateur},
         ];
-        
+
+        return formData;
+    }
+
+
+    const saveBrouillon = () =>{
+        console.log("enregistré ny sous-processus");
+        const formData = getFormData();
         console.log(formData);
     };
     
@@ -136,12 +137,15 @@ export default function SousProcessus(){
     
     return(
         <>
-            <Toolbar handleSaveBrouillon = {saveBrouillon} ></Toolbar>
-            
+            {edition ? (
+                <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
+            ) : (
+                <></>
+            )}
             <div className="list-paper" style={{marginTop:'7em'}}>
                 {/* <Base type={sousProcessus.type} champMiseApplication = {champMiseApplication} champConfidentiel={champConfidentiel} ></Base> */}
-                <Base type={sousProcessus.type} references={references} ></Base>
-                <Description type={sousProcessus.type}></Description>
+                <Base type={sousProcessus.type} references={references} edition={edition} ></Base>
+                <Description type={sousProcessus.type} references={references} edition={edition}></Description>
                 <Support type={sousProcessus.type}></Support>
             </div>
         </>

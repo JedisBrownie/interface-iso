@@ -4,7 +4,7 @@ import ValeurModal from './ValeurModal';
 export default function Base(props){
 
     
-    const {type , references} = props;
+    const {type , references , edition} = props;
 
     return(
         <>
@@ -14,7 +14,7 @@ export default function Base(props){
                             <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
                         </div>
                         <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
-                            <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="true" style={{textAlign:'center',color:'red',height:'fit-content'}}>
+                            <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable={edition} style={{textAlign:'center',color:'red',height:'fit-content'}}>
                                 <h1>Titre du document</h1> 
                             </div>
                             
@@ -51,6 +51,7 @@ export default function Base(props){
                         
                         <div className='presentation-grid'>
                             <div className='presentrow-one'>
+                                
                                 {type === 'Enregistrement' || type === 'Navigateur' ? (
                                     <>
                                         <div className='champ'></div>
@@ -74,15 +75,25 @@ export default function Base(props){
                                 
                                 <div className='champ'>Confidentiel</div>
                                 <div className='valeur-champ' ref={references.champConfidentiel} style={{paddingTop:'0.2em',display:'flex'}}>
-                                    <div style={{display:'flex',alignItems:'center'}}>
-                                        <input type='radio' name='confidentiel' value={'Oui'} id='oui'/>
-                                        <label htmlFor='oui'>Oui</label>
-                                    </div>
+                                    {console.log(edition)}
+                                    {edition ? (
+                                        <>
+                                            <div style={{display:'flex',alignItems:'center'}}>
+                                                <input type='radio' name='confidentiel' value={'Oui'} id='oui'/>
+                                                <label htmlFor='oui'>Oui</label>
+                                            </div>
 
-                                    <div style={{display:'flex',alignItems:'center',marginLeft:'20px'}}>
-                                        <input type='radio' name='confidentiel' value={'Non'} id='non'/>
-                                        <label htmlFor='non'>Non</label>
-                                    </div>
+                                            <div style={{display:'flex',alignItems:'center',marginLeft:'20px'}}>
+                                                <input type='radio' name='confidentiel' value={'Non'} id='non'/>
+                                                <label htmlFor='non'>Non</label>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            Oui / Non
+                                        </>
+                                    )}
+                                    
                                     
                                 </div>
                             </div>
@@ -101,11 +112,11 @@ export default function Base(props){
                         <div className='activité'>
                             <div className='champ'>Activités</div>
 
-                            <ValeurModal type="activite" reference={references.choixIso9001}></ValeurModal>
+                            <ValeurModal type="activite" reference={references.choixIso9001} edition={edition}></ValeurModal>
                             
-                            <ValeurModal type="activite" reference={references.choixIso14001}></ValeurModal>
+                            <ValeurModal type="activite" reference={references.choixIso14001} edition={edition}></ValeurModal>
 
-                            <ValeurModal type="activite" reference={references.choixSecurite}></ValeurModal>       
+                            <ValeurModal type="activite" reference={references.choixSecurite} edition={edition}></ValeurModal>       
                         </div>
 
                         
@@ -113,11 +124,11 @@ export default function Base(props){
                         <div className='site'>
                             <div className='champ'>Site</div>
 
-                            <ValeurModal type="site" reference={references.choixSiteIso9001}></ValeurModal>
+                            <ValeurModal type="site" reference={references.choixSiteIso9001} edition={edition}></ValeurModal>
 
-                            <ValeurModal type="site" reference={references.choixSiteIso14001}></ValeurModal>
+                            <ValeurModal type="site" reference={references.choixSiteIso14001}edition={edition}></ValeurModal>
 
-                            <ValeurModal type="site" reference={references.choixSiteSecurite}></ValeurModal>
+                            <ValeurModal type="site" reference={references.choixSiteSecurite} edition={edition}></ValeurModal>
                         </div> 
                     </div>
                 {/* fin section 2 liste iso */}
@@ -131,11 +142,10 @@ export default function Base(props){
                         <div className='processus'>
 
                             <div className='valeur-champ-choice'>
-                                <span className='span-value'> </span>
-                                <span className='span-arrow choix-processus'><KeyboardArrowDownIcon fontSize='small' style={{fontWeight:900}}/></span>
+                                <span className='span-value' ref={references.choixProcessusGlobal}> </span>
                             </div>
 
-                            <div className='valeur-champ'>&nbsp;</div>
+                            <div className='valeur-champ' ref={references.choixProcessusLie}>&nbsp;</div>
                         </div>
                     </div>
                 {/* fin section 3 liste processus iso */}
@@ -147,12 +157,12 @@ export default function Base(props){
                     <div className='finalite' contentEditable="false">
                         <div className='finalite-row'>
                             <div className='champ'>Finalités</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champFinalite} suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champFinalite} suppressContentEditableWarning={true} contentEditable={edition}></div>
                         </div>
 
                         <div className='finalite-row'>
                             <div className='champ'>Domaine d'application</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDomaineApplication} suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDomaineApplication} suppressContentEditableWarning={true} contentEditable={edition}></div>
                         </div>
                         
                         {type === "Fiche d'instruction" ?(
@@ -167,7 +177,7 @@ export default function Base(props){
 
                         <div className='finalite-row'>
                             <div className='champ'>Condition ou contrainte</div>
-                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champConditionContrainte} suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champConditionContrainte} suppressContentEditableWarning={true} contentEditable={edition}></div>
                         </div>
                     </div>
                 )
@@ -186,8 +196,8 @@ export default function Base(props){
                         </div>
 
                         <div className='donnees-valeur'>
-                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDonneeEntre} suppressContentEditableWarning={true} contentEditable="true"></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDonneeSortie} suppressContentEditableWarning={true} contentEditable="true"></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDonneeEntre} suppressContentEditableWarning={true} contentEditable={edition}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDonneeSortie} suppressContentEditableWarning={true} contentEditable={edition}></div>
                         </div>
                     </div>
                 )}
@@ -215,7 +225,7 @@ export default function Base(props){
                 { type === 'Enregistrement' || type === 'Navigateur' ?(
                     <div className='redacteur-row' contentEditable='false'>
                         <div className='champ'>Rédacteur</div>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixRedacteur} suppressContentEditableWarning={true} contentEditable={edition} ></div>
                     </div>
                 ) : (
                     <></>
@@ -230,27 +240,27 @@ export default function Base(props){
                         <div className='diffusion-titre'>Diffusion</div>
                         
                         {type === 'Enregistrement' || type === 'Navigateur' ?(
-                        <>
-                            <div className='diffusion-row'>
-                                <div className='champ' style={{minHeight:'6em'}}>Par email</div>
-                                <div className='valeur-champ'></div>
-                            </div>
+                            <>
+                                <div className='diffusion-row'>
+                                    <div className='champ' style={{minHeight:'6em'}}>Par email</div>
+                                    <div className='valeur-champ' ref={references.choixDiffusionEmail}></div>
+                                </div>
 
-                            <div className='diffusion-row'>
-                                <div className='champ' style={{minHeight:'6em'}}>Adresse email externe</div>
-                                <div className='valeur-champ'></div>
-                            </div>
+                                <div className='diffusion-row'>
+                                    <div className='champ' style={{minHeight:'6em'}}>Adresse email externe</div>
+                                    <div className='valeur-champ' ref={references.choixDiffusionEmailExterne}></div>
+                                </div>
 
-                            <div className='diffusion-row'>
-                                <div className='champ'style={{minHeight:'5em'}}>Par papier</div>
-                                <div className='valeur-champ'></div>
-                            </div>
-                        </>
+                                <div className='diffusion-row'>
+                                    <div className='champ'style={{minHeight:'5em'}}>Par papier</div>
+                                    <div className='valeur-champ' ref={references.choixDiffusionPapier}></div>
+                                </div>
+                            </>
                         ) : (
                             <>
                                 <div className='diffusion-row'>
                                     <div className='champ' >Par email</div>
-                                    <div className='valeur-champ'></div>
+                                    <div className='valeur-champ' ref={references.choixDiffusionEmail}></div>
                                 </div>
 
                                 <div className='diffusion-row'>

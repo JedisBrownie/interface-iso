@@ -7,7 +7,10 @@ import Toolbar from '../toolbar/Toolbar';
 import { useRef } from 'react';
 
 import './css/document.css';
-export default function Processus(){
+export default function Processus(props){
+
+    
+    const {edition,valeurChamp} = props;
 
     const saveBrouillon = () =>{
         console.log("enregistré ny processus");
@@ -74,20 +77,25 @@ export default function Processus(){
     
     return(
         <>
-            <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
+
+            {edition ? (
+                <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
+            ) : (
+                <></>
+            )}
 
 
             <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>
 
-                <Base type={processus.type} references={references}></Base>
+                <Base type={processus.type} references={references} edition={edition}></Base>
 
-                <Description type={processus.type}></Description>
+                <Description type={processus.type} references={references} edition={edition}></Description>
 
-                <Commentaire type={processus.type}></Commentaire>
+                <Commentaire type={processus.type} references={references} edition={edition}></Commentaire>
                 
-                <Evaluation type={processus.type}></Evaluation>
+                <Evaluation type={processus.type} references={references} edition={edition}></Evaluation>
                 
-                <Support type={processus.type}></Support>
+                <Support type={processus.type} edition={edition}></Support>
                 
             </div>
         </>

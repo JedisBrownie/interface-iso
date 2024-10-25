@@ -24,7 +24,7 @@ export default function ListContentType(props){
       navigate(`/document/${typeDocument}/${reference}/${id}`);        
     }
 
-
+    
 
     return (
       <div className="content">
@@ -34,7 +34,7 @@ export default function ListContentType(props){
             <div className="ui grid container liste" key={index} >
               
               
-              <div className="row" onClick={() =>handleShowDocument(item.referenceDocument,item.idDocument)}>
+              <div className="row fifteen wide column" onClick={() =>handleShowDocument(item.referenceDocument,item.idDocument)}>
 
                 <div className="nine wide column" style={{display:'flex',alignItems:'center'}}>
                   <div className="key">{item.confidentiel === true && <i className="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}</div>
@@ -55,10 +55,12 @@ export default function ListContentType(props){
                     {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red', fontSize: '1.65em' , fontWeight:'bold' }}>*</span>}
                 </div>
 
+              </div>
+              
                 <div className="one wide column" style={{color:'black'}}>
                   <ThreePointMenu modification={item.modification} reference={item.referenceDocument} idDocument = {item.idDocument}></ThreePointMenu>
                 </div>
-              </div>
+
             </div>
 
         ))}

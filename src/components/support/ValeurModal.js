@@ -39,7 +39,6 @@ const dataSite = [
 
 export default function ValeurModal({type,reference,edition}){
 
-    // const  = props;
 
     const [selectedValues, setSelectedValues] = useState([]);
 

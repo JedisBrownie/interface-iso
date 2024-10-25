@@ -7,6 +7,7 @@ import Toolbar from '../toolbar/Toolbar';
 import { useRef } from 'react';
 
 import './css/document.css';
+import { useReferenceProcessus } from './function/reference/referenceProcessus';
 export default function Processus(props){
 
     
@@ -18,61 +19,7 @@ export default function Processus(props){
 
     const processus = {type: "Processus" , idType: 1}
 
-    const references = {
-        // { ****  Ref Base début ****} //
-        champMiseApplication : useRef(null),
-        champConfidentiel : useRef(null),
-    
-        choixIso9001 : useRef(null),
-        choixIso14001 : useRef(null),
-        choixSecurite : useRef(null),
-
-        choixSiteIso9001 : useRef(null),
-        choixSiteIso14001 : useRef(null),
-        choixSiteSecurite : useRef(null),
-
-        choixProcessusGlobal : useRef(null),
-        choixProcessusLie : useRef(null),
-
-        champFinalite : useRef(null),
-        champDomaineApplication : useRef(null),
-        choixPilote : useRef(null),
-        champConditionContrainte : useRef(null),
-
-        champDonneeEntre : useRef(null),
-        champDonneeSortie : useRef(null),
-
-        champProcessusAppelant : useRef(null),
-        champProcessusAppele : useRef(null),
-
-        choixDiffusionEmail : useRef(null),
-        choixDiffusionPapier : useRef(null),
-
-        choixRedacteur : useRef(null),
-        choixVerificateur : useRef(null),
-        choixApprobateur : useRef(null),
-
-    // { ****  Ref description début **** } //
-
-        champQuiRealise : useRef(null),
-        champQuiDecide : useRef(null),
-        champFaitQuoiDescription : useRef(null),
-        champLienMoyenDescription : useRef(null),
-        champCommentaire : useRef(null),
-
-    // { ****  Ref commentaire début **** } //
-        champFaitQuoiCommentaire : useRef(null),
-        champLienMoyenCommentaire : useRef(null),
-
-    // { ****  Ref évaluation du processus début **** } //
-        champPerformanceAttendues : useRef(null),
-        champPropositionSurveillance : useRef(null),
-        champIndicateurEventuel : useRef(null),
-        champEvenementFrequence : useRef(null),
-        champParticipant : useRef(null),
-        champPointAbordes : useRef(null),
-        champDocument : useRef(null)
-    }   
+    const references = useReferenceProcessus();
 
     
     return(

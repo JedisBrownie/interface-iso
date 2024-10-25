@@ -1,6 +1,6 @@
 import './css/description.css';
 export default function Description(props){
-    const {type} = props; 
+    const {type,references,edition} = props; 
     return(
         <>
             <div className="paper-two">
@@ -31,12 +31,12 @@ export default function Description(props){
                         
                         <div > 
                             <span className='information-list'>N° Révision :</span>
-                            <span className='information-value'>2</span>
+                            <span className='information-value'></span>
                         </div>
 
                         <div>
                             <span className='information-list'>Date : </span>
-                            <span className='information-value'>23 / 06 / 2024</span>
+                            <span className='information-value'></span>
                         </div>
                     </div>
 
@@ -53,12 +53,14 @@ export default function Description(props){
                     </div>
                     
                     <div className='description-row' contentEditable="false">
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champQuiRealise} contentEditable={edition}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champQuiDecide} contentEditable={edition}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champFaitQuoiDescription} contentEditable={edition}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champLienMoyenDescription} contentEditable={edition}></div>
                     </div>
+
                 </div>
+
             </div>
         </>
     );

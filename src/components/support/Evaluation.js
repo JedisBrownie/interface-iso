@@ -1,6 +1,6 @@
 import './css/evaluation.css';
 export default function Evaluation(props){
-    const{type} = props;
+    const{type,references,edition} = props;
     return(
         <>
             <div className="paper-four">
@@ -31,12 +31,12 @@ export default function Evaluation(props){
                         
                         <div > 
                             <span className='information-list'>N° Révision :</span>
-                            <span className='information-value'>2</span>
+                            <span className='information-value'></span>
                         </div>
 
                         <div>
                             <span className='information-list'>Date : </span>
-                            <span className='information-value'>23 / 06 / 2024</span>
+                            <span className='information-value'></span>
                         </div>
                     </div>
 
@@ -52,9 +52,9 @@ export default function Evaluation(props){
                         <div className='champ'>Indicateur éventuels</div>
                     </div>
                     <div className='performance-row'>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champPerformanceAttendues} contentEditable={edition} style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champPropositionSurveillance} contentEditable={edition} style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champIndicateurEventuel} contentEditable={edition} style={{lineHeight:'18px'}}></div>
                     </div>
 
                     <div className='title-two'>Surveillance et amélioration du processus</div>
@@ -65,10 +65,10 @@ export default function Evaluation(props){
                             <div className='champ'>Documents</div>
                         </div>
                         <div className='surveillance-row'>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
-                            <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champEvenementFrequence} contentEditable={edition} style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champParticipant} contentEditable={edition} style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champPointAbordes} contentEditable={edition} style={{lineHeight:'18px'}}></div>
+                            <div className='div-content-editable valeur-champ' role="textbox" ref={references.champDocument} contentEditable={edition} style={{lineHeight:'18px'}}></div>
                         </div>
                 </div>
 

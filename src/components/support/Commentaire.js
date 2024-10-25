@@ -1,7 +1,7 @@
 import './css/commentaire.css';
 export default function Commentaire(props){
 
-    const {type} = props;
+    const {type,references,edition} = props;
     return(
         <>
             <div className="paper-three">
@@ -31,12 +31,12 @@ export default function Commentaire(props){
                         
                         <div > 
                             <span className='information-list'>N° Révision :</span>
-                            <span className='information-value'>2</span>
+                            <span className='information-value'></span>
                         </div>
 
                         <div>
                             <span className='information-list'>Date : </span>
-                            <span className='information-value'>23 / 06 / 2024</span>
+                            <span className='information-value'></span>
                         </div>
                     </div>
                 </div>
@@ -55,8 +55,8 @@ export default function Commentaire(props){
                     </div>
                     
                     <div className='commentaire-row' contentEditable="false">
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true" style={{lineHeight:'18px'}}></div>
-                        <div className='div-content-editable valeur-champ' role="textbox" suppressContentEditableWarning={true} contentEditable="true"></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champFaitQuoiCommentaire} contentEditable={edition} style={{lineHeight:'18px'}}></div>
+                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.champLienMoyenCommentaire} contentEditable={edition}></div>
                     </div>
 
                 </div>

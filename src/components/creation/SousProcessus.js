@@ -4,65 +4,15 @@ import Description from '../support/Description';
 import Support from '../support/Support';
 import Toolbar from '../toolbar/Toolbar';
 import './css/document.css';
+import { useReferenceSousProcessus } from './function/reference/referenceSousProcessus';
 export default function SousProcessus(props){
 
-    const {edition,valeurChamp} = props;
-
-    const references = {
-        // { ****  Ref Base début ****} //
-        champMiseApplication : useRef(),
-        champConfidentiel : useRef(),
     
-        choixIso9001 : useRef(),
-        choixIso14001 : useRef(),
-        choixSecurite : useRef(),
+    const {edition,valeurChamp} = props;
+    const sousProcessus = {type : "Sous-Processus" , idType : 2}
 
-        choixSiteIso9001 : useRef(),
-        choixSiteIso14001 : useRef(),
-        choixSiteSecurite : useRef(),
-
-        choixProcessusGlobal : useRef(),
-        choixProcessusLie : useRef(),
-
-        champFinalite : useRef(),
-        champDomaineApplication : useRef(),
-        choixPilote : useRef(),
-        champConditionContrainte : useRef(),
-
-        champDonneeEntre : useRef(),
-        champDonneeSortie : useRef(),
-
-        champProcessusAppelant : useRef(),
-        champProcessusAppele : useRef(),
-
-        choixDiffusionEmail : useRef(),
-        choixDiffusionPapier : useRef(),
-
-        choixRedacteur : useRef(),
-        choixVerificateur : useRef(),
-        choixApprobateur : useRef(),
-
-    // { ****  Ref description début **** } //
-
-        champQuiRealise : useRef(),
-        champQuiDecide : useRef(),
-        champFaitQuoiDescription : useRef(),
-        champLienMoyenDescription : useRef(),
-        champCommentaire : useRef(),
-
-    // { ****  Ref commentaire début **** } //
-        champFaitQuoiCommentaire : useRef(),
-        champLienMoyenCommentaire : useRef(),
-
-    // { ****  Ref évaluation du processus début **** } //
-        champPerformanceAttendues : useRef(),
-        champPropositionSurveillance : useRef(),
-        champIndicateurEventuel : useRef(),
-        champEvenementFrequence : useRef(),
-        champParticipant : useRef(),
-        champPointAbordes : useRef(),
-        champDocument : useRef()
-    }   
+    const references = useReferenceSousProcessus();
+    console.log(references)
 
 
     const getFormData = () =>{
@@ -133,7 +83,6 @@ export default function SousProcessus(props){
         console.log(formData);
     };
     
-    const sousProcessus = {type : "Sous-Processus" , idType : 2}
     
     return(
         <>

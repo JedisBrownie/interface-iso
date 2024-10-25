@@ -1,10 +1,28 @@
 import './css/base.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ValeurModal from './ValeurModal';
+import { useEffect, useState } from 'react';
 export default function Base(props){
 
-    
     const {type , references , edition} = props;
+    const [isConfidentiel , setIsConfidentiel] = useState(false);
+
+    const handleConfidentielChoice = (value) =>{
+        setIsConfidentiel(value);
+    }
+
+    const renderLecteurComponent = (height) =>{
+        return(
+            <>
+                <div className='diffusion-row'>
+                    <div className='champ' style={{minHeight:height}}>Lecteurs</div>
+                    <div className='valeur-champ' ref={references.choixLecteur}></div>
+                </div>
+            </>
+        );
+    }
+    
+
 
     return(
         <>
@@ -51,18 +69,29 @@ export default function Base(props){
                         
                         <div className='presentation-grid'>
                             <div className='presentrow-one'>
-                                
-                                {type === 'Enregistrement' || type === 'Navigateur' ? (
+                                {edition ? (
                                     <>
-                                        <div className='champ'></div>
-                                        <div className='valeur-champ'></div>
+                                        {type === 'Enregistrement' || type === 'Navigateur' ? (
+                                            <>
+                                                <div className='champ'></div>
+                                                <div className='valeur-champ'></div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className='champ'>Mise en application le</div>
+                                                <div className='valeur-champ'><input type='date' ref={references.champMiseApplication}/></div>
+                                            </>
+                                        )}
                                     </>
                                 ) : (
                                     <>
-                                        <div className='champ'>Mise en application le</div>
-                                        <div className='valeur-champ'><input type='date' ref={references.champMiseApplication}/></div>
+                                      <div className='champ'>Mise en application le</div>
+                                      <div className='valeur-champ' ref={references.champMiseApplication}></div>  
+                                    
                                     </>
+                                    
                                 )}
+                                
 
                                 
                                 <div className='champ'>Pays</div>
@@ -75,15 +104,15 @@ export default function Base(props){
                                 
                                 <div className='champ'>Confidentiel</div>
                                 <div className='valeur-champ' ref={references.champConfidentiel} style={{paddingTop:'0.2em',display:'flex'}}>
-                                    {console.log(edition)}
+                                    
                                     {edition ? (
                                         <>
-                                            <div style={{display:'flex',alignItems:'center'}}>
+                                            <div style={{display:'flex',alignItems:'center'}} onClick={() => handleConfidentielChoice(true)}>
                                                 <input type='radio' name='confidentiel' value={'Oui'} id='oui'/>
                                                 <label htmlFor='oui'>Oui</label>
                                             </div>
 
-                                            <div style={{display:'flex',alignItems:'center',marginLeft:'20px'}}>
+                                            <div style={{display:'flex',alignItems:'center',marginLeft:'20px'}} onClick={() => handleConfidentielChoice(false)}>
                                                 <input type='radio' name='confidentiel' value={'Non'} id='non'/>
                                                 <label htmlFor='non'>Non</label>
                                             </div>
@@ -97,6 +126,11 @@ export default function Base(props){
                                     
                                 </div>
                             </div>
+
+                            {/* <div className='presentrow-three' style={{display:'grid',gridTemplateColumns:'25% 75%'}}>
+                                <div className='champ'>Lecteurs</div>
+                                <div className='valeur-champ'></div>
+                            </div> */}
                         </div>
                     </div>
                 {/* fin section 1 presentation */}
@@ -241,6 +275,9 @@ export default function Base(props){
                         
                         {type === 'Enregistrement' || type === 'Navigateur' ?(
                             <>
+                                {isConfidentiel && 
+                                    renderLecteurComponent('6em')
+                                }
                                 <div className='diffusion-row'>
                                     <div className='champ' style={{minHeight:'6em'}}>Par email</div>
                                     <div className='valeur-champ' ref={references.choixDiffusionEmail}></div>
@@ -258,6 +295,9 @@ export default function Base(props){
                             </>
                         ) : (
                             <>
+                                {(isConfidentiel && type !== 'Processus') &&
+                                    renderLecteurComponent('2em')
+                                }
                                 <div className='diffusion-row'>
                                     <div className='champ' >Par email</div>
                                     <div className='valeur-champ' ref={references.choixDiffusionEmail}></div>

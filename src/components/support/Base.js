@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 export default function Base(props){
 
     const {type , references , edition , valeurChamp , changeTitle} = props;
+
     const [isConfidentiel , setIsConfidentiel] = useState(false);
 
     const handleConfidentielChoice = (value) =>{
@@ -23,10 +24,11 @@ export default function Base(props){
     }
     
     useEffect(() => {
-        if (edition && valeurChamp && valeurChamp.length > 0) {
+        if (!edition && valeurChamp && valeurChamp.length > 0) {
+            
             valeurChamp.forEach(({ reference, texte, valeur }) => {
                 const champRef = references[reference]?.current;
-                console.log(champRef);
+                console.log("ref : " + champRef);
 
                 if (champRef) {
                     
@@ -37,6 +39,8 @@ export default function Base(props){
                         // Si c'est du HTML
                         champRef.innerHTML = valeur;
                     }
+                }else{
+                    console.log("null : " + champRef);
                 }
             });
         }

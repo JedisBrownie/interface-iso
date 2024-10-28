@@ -1,7 +1,6 @@
 import { getFormDataEnregistrement, getFormDataFiche, getFormDataProcessus, getFormDataSousProcessus } from "./champ";
 
 
-
 export function insertSousProcessus(references){
     const data = getFormDataSousProcessus(references);
     return data;

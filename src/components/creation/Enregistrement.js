@@ -3,6 +3,7 @@ import './css/document.css';
 import { useRef , useState } from 'react';
 import { createReferenceEnregistrement } from './function/reference/referenceEnregistrement';
 import { insertEnregistrement } from './function/insert';
+import DocumentMenu from '../shared/DocumentMenu';
 
 const Base = lazy(() => import('../support/Base'));
 const Champ = lazy(() => import('../support/Champ'));
@@ -26,10 +27,6 @@ export default class Enregistrement extends React.Component{
     _saveBrouillon = (e) => {
         console.log("ref : " + this.state.references.champConfidentiel.current);
         insertEnregistrement(this.state.references);
-    }
-
-    componentWillUpdate(){
-        console.log("updated");
     }
 
     _changeTitle = (e) =>{
@@ -117,23 +114,34 @@ export default class Enregistrement extends React.Component{
     render(){
         const {type,references,titre} = this.state;
         
-        console.log(this.state.references.champConfidentiel);
+        
         const {edition , valeurChamp} = this.props;
 
         return(
             <Suspense fallback={<div></div>}>
                 {edition ? (
-                    <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()}></Toolbar>
+                    <>
+                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()}></Toolbar>
+
+                        <div className='list-paper' style={{marginTop:'7em'}}>
+                            <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
+                            <Champ type={type} titre={titre} references={references} edition={edition}></Champ>
+                            <Support type={type} titre={titre} edition={edition}></Support>    
+                        </div>
+                    </>
                 ) : (
-                    <></>
+                    <div>
+                        <DocumentMenu></DocumentMenu>
+
+                        <div className='list-paper' style={{marginTop:'1em'}}>
+                            <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
+                            <Champ type={type} titre={titre} references={references} edition={edition}></Champ>
+                            <Support type={type} titre={titre} edition={edition}></Support>
+            
+                        </div>
+                    </div>
                 )}
-                <div className='list-paper' style={{marginTop:'7em'}}>
-    
-                    <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
-                    <Champ type={type} titre={titre} references={references} edition={edition}></Champ>
-                    <Support type={type} titre={titre} edition={edition}></Support>
-    
-                </div>
+                
             </Suspense>
         );
     }

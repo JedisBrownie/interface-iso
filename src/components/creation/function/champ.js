@@ -164,11 +164,13 @@ export function getFormDataSousProcessus(references){
 export function getFormDataEnregistrement(references){
         if (!references || !references.champConfidentiel?.current) {
             console.warn("References are not fully initialized", references);
+            console.log(references.champConfidentiel);
             return []; // Or handle this scenario as needed
         }
+
         const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
             ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
-        const iso9001 = references.choixIso9001.current.textContent;
+        const iso9001 = references.choixIso9001.current.textContent ;
         const iso14001 = references.choixIso14001.current.textContent;
         const securite = references.choixSecurite.current.textContent;
         
@@ -186,7 +188,13 @@ export function getFormDataEnregistrement(references){
 
         const redacteur = references.choixRedacteur.current.textContent;
         
-        const lecteur = references.choixLecteur.current.textContent;
+        var lecteur = '';
+        if(references.choixLecteur.current){
+            lecteur = references.choixLecteur.current.textContent ;
+        }else{
+            console.log("pas de lecteur");
+        }
+        
 
         const champLibre = references.champChampLibre.current.innerHTML;
 

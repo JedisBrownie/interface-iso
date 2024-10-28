@@ -4,7 +4,7 @@ import ValeurModal from './ValeurModal';
 import { useEffect, useState } from 'react';
 export default function Base(props){
 
-    const {type , references , edition} = props;
+    const {type , references , edition , valeurChamp} = props;
     const [isConfidentiel , setIsConfidentiel] = useState(false);
 
     const handleConfidentielChoice = (value) =>{
@@ -22,6 +22,25 @@ export default function Base(props){
         );
     }
     
+    useEffect(() => {
+        if (!edition && valeurChamp && valeurChamp.length > 0) {
+            valeurChamp.forEach(({ reference, texte, valeur }) => {
+                const champRef = references[reference]?.current;
+                console.log(champRef);
+
+                if (champRef) {
+                    
+                    if (texte) {
+                        // Si c'est du texte simple
+                        champRef.textContent = valeur;
+                    } else {
+                        // Si c'est du HTML
+                        champRef.innerHTML = valeur;
+                    }
+                }
+            });
+        }
+    }, [edition, valeurChamp]);
 
 
     return(

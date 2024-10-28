@@ -19,5 +19,6 @@ export function insertFiche(references){
 
 export function insertEnregistrement(references){
     const data = getFormDataEnregistrement(references);
+    console.log(data);
     return data;
 }

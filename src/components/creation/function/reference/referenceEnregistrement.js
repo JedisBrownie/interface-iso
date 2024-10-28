@@ -1,30 +1,30 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
-export function useReferenceEnregistrement (){
+export function createReferenceEnregistrement (){
 
     return {
         // { ****  Ref Base début ****} //
-        champConfidentiel : useRef(null),
+        champConfidentiel : React.createRef(),
 
-        choixIso9001 : useRef(null),
-        choixIso14001 : useRef(null),
-        choixSecurite : useRef(null),
+        choixIso9001 : React.createRef(),
+        choixIso14001 : React.createRef(),
+        choixSecurite : React.createRef(),
 
-        choixSiteIso9001 : useRef(null),
-        choixSiteIso14001 : useRef(null),
-        choixSiteSecurite : useRef(null),
+        choixSiteIso9001 : React.createRef(),
+        choixSiteIso14001 : React.createRef(),
+        choixSiteSecurite : React.createRef(),
 
-        choixProcessusGlobal : useRef(null),
-        choixProcessusLie : useRef(null),
+        choixProcessusGlobal : React.createRef(),
+        choixProcessusLie : React.createRef(),
 
-        choixDiffusionEmail : useRef(null),
-        choixDiffusionPapier : useRef(null),
-        choixDiffusionEmailExterne : useRef(null),
+        choixDiffusionEmail : React.createRef(),
+        choixDiffusionPapier : React.createRef(),
+        choixDiffusionEmailExterne : React.createRef(),
 
-        choixRedacteur : useRef(null),
-        choixLecteur : useRef(null),
+        choixRedacteur : React.createRef(),
+        choixLecteur : React.createRef(),
 
         // { ****  Ref champ libre début **** } //
-        champChampLibre : useRef(null)
+        champChampLibre : React.createRef()
     }
 }

@@ -17,7 +17,7 @@ export default function Edition(){
             case 'processus':
                 return <Processus edition={edition}></Processus>
             case 'enregistrement':
-                return <Enregistrement edition={edition}></Enregistrement>
+                return <Enregistrement edition={edition} ></Enregistrement>
             case 'fiche':
                 return <Fiche edition={edition}></Fiche>
             case 'sous-processus':

@@ -1,12 +1,27 @@
+/* variable */
+:root{
+    --commercial: coral;
+    --crise : coral;
+    --management : #0fcaa7;
+    --ressources : #a06ec6;
+    --production :  #a06ec6; 
+    --supports : #416ff8;
+    --finances : #416ff8;
+    --surveillance : #0fcaa7;
+    --nonConformite : #0fcaa7;
+    --borderRadiusPrimary : 5px;
+}
+/* variable */
+
+
 .ui.container .grid-shema{
     /* background-color: beige; */
-    padding-top: 1em;
+    padding-top: 2em;
     padding-bottom : 2em;
     height: fit-content;
-    min-width: 50vw;
-    min-height: 10vh;
-    display: grid;
-    grid-template-columns: 15% 70% 15%;
+    min-width: 40em;
+    width: 60em;
+    min-height: 10em;
 }
 
     /*######   Liste processus et contenu    #######*/
@@ -20,6 +35,7 @@
             padding: 0.5em 0.5em 0.5em 0.5em;
             width: 60%;
             margin: auto auto;
+            border-radius: 4px;
         }
 
         .contenu-vertical:hover{
@@ -52,6 +68,7 @@
             padding: 0.5em 0.5em 0.5em 0.5em;
             width: 22%;
             margin: auto auto;
+            border-radius: 4px;
         }
 
         .liste-processus-horizontal{
@@ -91,7 +108,7 @@
 
     .grid-shema .title-black{
         text-align: center;
-        color: black;
+        color: white;
         font-size: 0.75em;
         width: 60%;
         height: fit-content;
@@ -107,8 +124,9 @@
     /*::: 3000 - Processus Commercial :::*/
     .row-one .column-left .cl-row-commercial{
         padding-top: 6em;
-        background-color: coral;
+        background-color: var(--commercial);
         height: 100%;
+        border-radius: var(--borderRadiusPrimary);
     }
 
 
@@ -122,46 +140,51 @@
 
     /*::: 1000 - Processus Management :::*/
     .row-one .column-right .cr-row-management{
-        background-color: #37bd37;
+        background-color: var(--management);
         padding-top: 0.5em;
         height: fit-content;
         padding-bottom: 0.6em; 
+        border-radius: var(--borderRadiusPrimary);
     }
 
 
     /*::: 2000 - Processus Ressources :::*/
     .row-one .column-right .cr-row-ressources{
-        background-color: #a5f8f8;
+        background-color: var(--ressources);
         padding-top: 0.5em;
         height: fit-content;
-        padding-bottom: 0.6em; 
+        padding-bottom: 0.6em;
+        border-radius: var(--borderRadiusPrimary); 
     }
 
 
     /*::: 4000 - Processus Production :::*/
     .row-one .column-right .cr-row-production{
-        background-color: #60c8f8;
+        background-color: var(--production);
         padding-top: 0.5em;
         height: fit-content;
-        padding-bottom: 0.6em; 
+        padding-bottom: 0.6em;
+        border-radius: var(--borderRadiusPrimary); 
     }
         
 
     /*::: 5000 - Processus Activité Supports :::*/
     .row-one .column-right .cr-row-support{
-        background-color: #f8f860;
+        background-color: var(--supports);
         padding-top: 0.5em;
         height: fit-content;
         padding-bottom: 0.6em; 
+        border-radius: var(--borderRadiusPrimary);
     }
     
     
     /*::: 5100 - Processus administrative et financières :::*/
     .row-one .column-right .cr-row-administrative{
-        background-color: #f8f860;
+        background-color: var(--finances);
         padding-top: 0.5em;
         height: fit-content;
         padding-bottom: 0.6em; 
+        border-radius: var(--borderRadiusPrimary);
     }
 
 
@@ -185,8 +208,9 @@
     /*::: 6000 - Gestion de crise :::*/
     .row-two .column-left .cl-row-crise{
         padding-top: 0.5rem;
-        background-color: coral;
+        background-color: var(--crise);
         height: 100%;
+        border-radius: var(--borderRadiusPrimary);
     }
 
 
@@ -204,18 +228,20 @@
 }
     /*::: 9000 - Surveillance et mesures :::*/
     .row-two .column-right .cr-row-surveillance{
-        background-color: #25a325 ;
+        background-color: var(--surveillance) ;
         padding-top: 0.5em;
         height: fit-content;
         padding-bottom: 0.6em; 
+        border-radius: var(--borderRadiusPrimary);
     }
 
     /*::: 9200 - Non conformités :::*/
     .row-two .column-right .cr-row-conformites{
-        background-color: #229f22 ;
+        background-color: var(--nonConformite) ;
         padding-top: 0.5em;
         height: fit-content;
         padding-bottom: 0.6em; 
+        border-radius: var(--borderRadiusPrimary);
     }
 
 

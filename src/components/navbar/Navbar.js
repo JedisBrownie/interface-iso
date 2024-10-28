@@ -8,7 +8,7 @@ export default function Navbar(){
     const navigate = useNavigate();
 
     const handleClickArchivesProcessus = () =>{
-        navigate('/brouillon');
+        navigate('/archive');
     }
 
 
@@ -32,14 +32,14 @@ export default function Navbar(){
                         MMI
                     </a>
                     
-                    <Dropdown text={"Archives"} style={{fontSize:'0.9rem'}} >
+                    <Dropdown text={"Archives"} style={{fontSize:'12px'}} >
                         <DropdownMenu style = {{marginTop:'1em',marginLeft:'-0.5em'}}>
                             <DropdownItem text={"Par processus"} onClick={handleClickArchivesProcessus}></DropdownItem>
-                            <DropdownItem text={"Par date"}></DropdownItem>
+                            <DropdownItem text={"Par date archivage"}></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
 
-                    <Dropdown text={'Création document'} style={{fontSize:'0.9rem'}}>
+                    <Dropdown text={'Création document'} style={{fontSize:'12px'}}>
                         <DropdownMenu style = {{marginTop:'1em',marginLeft:'-0.5em'}}>
                             <DropdownItem text={"Processus"} href="/creation/processus"></DropdownItem>
                             <DropdownItem text={"Sous Processus"} href="creation/sous-processus"></DropdownItem>
@@ -57,9 +57,13 @@ export default function Navbar(){
                     </div> */}
 
                     <div className="item" style={{fontSize:'0.9rem'}}>
-                        <div className="ui icon input">
+                        {/* <div className="ui icon input">
                             <i className="search link icon"></i>
                             <input type="text" placeholder="Rechercher document..." style={{borderRadius:'4rem'}}/>
+                        </div> */}
+                        <div className="ui icon input">
+                            <input type="text" placeholder="Rechercher document..." style={{borderRadius:'0.5rem',width:'18em',height:'2.8em',fontSize:'12px',borderRadius:'2em'}}/>
+                            <i className="search link icon" style={{marginRight:'0.2em',fontSize:'12px'}}></i>
                         </div>
                     </div>
 

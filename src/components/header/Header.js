@@ -1,6 +1,6 @@
 import './header.css';
 
-export default function Header({type,entete}){
+export default function Header({type,entete,nomDocument}){
 
     const renderContent = () =>{
         switch (type) {
@@ -9,16 +9,16 @@ export default function Header({type,entete}){
                     <>
                         <div className="title header" style={{color:'white',paddingTop:'1em',paddingBottom:'1.5em'}}>
                             <h2> Mes documents </h2>
-                            <h3 style={{marginTop:'0.2em'}}>Aina Razafindrakoto</h3>
+                            <h4 style={{marginTop:'0.2em'}}>Aina Razafindrakoto</h4>
                         </div>
                         <div className="item-right">
                             <div className="ui icon input">
-                                <input type="text" placeholder="Rechercher document" style={{borderRadius:'0.5rem',width:'22em',height:'2.5em',fontSize:'0.95em'}}/>
-                                <i className="search link icon" style={{marginRight:'0.2em'}}></i>
+                                <input type="text" placeholder="Rechercher document..." style={{borderRadius:'0.5rem',width:'22em',height:'2.8em',fontSize:'12px'}}/>
+                                <i className="search link icon" style={{marginRight:'0.2em',fontSize:'12px'}}></i>
                             </div>
                             <div className='list-button' style={{minHeight:'0.5em'}}>
-                                {/* <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
-                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button> */}
+                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
+                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
                             </div>
                         </div>
                     </>
@@ -26,22 +26,42 @@ export default function Header({type,entete}){
             case 'Valable':
                 return (
                     <>
-                        <div className="title header" style={{color:'white',paddingTop:'1em',paddingBottom:'1em'}}>
+                        <div className="title header" style={{color:'white',paddingTop:'1em',paddingBottom:'1.5em'}}>
                             <h2>{entete.idProcessusGlobal} - {entete.nomProcessusGlobal}</h2>
-                            <h3 style={{marginTop:'0.2em'}}>{entete.idProcessusLie} - {entete.nomProcessusLie}</h3>
+                            <h4 style={{marginTop:'0.2em'}}>{entete.idProcessusLie} - {entete.nomProcessusLie}</h4>
                         </div>
                         <div className="item-right">
                             <div className="ui icon input">
-                                <input type="text" placeholder="Rechercher document..." style={{borderRadius:'0.5rem',width:'22em',height:'2.5em',fontSize:'0.95em'}}/>
-                                <i className="search link icon" style={{marginRight:'0.2em'}}></i>
+                                <input type="text" placeholder="Rechercher document..." style={{borderRadius:'0.5rem',width:'22em',height:'2.8em',fontSize:'12px'}}/>
+                                <i className="search link icon" style={{marginRight:'0.2em',fontSize:'12px'}}></i>
                             </div>
-                            <div className='list-button'>
-                                <button className='ui mini button' style={{backgroundColor:'white',fontSize:'12px'}} >Tout développer</button>
-                                <button className='ui mini button' style={{backgroundColor:'white',fontSize:'12px'}} >Tout réduire</button>
+                            <div className='list-button' style={{minHeight:'0.5em'}}>
+                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
+                                <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
                             </div>
                         </div>
                     </>
                 );
+            
+            case 'Document':
+                    return (
+                        <>
+                            <div className="title header" style={{color:'white',paddingTop:'1em',paddingBottom:'1.5em'}}>
+                                <h2>Documents</h2>
+                                <h4 style={{marginTop:'0.2em'}}>{nomDocument}</h4>
+                            </div>
+                            <div className="item-right">
+                                <div className="ui icon input">
+                                    <input type="text" placeholder="Rechercher document..." style={{borderRadius:'0.5rem',width:'22em',height:'2.8em',fontSize:'12px'}}/>
+                                    <i className="search link icon" style={{marginRight:'0.2em',fontSize:'12px'}}></i>
+                                </div>
+                                <div className='list-button' style={{minHeight:'0.5em'}}>
+                                    <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
+                                    <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
+                                </div>
+                            </div>
+                        </>
+                    );
         }
     };
 

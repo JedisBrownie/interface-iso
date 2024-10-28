@@ -1,7 +1,7 @@
 import './css/champ.css';
 export default function Champ(props){
 
-    const {type,references,edition} = props;
+    const {type,references,edition,titre} = props;
     return(
         <>  
             <div className="paper-six">
@@ -11,7 +11,7 @@ export default function Champ(props){
                     </div>
                     <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                         <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
-                            <h1>Titre du document</h1> 
+                            <h1>{titre}</h1> 
                         </div>
                         
                         <div style={{marginTop:'0.8em',fontWeight:'800'}}>

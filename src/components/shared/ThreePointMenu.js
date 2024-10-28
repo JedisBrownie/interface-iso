@@ -3,6 +3,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import { IconButton } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 import { styled, alpha } from '@mui/material/styles';
 import React from 'react';
 
@@ -49,6 +52,17 @@ const StyledMenu = styled((props) => (
     },
   }));
 
+const styleModal = {
+  position: 'absolute',
+  top: '25%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '30em',
+  bgcolor: 'white',
+  borderRadius : '0.5em',
+  boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+  p: '1em 1.5em 1em 1.5em'
+};
   
 export default function ThreePointMenu(props){
 
@@ -64,7 +78,12 @@ export default function ThreePointMenu(props){
         setAnchorEl(null);
     };
 
+    const [openModal, setOpenModal] = React.useState(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
 
+
+    // fonctionnalité 
     const handleCopy = () => {
         console.log("vous avez copié : " + reference + " , " + idDocument);
     }
@@ -75,6 +94,12 @@ export default function ThreePointMenu(props){
 
     const handleRevision = () =>{
         console.log("Demande revision");
+        handleOpenModal();
+    }
+
+    const handleClickButtonModal = () =>{
+      console.log("voaray ny fangatahanao");
+      handleCloseModal();
     }
 
 
@@ -110,6 +135,24 @@ export default function ThreePointMenu(props){
                         <MenuItem style={{fontFamily:'Lato',fontWeight:'500',fontSize:'12px'}} onClick={handleRevision}>Demander une révision</MenuItem>
                     )}
                 </StyledMenu>
+
+                <Modal
+                  open={openModal}
+                  onClose={handleCloseModal}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description" >
+                  <Box sx={styleModal}>
+                    <span style={{fontWeight:'900',fontFamily:'Lato',fontSize:'18px'}}>
+                      Raison de la demande de révision
+                    </span>
+                    
+                    <div id='input-revision' style={{fontFamily:'Lato',fontSize:'13px',marginTop:'1.5em'}}>
+                        <div role='textbox' contentEditable={true} style={{border:'1px solid grey',padding:'5px 10px',borderRadius:'5px',width:'100%',height:'7em'}}></div>
+                    </div>
+
+                    <button style={{fontFamily:'Lato',fontSize:'12px',marginTop:'1.2em',float:'right',padding:'9px 20px 9px 20px',borderRadius:'5px',background:'#0768ff',color:'white',border:'none',cursor:'pointer'}} onClick={() => handleClickButtonModal()}>Envoyer demande</button>
+                  </Box>
+                </Modal>
             </div>
         </>
     );

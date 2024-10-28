@@ -1,5 +1,13 @@
 #menu{
     background-color: rgb(236, 34, 34);
+    /* background-color: rgb(77, 77, 77); */
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+
+.left.menu{
+    width: 100%;
+    justify-content: center;
 }
 
 

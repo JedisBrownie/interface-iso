@@ -10,14 +10,14 @@ export default function Schema(props){
 
     return(
         <>
-            <div className="ui container" style={{paddingTop:'4.5em'}}>
+            <div className="ui container" style={{paddingTop:'4em',display:'flex',justifyContent:'center'}}>
                 <div className="grid-shema">
                     
-                    <div className="column-one">
-                        <div className="co-horizontal">
+                    <div className="column-one" style={{display:'none'}}>
+                        {/* <div className="co-horizontal">
                             <span className="up">Clients</span>
                             <span className="down">Parties intéressées</span>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="column-two">
@@ -157,12 +157,12 @@ export default function Schema(props){
                         </div>
                     </div>
 
-                    <div className="column-three">
+                    {/* <div className="column-three">
                         <div className="co-horizontal">
                             <span className="down">Parties intéressées</span>
                             <span className="up">Clients</span>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

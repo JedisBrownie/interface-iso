@@ -4,7 +4,7 @@ import './css/support.css';
 
 export default function Support(props){
 
-    const {type,edition} = props;
+    const {type,edition,titre} = props;
 
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
@@ -37,7 +37,7 @@ export default function Support(props){
                 </div>
                 <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                     <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
-                        <h1>Titre du document</h1> 
+                        <h1>{titre}</h1> 
                     </div>
                     
                     <div style={{marginTop:'0.8em',fontWeight:'800'}}>

@@ -22,7 +22,7 @@ export default function ListContentBrouillon(props){
                 <div className="ui grid container liste" key={index}>
                     <div className="row">
                               
-                        <div className="three wide column" style={{display:'flex'}}>
+                        <div className="four wide column" style={{display:'flex'}}>
                             <div className="key"></div>
                             <div>{item.status}</div>
                         </div>
@@ -31,15 +31,18 @@ export default function ListContentBrouillon(props){
               
                         <div className="two wide column">{item.nomTypeDocument}</div>
               
-                        <div className="six wide column">{item.nom}</div>
+                        <div className="five wide column">{item.nom}</div>
               
                         <div className="one wide column">
                             <span>{item.nombreRevision}</span>
-                            {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red', fontSize: '1.65em' , fontWeight:'bold' }}>*</span>}
+                            {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red',fontSize: '1.65em' , fontWeight:'bold' }}>*</span>}
                         </div>
               
                         <div className="two wide column">
-                            1100 , 5515
+                            {/* list of listeProcessusLie */}
+                            {item.listeProcessusLie
+                            .map(processus => processus.idProcessusLie)
+                            .join(", ")}
                         </div>              
                     </div>
                 </div>

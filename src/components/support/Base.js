@@ -4,7 +4,7 @@ import ValeurModal from './ValeurModal';
 import { useEffect, useState } from 'react';
 export default function Base(props){
 
-    const {type , references , edition , valeurChamp} = props;
+    const {type , references , edition , valeurChamp , changeTitle} = props;
     const [isConfidentiel , setIsConfidentiel] = useState(false);
 
     const handleConfidentielChoice = (value) =>{
@@ -23,7 +23,7 @@ export default function Base(props){
     }
     
     useEffect(() => {
-        if (!edition && valeurChamp && valeurChamp.length > 0) {
+        if (edition && valeurChamp && valeurChamp.length > 0) {
             valeurChamp.forEach(({ reference, texte, valeur }) => {
                 const champRef = references[reference]?.current;
                 console.log(champRef);
@@ -51,7 +51,7 @@ export default function Base(props){
                             <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
                         </div>
                         <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
-                            <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable={edition} style={{textAlign:'center',color:'red',height:'fit-content'}}>
+                            <div className="div-content-editable" role="textbox"  onInput={(e) => changeTitle(e)}  contentEditable={edition} style={{textAlign:'center',color:'red',height:'fit-content'}}>
                                 <h1>Titre du document</h1> 
                             </div>
                             

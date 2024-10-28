@@ -6,6 +6,7 @@ import CreationJodit from "./page/Creation/CreationJodit";
 import DocumentValable from "./page/Home/DocumentValable";
 import Edition from "./page/Creation/Edition";
 import Document from "./page/Document/Document";
+import Navigateur from "./page/Navigateur/Navigateur";
 
 export const routes = [
     {
@@ -35,6 +36,10 @@ export const routes = [
     {
         path : '/document/:type/:reference/:version/',
         element : <Document />
+    },
+    {
+        path : '/navigateur',
+        element : <Navigateur />
     }
 
 ]

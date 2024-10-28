@@ -162,11 +162,11 @@ export function getFormDataSousProcessus(references){
 
 
 export function getFormDataEnregistrement(references){
-        if (!references || !references.champConfidentiel?.current) {
-            console.warn("References are not fully initialized", references);
-            console.log(references.champConfidentiel);
-            return []; // Or handle this scenario as needed
-        }
+        // if (!references || !references.champConfidentiel?.current) {
+        //     console.warn("References are not fully initialized", references);
+        //     console.log(references.champConfidentiel);
+        //     return []; // Or handle this scenario as needed
+        // }
 
         const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
             ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';

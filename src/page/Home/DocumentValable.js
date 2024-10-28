@@ -29,8 +29,8 @@ export default function DocumentValable(){
         fetchData();
     },[]);
 
-    console.log(listeDocument.listeType);
-    console.log(listeDocument);
+    // console.log(listeDocument.listeType);
+    // console.log(listeDocument);
 
     // const data =
     // [

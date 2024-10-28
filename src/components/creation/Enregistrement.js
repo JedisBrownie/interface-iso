@@ -16,7 +16,8 @@ export default class Enregistrement extends React.Component{
         this.state = {
             type:'Enregistrement',
             idType : 4,
-            references : createReferenceEnregistrement()
+            references : createReferenceEnregistrement(),
+            titre : 'Titre du document'
         }
     }
 
@@ -31,32 +32,40 @@ export default class Enregistrement extends React.Component{
         console.log("updated");
     }
 
+    _changeTitle = (e) =>{
+        const newTitle = e.target.innerText;
+        console.log("titre : " + e.target.innerText);
+        this.setState({ titre: newTitle });
+    }
+
+
+
     // componentDidMount() {
     //     this.setState({ isMounted: true });
     // }
 
-    componentDidMount() {
-        const { edition, valeurChamp } = this.props;
-        console.log(edition );
-        console.log(valeurChamp);
-        // Check if edition has changed to false and valeurChamp has items
-        if (!edition  && valeurChamp && valeurChamp.length > 0) {
-            valeurChamp.forEach(({ reference, texte, valeur }) => {
-                const champRef = this.state.references[reference]?.current;
-                console.log("test : " + this.state.references.champConfidentiel);
+    // componentDidMount() {
+    //     const { edition, valeurChamp } = this.props;
+    //     console.log(edition );
+    //     console.log(valeurChamp);
+    //     // Check if edition has changed to false and valeurChamp has items
+    //     if (!edition  && valeurChamp && valeurChamp.length > 0) {
+    //         valeurChamp.forEach(({ reference, texte, valeur }) => {
+    //             const champRef = this.state.references[reference]?.current;
+    //             console.log("test : " + this.state.references.champConfidentiel);
 
-                if (champRef) {
-                    if (texte) {
-                        // If it's plain text
-                        champRef.textContent = valeur;
-                    } else {
-                        // If it's HTML
-                        champRef.innerHTML = valeur;
-                    }
-                }
-            });
-        }
-    }
+    //             if (champRef) {
+    //                 if (texte) {
+    //                     // If it's plain text
+    //                     champRef.textContent = valeur;
+    //                 } else {
+    //                     // If it's HTML
+    //                     champRef.innerHTML = valeur;
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
 
 
     // componentDidUpdate(prevProps, prevState) {
@@ -105,29 +114,8 @@ export default class Enregistrement extends React.Component{
 
     
 
-
-    // useEffect(() => {
-    //     if (!edition && valeurChamp && valeurChamp.length > 0) {
-    //         valeurChamp.forEach(({ reference, texte, valeur }) => {
-    //             const champRef = references[reference]?.current;
-    //             console.log(champRef);
-
-    //             if (champRef) {
-                    
-    //                 if (texte) {
-    //                     // Si c'est du texte simple
-    //                     champRef.textContent = valeur;
-    //                 } else {
-    //                     // Si c'est du HTML
-    //                     champRef.innerHTML = valeur;
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }, [edition, valeurChamp]);
-
     render(){
-        const {type,references} = this.state;
+        const {type,references,titre} = this.state;
         
         console.log(this.state.references.champConfidentiel);
         const {edition , valeurChamp} = this.props;
@@ -141,9 +129,9 @@ export default class Enregistrement extends React.Component{
                 )}
                 <div className='list-paper' style={{marginTop:'7em'}}>
     
-                    <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp}></Base>
-                    <Champ type={type} references={references} edition={edition}></Champ>
-                    <Support type={type} edition={edition}></Support>
+                    <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
+                    <Champ type={type} titre={titre} references={references} edition={edition}></Champ>
+                    <Support type={type} titre={titre} edition={edition}></Support>
     
                 </div>
             </Suspense>

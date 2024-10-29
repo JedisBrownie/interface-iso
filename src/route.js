@@ -7,6 +7,7 @@ import DocumentValable from "./page/Home/DocumentValable";
 import Edition from "./page/Creation/Edition";
 import Document from "./page/Document/Document";
 import Navigateur from "./page/Navigateur/Navigateur";
+import Archive from "./page/Archive/Archive";
 
 export const routes = [
     {
@@ -40,6 +41,10 @@ export const routes = [
     {
         path : '/navigateur',
         element : <Navigateur />
+    },
+    {
+        path : '/archive',
+        element : <Archive />
     }
 
 ]

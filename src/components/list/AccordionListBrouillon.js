@@ -6,7 +6,7 @@ import {
     Icon
   } from 'semantic-ui-react';
   import ListContentType from './ListContentType';
-  import './list.css';
+  import './css/list.css';
 import ListContentBrouillon from "./ListContentBrouillon";
   
 
@@ -41,7 +41,7 @@ export default class AccordionListBrouillon extends Component{
     render() {
         const { activeIndex , allExpanded } = this.state
         const { data } = this.props;
-    
+      
         return (
           <Accordion>
             {data.map((item,index) =>(

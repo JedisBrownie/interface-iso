@@ -1,0 +1,135 @@
+:root{
+    --fond : #f6f6f6;
+    --rouge : rgb(236, 34, 34);
+    --grey : rgb(91, 91, 91);
+}
+
+/* .accordion-main{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+} */
+
+
+.year-title{
+    font-size: 1.3em;
+    font-weight: bolder;
+    color: var(--rouge);
+    /* background-color: goldenrod; */
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+}
+
+.year-title:hover{
+    cursor: pointer;
+}
+
+.pg-title{
+    font-size: 1.1em;
+    font-weight: 900;
+    color: var(--grey);
+    /* background-color: pink; */
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
+}
+
+.pl-title{
+    font-size: 1.1em;
+    font-weight: 900;
+    color:var(--rouge);
+    padding-top: 0.9em;
+    /* background-color: burlywood; */
+    padding-bottom: 0.9em;
+}
+
+.type-title{
+    font-size: 1em;
+    font-weight: 900;
+    color: var(--grey);
+}
+
+/* accordion  */
+
+.accordion-year{
+    min-height: 2em;   
+}
+
+.accordion-pg{
+    min-height: 2em;
+}
+
+.accordion-pl{
+    min-height: 2em;
+}
+
+.accordion-type{
+    min-height: 2em;
+    background-color: aquamarine;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+}
+
+
+.accordion-pl:hover{
+    cursor: pointer;
+}
+
+
+.accordion-type:hover{
+    cursor: pointer;
+}
+
+
+/*  accordion-section */
+
+.accordion-section-year{
+    margin-left: 2em;
+    background-color: transparent;
+}
+
+.accordion-section-pg{
+    margin-left: 2em;
+    background-color: transparent;
+}
+
+.accordion-section-pl{
+    margin-left: 2.5em;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.accordion-section-type{
+    margin-left: 2em;
+    background-color: transparent;
+}
+
+/* accordion-section active */
+.content.active.accordion-section-year{
+
+}
+
+.content.active.accordion-section-pg{
+
+}
+
+
+.content.active.accordion-section-pl{
+
+}
+
+.content.active.accordion-section-type{
+
+}
+
+/* content-archive (liste document) */
+
+.content-archive{
+    display: block;
+    margin-top: 0.9em;
+    margin-bottom: 1.5em;
+}
+
+.row.archive{
+    background-color: rgb(211, 211, 211);
+    /* background-color: red; */
+}

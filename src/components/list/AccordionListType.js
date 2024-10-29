@@ -6,7 +6,7 @@ import {
   Icon
 } from 'semantic-ui-react'
 import ListContentType from './ListContentType';
-import './list.css';
+import './css/list.css';
 
 export default class AccordionListType extends Component {
   state = { 

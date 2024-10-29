@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './list.css';
+import './css/list.css';
 
 export default function ListContentBrouillon(props){
 

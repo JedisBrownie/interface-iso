@@ -1,3 +1,5 @@
+import AccordionListArchiveDate from "../../components/list/AccordionListArchiveDate";
+import Header from "../../components/header/Header";
 export default function Archive(){
 
     const dataArchiveParDate = [
@@ -29,7 +31,7 @@ export default function Archive(){
 
             ]} ,
             
-            {idProcessusGlobal : '2000' , nomProcessusGlobal : 'Ressources',listeProcessusLie : [
+            {idProcessusGlobal : '2000' , nomProcessusGlobal : 'Ressources Mandeha',listeProcessusLie : [
                 {idProcessusLie : '2100' , nomProcessusLie : 'Ressources Humaines' , listeTypeDocument : [
                     
                     {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
@@ -146,6 +148,11 @@ export default function Archive(){
 
 
     return(
-        <></>
+        <>
+            <Header type="Brouillon" ></Header>
+            <div className="ui container" style={{paddingTop:'9em'}}>
+                <AccordionListArchiveDate data={dataArchiveParDate}></AccordionListArchiveDate>
+            </div>
+        </>
     );
 }

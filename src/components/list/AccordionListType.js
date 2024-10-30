@@ -32,6 +32,10 @@ export default class AccordionListType extends Component {
     } else {
       newIndex = index;
     }
+    
+    if(activeIndex === newIndex){
+      newIndex = '';
+    }
     // const newIndex = activeIndex === index ? -1 : index
     this.setState({ activeIndex: newIndex })
   }
@@ -45,10 +49,10 @@ export default class AccordionListType extends Component {
         {data.map((item,index) =>(
           <div key={item.idTypeDocument}>
             <AccordionTitle active={activeIndex === index} index={index} onClick={this.handleClick} className='accordion-section'>
-              <section style={{fontWeight:'bold',fontSize:'1.1em',paddingTop:'1.2em'}}><Icon name='dropdown' />{item.nomTypeDocument} </section>
+              <section style={{fontWeight:'bold',fontSize:'1.1em',marginTop:'1em'}} className="accordion-title-typedoc"><Icon name='dropdown' />{item.nomTypeDocument} </section>
             </AccordionTitle>
 
-            <AccordionContent active={activeIndex === index} className="accordion content">
+            <AccordionContent style={{marginTop:'1em'}} active={activeIndex === index} className="accordion content">
               <ListContentType dataList={item.listeDocument} typeDocument={item.idTypeDocument}></ListContentType>
             </AccordionContent>
           </div>

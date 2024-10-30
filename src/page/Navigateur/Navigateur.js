@@ -15,9 +15,9 @@ export default function Navigateur(){
 
     return(
         <>
-            <Header type="Document" nomDocument={"Navigateur"}></Header>
+            <Header type="Document" titreDocument={"Accès Rapide"} nomDocument={"Navigateur"}></Header>
 
-            <div className="ui container" style={{paddingTop:'7.5em'}}>
+            <div className="ui container" style={{paddingTop:'7em'}}>
                 <AccordionListType data={data}></AccordionListType>
             </div>
         </>

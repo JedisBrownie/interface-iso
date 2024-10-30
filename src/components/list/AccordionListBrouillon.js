@@ -34,6 +34,10 @@ export default class AccordionListBrouillon extends Component{
         } else {
           newIndex = index;
         }
+
+        if(activeIndex === newIndex){
+          newIndex = '';
+        }
         // const newIndex = activeIndex === index ? -1 : index
         this.setState({ activeIndex: newIndex })
     }
@@ -47,10 +51,10 @@ export default class AccordionListBrouillon extends Component{
             {data.map((item,index) =>(
               <div key={item.idMatricule}>
                 <AccordionTitle active={activeIndex === index} index={index} onClick={this.handleClick} className='accordion-section'>
-                  <section style={{fontWeight:'bold',fontSize:'1.1em',paddingTop:'0em'}}><Icon name='dropdown' />{item.nom} </section>
+                  <section style={{fontWeight:'bold',fontSize:'1.1em',paddingTop:'0em'}} className='accordion-title-brouillon'><Icon name='dropdown' />{item.nom} </section>
                 </AccordionTitle>
     
-                <AccordionContent active={activeIndex === index} className="accordion content">
+                <AccordionContent  style={{marginTop:'1.5em'}} active={activeIndex === index} className="accordion content">
                     <ListContentBrouillon dataList={item.listeDocument}></ListContentBrouillon>
                 </AccordionContent>
               </div>

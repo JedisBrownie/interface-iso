@@ -3,6 +3,7 @@ import AccordionListBrouillon from "../../components/list/AccordionListBrouillon
 import AccordionListType from "../../components/list/AccordionListType";
 import ListContentBrouillon from "../../components/list/ListContentBrouillon";
 
+
 export default function Brouillon(){
     
     const data =
@@ -20,11 +21,10 @@ export default function Brouillon(){
         <>
             <Header type = "Brouillon"></Header>
 
-            <div className="ui container" style={{paddingTop:'9em'}}>
+            <div className="ui container" style={{paddingTop:'8.5em'}}>
                 <AccordionListBrouillon data = {data}></AccordionListBrouillon>
                 {/* <ListContentBrouillon dataList={data}></ListContentBrouillon> */}
             </div>
-
         </>
 
     );

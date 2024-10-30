@@ -1,7 +1,9 @@
 :root{
     --fond : #f6f6f6;
     --rouge : rgb(236, 34, 34);
-    --grey : rgb(91, 91, 91);
+    --grey : #e4e4e4;
+    --blanc : rgb(252, 252, 252);
+    --bordureGris : rgb(216, 212, 212)
 }
 
 /* .accordion-main{
@@ -11,71 +13,66 @@
 } */
 
 
-.year-title{
-    font-size: 1.3em;
-    font-weight: bolder;
-    color: var(--rouge);
-    /* background-color: goldenrod; */
-    padding-top: 0.7em;
-    padding-bottom: 0.7em;
+/* semantic enabled */
+
+.ui.accordion:not(.styled) .title ~ .content{
+    padding: 0em 0em;
 }
 
-.year-title:hover{
-    cursor: pointer;
+.ui.accordion:not(.styled) .title ~ .content, .ui.accordion:not(.styled) .accordion .title ~ .content{
+    padding: 0em 0em;
 }
 
-.pg-title{
-    font-size: 1.1em;
-    font-weight: 900;
-    color: var(--grey);
-    /* background-color: pink; */
-    padding-top: 0.9em;
-    padding-bottom: 0.9em;
-}
+/* fin semantic enabled */
 
-.pl-title{
-    font-size: 1.1em;
-    font-weight: 900;
-    color:var(--rouge);
-    padding-top: 0.9em;
-    /* background-color: burlywood; */
-    padding-bottom: 0.9em;
-}
-
-.type-title{
-    font-size: 1em;
-    font-weight: 900;
-    color: var(--grey);
-}
 
 /* accordion  */
 
-.accordion-year{
-    min-height: 2em;   
+.accordion-title-year{
+    border: 1px solid var(--bordureGris);
+    font-weight: 900;
+    font-size: 1.2em;
+    min-height: 3em;
+    padding-left: 0.5em;
+    background-color: var(--grey);
+    display: flex;
+    margin-top: -0.55em;
+    align-items: center;
 }
 
-.accordion-pg{
-    min-height: 2em;
+.accordion-title-pg{
+    border: 1px solid var(--bordureGris);
+    background-color: var(--blanc);
+    min-height: 3.5em;
+    padding-left: 0.5em;
+    margin-top: -10px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
 }
 
-.accordion-pl{
-    min-height: 2em;
-}
-
-.accordion-type{
-    min-height: 2em;
-    background-color: aquamarine;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
-}
-
-
-.accordion-pl:hover{
-    cursor: pointer;
+.accordion-title-pl{
+    border: 1px solid var(--bordureGris);
+    background-color: var(--grey);
+    min-height: 3.5em;
+    padding-left: 0.5em;
+    font-weight: 900;
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
 }
 
 
-.accordion-type:hover{
+.accordion-title-type{
+    min-height: 2.5em;
+    /* border: 1px solid var(--bordureGris);
+    background-color: var(--blanc); */
+    padding-left: 0.5em;
+    font-weight: 900;
+    display: flex;
+    font-size: 1em;
+    margin-top: 0.1em;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -84,52 +81,90 @@
 
 .accordion-section-year{
     margin-left: 2em;
-    background-color: transparent;
+
+    background-color: var(--fond);
+    margin-top: 0;
 }
 
 .accordion-section-pg{
     margin-left: 2em;
-    background-color: transparent;
+    background-color: var(--fond);
 }
 
 .accordion-section-pl{
-    margin-left: 2.5em;
+    margin-left: 2em;
     font-size: 14px;
-    background-color: transparent;
+    background-color: var(--fond);
 }
 
 .accordion-section-type{
-    margin-left: 2em;
+    margin-left: 4em;
+    margin-top: 1.5em;
     background-color: transparent;
 }
 
+
+
+
 /* accordion-section active */
 .content.active.accordion-section-year{
-
+    display: block;
+    margin-top: -1em;
 }
 
 .content.active.accordion-section-pg{
-
+    display: block;
+    margin-top: -1em;
 }
 
 
 .content.active.accordion-section-pl{
-
+    display: block;
+    margin-top: -1.2em;
+    margin-bottom: 0.5em;
 }
 
 .content.active.accordion-section-type{
-
+    margin-bottom: 1em;
+    display: block;
+    padding-bottom: 1px;
 }
 
 /* content-archive (liste document) */
 
 .content-archive{
     display: block;
-    margin-top: 0.9em;
+    margin-top: 1em;
     margin-bottom: 1.5em;
 }
 
 .row.archive{
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(231, 231, 231);
+    border-radius: 1px;
+    font-weight: 500;
     /* background-color: red; */
 }
+
+
+
+
+/*  */
+.row.archive.alternate-color{
+    background-color: white;
+}
+
+/* .accordion-title-year.alternate-color{
+    background-color: rgb(252, 252, 252);
+}
+
+.accordion-title-pg.alternate-color{
+    background-color:#e4e4e4;
+}
+
+.accordion-title-pl.alternate-color{
+    background-color: rgb(252, 252, 252);
+}
+
+.accordion-title-type.alternate-color{
+    background-color: #e4e4e4;
+} */

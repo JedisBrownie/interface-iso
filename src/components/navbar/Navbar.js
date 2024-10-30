@@ -5,12 +5,6 @@ import Badge from '@mui/material/Badge';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 export default function Navbar(){
     
-    const navigate = useNavigate();
-
-    const handleClickArchivesProcessus = () =>{
-        navigate('/archive');
-    }
-
 
     return(
         <div className="ui inverted large top fixed text menu" style={{padding:'5px 50px 5px 50px',marginBottom:'20vh'}} id="menu">
@@ -28,14 +22,14 @@ export default function Navbar(){
                         Accès rapide navigateur
                     </a>
 
-                    <a href = "/valable" className ="item">
+                    <a href = "/manuel" className ="item">
                         MMI
                     </a>
                     
                     <Dropdown text={"Archives"} style={{fontSize:'12px'}} >
                         <DropdownMenu style = {{marginTop:'1em',marginLeft:'-0.5em'}}>
-                            <DropdownItem text={"Par processus"} onClick={handleClickArchivesProcessus}></DropdownItem>
-                            <DropdownItem text={"Par date archivage"}></DropdownItem>
+                            <DropdownItem text={"Par processus"} href="archive/processus"></DropdownItem>
+                            <DropdownItem text={"Par date archivage"} href="archive/date"></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
 

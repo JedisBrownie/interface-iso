@@ -39,6 +39,16 @@ import {
         this.setState({ activeIndex: newIndex })
     }
 
+    componentDidMount() {
+        const gridContainers = document.querySelectorAll('.row.archive');
+        
+        gridContainers.forEach((container, index) => {
+          if (index % 2 === 1) {
+            container.classList.add('alternate-color');
+          }
+        });
+    }
+
     render(){
 
         const {activeIndex} = this.state;
@@ -51,15 +61,15 @@ import {
                     {data.map((typeDocument,index) =>(
                         <div key={index}>
                             <AccordionTitle active={activeIndex === index} index={index} onClick={this.handleClick} className='accordion-type'>
-                                <section className='type-title'><Icon name='dropdown' />{typeDocument.nomTypeDocument}</section>
+                                <section className='accordion-title-type'><Icon name='dropdown' />{typeDocument.nomTypeDocument}</section>
                             </AccordionTitle>
 
                             <AccordionContent active={activeIndex === index} className='accordion-section-type'>
                                 
                                     
                                 {typeDocument.listeDocument.map((document,index2)=>(
-                                    <div className='content-archive'>
-                                        <div className='ui grid container liste-archive' key={index2}>
+                                    <div className='content-archive' key={index2}>
+                                        <div className='ui grid container liste-archive'>
                                             <div className='row archive'>
                                                 
                                                 <div className='five wide column'> 
@@ -79,7 +89,7 @@ import {
                                                     {document.status}
                                                 </div>
 
-                                                <div className='two wide column'>
+                                                <div className='two wide column' style={{textAlign:'center'}}>
                                                     {document.nombreRevision}
                                                 </div>
 

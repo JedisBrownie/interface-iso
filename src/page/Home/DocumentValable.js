@@ -61,7 +61,7 @@ export default function DocumentValable(){
     return(
         <>
             <Header type="Valable" entete={listeDocument} ></Header>
-            <div className="ui container" style={{paddingTop:'7.5em'}}>
+            <div className="ui container" style={{paddingTop:'7em'}}>
                 {isLoading ? (
                     <></>
                 ) : (

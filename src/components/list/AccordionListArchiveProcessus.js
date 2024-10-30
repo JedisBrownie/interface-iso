@@ -11,15 +11,14 @@ import { Component } from "react";
 import ListArchive from './ListArchive';
 
 
-export default class AccordionListArchiveDate extends Component{
-    
- 
+export default class AccordionListArchiveProcessus extends Component{
+
     contentLevelTypeDocument = (listeTypeDocument) =>{
         return(
             <ListArchive data={listeTypeDocument}></ListArchive>
         );
     }
-     
+
     contentLevelProcessusLie = (listeProcessusLie) =>{
         
         const panels = [];
@@ -51,8 +50,6 @@ export default class AccordionListArchiveDate extends Component{
         );
     }
 
-
-
     contentLevelProcessusGlobal = (listeProcessusGlobal) =>{
         const panels = [];
 
@@ -78,65 +75,10 @@ export default class AccordionListArchiveDate extends Component{
 
         return(
             <div>
-                <AccordionAccordion panels={panels}></AccordionAccordion>
+                <Accordion panels={panels}></Accordion>
             </div>
         );
     }
-    
-    contentLevelAll = (dataArchiveProcessus) =>{
-        const rootPanels = [];
-
-        dataArchiveProcessus.forEach(archive =>{
-            
-            const obj = {
-                key:`${archive.date}` , 
-                title : (
-                    <AccordionTitle >
-                        <section className='accordion-title-year'><Icon name='dropdown' />{archive.date}</section>
-                    </AccordionTitle>), 
-                content : (
-                    <AccordionContent className='accordion-section-year'>
-                        {this.contentLevelProcessusGlobal(archive.listeProcessusGlobal)}
-                    </AccordionContent>) 
-            }
-
-            console.log(obj);
-            rootPanels.push(obj);
-        });
-
-
-        return(
-            <Accordion defaultActiveIndex={0} panels={rootPanels}></Accordion>
-        )
-    }
-
-    // componentDidMount() {
-    //     const yearContainer = document.querySelectorAll('.accordion-title-year');
-        
-    //     yearContainer.forEach((container, index) => {
-    //       if (index % 2 === 1) {
-    //         container.classList.add('alternate-color');
-    //       }
-    //     });
-
-    //     const processusGlobalContainer = document.querySelectorAll('.accordion-title-pg');
-        
-    //     processusGlobalContainer.forEach((container, index) => {
-    //       if (index % 2 === 1) {
-    //         container.classList.add('alternate-color');
-    //       }
-    //     });
-
-    //     const processusLieContainer = document.querySelectorAll('.accordion-title-pl');
-        
-    //     processusLieContainer.forEach((container, index) => {
-    //       if (index % 2 === 1) {
-    //         container.classList.add('alternate-color');
-    //       }
-    //     });
-
-    // }
-
 
 
     render(){
@@ -144,12 +86,10 @@ export default class AccordionListArchiveDate extends Component{
 
         return(
             <>
-                {this.contentLevelAll(data)}
+                {this.contentLevelProcessusGlobal(data)}
             </>
         );
     }
 
+
 }
-
-
-

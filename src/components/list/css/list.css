@@ -1,3 +1,12 @@
+:root{
+    --fond : #f6f6f6;
+    --rouge : rgb(236, 34, 34);
+    --grey : #e4e4e4;
+    --blanc : rgb(252, 252, 252);
+    --bordureGris : rgb(216, 212, 212)
+}
+
+
 body{
     font-size: 15px;
 }
@@ -13,7 +22,7 @@ body{
 
 .content .row:hover{
     cursor: pointer;
-    color: rgb(21, 21, 232);
+    color: rgb(71, 71, 217);
 }
 
 .alternate-color {
@@ -34,3 +43,33 @@ body{
 .accordion-section:hover{
     cursor: pointer;
 }
+
+
+.accordion-title-brouillon{
+    min-height: 2em;
+    /* border: 1px solid var(--bordureGris);
+    background-color: var(--blanc); */
+    padding-left: 0.5em;
+    font-weight: 900;
+    display: flex;
+    font-size: 0.9em;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+
+.accordion-title-typedoc{
+    /* border: 1px solid var(--bordureGris);
+    background-color: var(--blanc); */
+    padding-left: 0.5em;
+    font-weight: 900;
+    display: flex;
+    font-size: 0.9em;
+    min-height: 2em;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0.5em;
+}
+

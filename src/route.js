@@ -8,6 +8,7 @@ import Edition from "./page/Creation/Edition";
 import Document from "./page/Document/Document";
 import Navigateur from "./page/Navigateur/Navigateur";
 import Archive from "./page/Archive/Archive";
+import Manuel from "./page/Manuel/Manuel";
 
 export const routes = [
     {
@@ -43,8 +44,12 @@ export const routes = [
         element : <Navigateur />
     },
     {
-        path : '/archive',
+        path : '/archive/:choix',
         element : <Archive />
+    },
+    {
+        path : '/manuel',
+        element : <Manuel />
     }
 
 ]

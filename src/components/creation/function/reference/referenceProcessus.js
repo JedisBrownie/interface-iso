@@ -1,59 +1,59 @@
-import { useRef } from "react";
+import  React from "react";
 
-export function useReferenceProcessus () {
+export function createReferenceProcessus () {
     return {
         // { ****  Ref feuille 1 ****} //
-        champMiseApplication : useRef(null),
-        champConfidentiel : useRef(null),
+        champMiseApplication : React.createRef(),
+        champConfidentiel : React.createRef(),
 
-        choixIso9001 : useRef(null),
-        choixIso14001 : useRef(null),
-        choixSecurite : useRef(null),
+        choixIso9001 : React.createRef(),
+        choixIso14001 : React.createRef(),
+        choixSecurite : React.createRef(),
 
-        choixSiteIso9001 : useRef(null),
-        choixSiteIso14001 : useRef(null),
-        choixSiteSecurite : useRef(null),
+        choixSiteIso9001 : React.createRef(),
+        choixSiteIso14001 : React.createRef(),
+        choixSiteSecurite : React.createRef(),
 
-        choixProcessusGlobal : useRef(null),
-        choixProcessusLie : useRef(null),
+        choixProcessusGlobal : React.createRef(),
+        choixProcessusLie : React.createRef(),
 
-        champFinalite : useRef(null),
-        champDomaineApplication : useRef(null),
-        choixPilote : useRef(null),
-        champConditionContrainte : useRef(null),
+        champFinalite : React.createRef(),
+        champDomaineApplication : React.createRef(),
+        choixPilote : React.createRef(),
+        champConditionContrainte : React.createRef(),
 
-        champDonneeEntre : useRef(null),
-        champDonneeSortie : useRef(null),
+        champDonneeEntre : React.createRef(),
+        champDonneeSortie : React.createRef(),
 
-        champProcessusAppelant : useRef(null),
-        champProcessusAppele : useRef(null),
+        champProcessusAppelant : React.createRef(),
+        champProcessusAppele : React.createRef(),
 
-        choixDiffusionEmail : useRef(null),
-        choixDiffusionPapier : useRef(null),
+        choixDiffusionEmail : React.createRef(),
+        choixDiffusionPapier : React.createRef(),
 
-        choixRedacteur : useRef(null),
-        choixVerificateur : useRef(null),
-        choixApprobateur : useRef(null),
+        choixRedacteur : React.createRef(),
+        choixVerificateur : React.createRef(),
+        choixApprobateur : React.createRef(),
 
     // { ****  Ref feuille 2 **** } //
 
-        champQuiRealise : useRef(null),
-        champQuiDecide : useRef(null),
-        champFaitQuoiDescription : useRef(null),
-        champLienMoyenDescription : useRef(null),
+        champQuiRealise : React.createRef(),
+        champQuiDecide : React.createRef(),
+        champFaitQuoiDescription : React.createRef(),
+        champLienMoyenDescription : React.createRef(),
 
     // { ****  Ref feuille 3 **** } //
-        champFaitQuoiCommentaire : useRef(null),
-        champLienMoyenCommentaire : useRef(null),
+        champFaitQuoiCommentaire : React.createRef(),
+        champLienMoyenCommentaire : React.createRef(),
 
     // { ****  Ref feuille 4 **** } //
-        champPerformanceAttendues : useRef(null),
-        champPropositionSurveillance : useRef(null),
-        champIndicateurEventuel : useRef(null),
-        champEvenementFrequence : useRef(null),
-        champParticipant : useRef(null),
-        champPointAbordes : useRef(null),
-        champDocument : useRef(null)
+        champPerformanceAttendues : React.createRef(),
+        champPropositionSurveillance : React.createRef(),
+        champIndicateurEventuel : React.createRef(),
+        champEvenementFrequence : React.createRef(),
+        champParticipant : React.createRef(),
+        champPointAbordes : React.createRef(),
+        champDocument : React.createRef()
     
     }
 }   

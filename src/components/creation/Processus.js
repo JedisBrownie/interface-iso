@@ -6,45 +6,63 @@ import Support from '../support/Support';
 import Toolbar from '../toolbar/Toolbar';
 import { useRef } from 'react';
 
+import React from 'react';
 import './css/document.css';
-import { useReferenceProcessus } from './function/reference/referenceProcessus';
-export default function Processus(props){
+import { createReferenceProcessus } from './function/reference/referenceProcessus';
+import { insertBrouillonProcessus } from './function/insert';
+export default class Processus extends React.Component{
 
-    
-    const {edition,valeurChamp} = props;
-
-    const saveBrouillon = () =>{
-        console.log("enregistré ny processus");
+    constructor(props,context){
+        super(props,context);
+        this.state = {
+            type:'Processus',
+            idType : 1,
+            references : createReferenceProcessus(),
+            titre : 'Titre du document'
+        }
     }
 
-    const processus = {type: "Processus" , idType: 1}
+    _saveBrouillon = () =>{
+        insertBrouillonProcessus(this.state.references);
+    }
 
-    const references = useReferenceProcessus();
+    _changeTitle = (e) =>{
+        const newTitle = e.tartget.innerText;
+        this.setState({titre : newTitle});
+    }
 
     
-    return(
-        <>
+    render(){
+        const {edition,valeurChamp} = this.props;
 
-            {edition ? (
-                <Toolbar handleSaveBrouillon = {saveBrouillon}></Toolbar>
-            ) : (
-                <></>
-            )}
+        const {type,references,titre} = this.state;
 
-
-            <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>
-
-                <Base type={processus.type} references={references} edition={edition}></Base>
-
-                <Description type={processus.type} references={references} edition={edition}></Description>
-
-                <Commentaire type={processus.type} references={references} edition={edition}></Commentaire>
-                
-                <Evaluation type={processus.type} references={references} edition={edition}></Evaluation>
-                
-                <Support type={processus.type} edition={edition}></Support>
-                
-            </div>
-        </>
-    );
+            
+        return(
+            <>
+    
+                {edition ? (
+                    <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()}></Toolbar>
+                ) : (
+                    <></>
+                )}
+    
+    
+                <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>
+    
+                    <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
+    
+                    <Description type={type} references={references} edition={edition}></Description>
+    
+                    <Commentaire type={type} references={references} edition={edition}></Commentaire>
+                    
+                    <Evaluation type={type} references={references} edition={edition}></Evaluation>
+                    
+                    <Support type={type} edition={edition}></Support>
+                    
+                </div>
+            </>
+        );
+    }
+    
 }

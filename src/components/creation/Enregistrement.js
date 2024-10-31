@@ -1,8 +1,8 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import './css/document.css';
 import { useRef , useState } from 'react';
 import { createReferenceEnregistrement } from './function/reference/referenceEnregistrement';
-import { insertEnregistrement } from './function/insert';
+import { insertBrouillonEnregistrement, insertBrouillonFiche, insertEnregistrement } from './function/insert';
 import DocumentMenu from '../shared/DocumentMenu';
 
 const Base = lazy(() => import('../support/Base'));
@@ -24,92 +24,18 @@ export default class Enregistrement extends React.Component{
 
 
 
-    _saveBrouillon = (e) => {
+    _saveBrouillon = () => {
         console.log("ref : " + this.state.references.champConfidentiel.current);
-        insertEnregistrement(this.state.references);
+        insertBrouillonEnregistrement(this.state.references);
     }
 
     _changeTitle = (e) =>{
         const newTitle = e.target.innerText;
-        console.log("titre : " + e.target.innerText);
         this.setState({ titre: newTitle });
     }
 
 
 
-    // componentDidMount() {
-    //     this.setState({ isMounted: true });
-    // }
-
-    // componentDidMount() {
-    //     const { edition, valeurChamp } = this.props;
-    //     console.log(edition );
-    //     console.log(valeurChamp);
-    //     // Check if edition has changed to false and valeurChamp has items
-    //     if (!edition  && valeurChamp && valeurChamp.length > 0) {
-    //         valeurChamp.forEach(({ reference, texte, valeur }) => {
-    //             const champRef = this.state.references[reference]?.current;
-    //             console.log("test : " + this.state.references.champConfidentiel);
-
-    //             if (champRef) {
-    //                 if (texte) {
-    //                     // If it's plain text
-    //                     champRef.textContent = valeur;
-    //                 } else {
-    //                     // If it's HTML
-    //                     champRef.innerHTML = valeur;
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
-
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     const { edition, valeurChamp } = this.props;
-
-    //     // Check if mounting is complete, edition is false, and valeurChamp has items
-    //     if (this.state.isMounted && !edition && valeurChamp && valeurChamp.length > 0) {
-    //         valeurChamp.forEach(({ reference, texte, valeur }) => {
-    //             const champRef = this.state.references[reference]?.current;
-    //             console.log(`Reference for ${reference}:`, champRef);
-
-    //             if (champRef) {
-    //                 if (texte) {
-    //                     // If it's plain text
-    //                     champRef.textContent = valeur;
-    //                 } else {
-    //                     // If it's HTML
-    //                     champRef.innerHTML = valeur;
-    //                 }
-    //             }
-    //         });
-
-    //         // Optional: Reset the flag to prevent re-running this code on each update
-    //         this.setState({ isMounted: false });
-    //     }else{
-    //         console.log("not yet mounted");
-
-    //     }
-    // }
-
-    // const enregistrement = {type: "Enregistrement" , idType: 4}
-
-    // const {edition,valeurChamp} = props;
-    
-    // const references = useReferenceEnregistrement();
-
-    // console.log(references);
-
-
-    // console.log("");
-
-    // function saveBrouillon(references){
-    //     insertEnregistrement(references);
-    //     console.log("enregistrement enregistré");
-    // }
-
-    
 
     render(){
         const {type,references,titre} = this.state;

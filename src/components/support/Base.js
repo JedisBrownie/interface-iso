@@ -97,7 +97,7 @@ export default function Base(props){
                                         {type === 'Enregistrement' || type === 'Navigateur' ? (
                                             <>
                                                 <div className='champ'></div>
-                                                <div className='valeur-champ'></div>
+                                                <div className='valeur-champ' ref={references.champMiseApplication}></div>
                                             </>
                                         ) : (
                                             <>

@@ -1,0 +1,30 @@
+/* .header-document-menu{
+    padding-top: 1em;
+    padding-bottom: 0em;
+    display: grid;
+    grid-template-columns: 25% 45% 30%;
+}
+
+.header-button{
+    justify-content: center;
+}
+
+.header-alert{
+    justify-items: center;
+    min-width: 50em;
+} */
+
+.button-floating{
+    width: 3.5em;
+    color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 2.5em;
+    height: 3.5em;
+    background-color: rgb(236, 34, 34);
+    cursor: pointer;
+    position: fixed;
+    bottom: 3em;
+    left: 5vw;
+}

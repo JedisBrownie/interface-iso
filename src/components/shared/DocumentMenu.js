@@ -6,10 +6,14 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import { Alert } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
+import './css/document.css';
 
 export default function DocumentMenu() {
   
@@ -48,60 +52,62 @@ export default function DocumentMenu() {
   }, [open]);
 
   return (
-
-    <Stack direction="row" spacing={2}>
-      
-      <div>
-        <Button
-          ref={anchorRef}
-          id="composition-button"
-          aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-          style={{backgroundColor:'white',color:'black',minWidth:'12em',boxShadow:'rgba(163, 163, 163, 0.2) 0px 2px 8px 0px',padding:'0.5em 0.8em',fontWeight:700,minHeight:'4em',borderRadius:'4em',marginTop: '0em'}}
-          endIcon={<KeyboardArrowDownIcon />}
-        >
-          <TaskOutlinedIcon fontSize='small' style={{marginRight:'0.7em'}}></TaskOutlinedIcon><span style={{textTransform:'none',fontFamily:'Lato',fontSize:'0.95em'}}>Document</span>
-        </Button>
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          placement="bottom-start"
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
-              }}
-            >
-              <Paper style={{marginTop:'0.2em',minWidth:'10em'}}>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id="composition-menu"
-                    aria-labelledby="composition-button"
-                    onKeyDown={handleListKeyDown}
-                  >
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Télécharger PDF</span></MenuItem>
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Télécharger document</span></MenuItem>
-                    
-                    
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Partager document</span></MenuItem>
-
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+    <>  
+      <div className='header-document-menu'> 
+    
+        
       </div>
-    </Stack>
+    
+      <Stack direction="column" spacing={2}>
+        <div className='button-floating'
+              ref={anchorRef}
+              id="composition-button"
+              aria-controls={open ? 'composition-menu' : undefined}
+              aria-expanded={open ? 'true' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}>
+            <AddIcon />
+        </div>
+        <div>
+          <Popper
+            open={open}
+            anchorEl={anchorRef.current}
+            role={undefined}
+            placement="bottom-start"
+            transition
+            disablePortal
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin:
+                    placement === 'top-start' ? 'left top' : 'right bottom',
+                }}
+              >
+                <Paper style={{marginBottom:'0.5em',minWidth:'10em'}}>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList
+                      autoFocusItem={open}
+                      id="composition-menu"
+                      aria-labelledby="composition-button"
+                      onKeyDown={handleListKeyDown}
+                    >
+                      <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Télécharger PDF</span></MenuItem>
+                      <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Télécharger document</span></MenuItem>
+                      
+                      
+                      <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Partager document</span></MenuItem>
+
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      </Stack>
+    </>
     
   );
 }

@@ -36,7 +36,7 @@ export const routes = [
         element : <Edition/>
     },
     {
-        path : '/document/:type/:reference/:version/',
+        path : '/document/:status/:type/:reference/:version/',
         element : <Document />
     },
     {

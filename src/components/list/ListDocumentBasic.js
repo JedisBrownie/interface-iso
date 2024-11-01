@@ -1,7 +1,7 @@
 import ThreePointMenu from '../shared/ThreePointMenu';
 import { useEffect } from 'react';
 import './css/accordionArchive.css';
-export default function ListDocument(){
+export default function ListDocumentBasic(){
 
     useEffect(() => {
         const gridContainers = document.querySelectorAll('.liste');

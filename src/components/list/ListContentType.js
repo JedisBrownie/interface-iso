@@ -20,8 +20,9 @@ export default function ListContentType(props){
     const navigate = useNavigate();
 
     const handleShowDocument = (reference,id) => {
-      console.log("Affiché contenu document : " + reference + " , " + id + " , " + typeDocument);
-      navigate(`/document/${typeDocument}/${reference}/${id}`);        
+      const status = "applicable";
+      console.log("Affiché contenu document : " + status + " , " + reference + " , " + id + " , " + typeDocument);
+      navigate(`/document/${status}/${typeDocument}/${reference}/${id}`);        
     }
 
     

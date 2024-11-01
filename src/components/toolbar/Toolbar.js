@@ -21,7 +21,7 @@ import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import Option from './Option';
 import {createTable,execCommand,toggleButton,insertImage,addImageClickListener,toggleSuperSubScript,handleFontSizeChange,handleFontColorChange,handleFontChange} from './tools/function';
 
-export default function Toolbar({ handleSaveBrouillon }){
+export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction , handleQuitterEdition }){
 
 
     const fileInputRef = useRef(null);
@@ -44,7 +44,7 @@ export default function Toolbar({ handleSaveBrouillon }){
             <div className='choice' >
                 
             <div className='choice'>
-                <Option handleSaveBrouillon={handleSaveBrouillon} ></Option>    
+                <Option handleSaveBrouillon={handleSaveBrouillon} handleValiderRedaction={handleValiderRedaction} handleQuitterEdition={handleQuitterEdition}></Option>    
             </div>  
     
             </div>  

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './css/list.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListContentBrouillon(props){
 
@@ -13,13 +14,28 @@ export default function ListContentBrouillon(props){
         });
     },[]);
 
+
+    const navigate = useNavigate();
+
+    function handleShowDocument(reference,id,typeDocument,status){
+        if(status === 'Brouillon'){
+            console.log("Brouillon io");
+
+        }else{
+            console.log("Hafa ito");
+            status = status.toLowerCase();
+            navigate(`/document/${status}/${typeDocument}/${reference}/${id}`);        
+        }
+    }
+
+
     const {dataList} = props;
     console.log(dataList);
     return(
         <div className="content">
 
             {dataList.map((item,index) => (
-                <div className="ui grid container liste" key={index}>
+                <div className="ui grid container liste" key={index} onClick={() => handleShowDocument(item.referenceDocument,item.id,item.idTypeDocument,item.nomStatus)}>
                     <div className="row">
                               
                         <div className="four wide column" style={{display:'flex'}}>

@@ -25,6 +25,7 @@
     background-color: rgb(236, 34, 34);
     cursor: pointer;
     position: fixed;
-    bottom: 3em;
-    left: 5vw;
+    top: 2em;
+    left: 12vw;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

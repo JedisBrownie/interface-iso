@@ -11,7 +11,7 @@ import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
-export default function Option({ handleSaveBrouillon }) {
+export default function Option({ handleSaveBrouillon , handleValiderRedaction , handleQuitterEdition}) {
   
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -92,7 +92,9 @@ export default function Option({ handleSaveBrouillon }) {
                     <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Visualiser document</span></MenuItem>
                     
                     
-                    <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Valider rédaction</span></MenuItem>
+                    <MenuItem onClick={() => handleValiderRedaction()}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Valider rédaction</span></MenuItem>
+
+                    <MenuItem onClick={() => handleQuitterEdition()}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Quitter édition</span></MenuItem>
 
                   </MenuList>
                 </ClickAwayListener>

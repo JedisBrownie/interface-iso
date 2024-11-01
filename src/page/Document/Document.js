@@ -3,10 +3,12 @@ import Processus from "../../components/creation/Processus";
 import SousProcessus from "../../components/creation/SousProcessus";
 import Fiche from "../../components/creation/Fiche";
 import Enregistrement from "../../components/creation/Enregistrement";
-
+import DocumentMenu from "../../components/shared/DocumentMenu";
+import React from "react";
 export default function Document(){
 
-    const {type,reference,version} = useParams();
+    const {status,type,reference,version} = useParams();
+    const raisonRef = React.useRef(null);
 
     const edition = false;
 
@@ -20,9 +22,9 @@ export default function Document(){
         {reference : 'choixSiteIso9001' , texte : true , valeur : 'Tana'},
         {reference : 'choixSiteIso14001' , texte : true , valeur : 'Tana'},
         {reference : 'choixSiteSecurite' , texte : true , valeur : 'Tana'},
-        {reference : 'choixProcessusGlobal' , texte : true , valeur : 'processusGlobal'},
-        {reference : 'choixProcessusLie' , texte : true , valeur : 'processusLie'},
-        {reference : 'choixRedacteur' , texte : true , valeur : 'redacteur'},
+        {reference : 'choixProcessusGlobal' , texte : true , valeur : '2000 - Ressources'},
+        {reference : 'choixProcessusLie' , texte : true , valeur : '2300 - Ressources Humaines'},
+        {reference : 'choixRedacteur' , texte : true , valeur : 'Joelle Fanomezantsoa , Nathalie Rasoanaivo ,Tsiory Rabenaivo ,Tinah Ramanitriniaina'},
         {reference : 'champChampLibre' , texte : false , valeur : '<span style="color:red">Champ libre<span>'}
     ];
 
@@ -44,16 +46,38 @@ export default function Document(){
         var error = console.error
     
         return function(exception) {
-            if ((exception + '').indexOf('Warning: A component is `contentEditable`') != 0) {
+            if ((exception + '').indexOf('Warning: A component is `contentEditable`') !== 0) {
                 error.apply(console, arguments)
             }
         }
     })()
 
 
+    function validerDocument(reference,idDocument){
+
+    }
+
+    function approuverDocument(reference,idDocument){
+
+    }
+
+    function refuserValidationDocument(reference,idDocument,raison){
+
+    }
+
+    function refuserApprobationDocument(reference,idDocument,raison){
+
+    }
+
+    function getRaisonRefus(){
+        const raison = raisonRef.current.textContent;
+        return raison
+    }
+
 
     return(
-        <>
+        <>  
+            <DocumentMenu getRaisonRefus={(() => getRaisonRefus())} status={status} validerDocument={() => validerDocument()} approuverDocument = {() => approuverDocument()} refuserValidationDocument={() => refuserValidationDocument()} refuserApprobationDocument={() => refuserApprobationDocument()} raisonRef={raisonRef}></DocumentMenu>
             {renderContent()}
         </>
     );

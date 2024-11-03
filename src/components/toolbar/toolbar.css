@@ -20,13 +20,14 @@
 .toolbar-editor{
   margin-top: 2em;
   background-color: white;
-  min-width: 60em;
+  min-width: 62em;
   box-shadow: rgba(163, 163, 163, 0.2) 0px 2px 8px 0px;
   z-index: 2;
   padding: 5px 5px 5px 5px;;
   border-radius: 1.5em;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 
@@ -191,4 +192,30 @@ justify-content: center;
 
 .choice .custom-select .file {
   margin-right: 10px;
+}
+
+
+.div-document{
+  display: flex;
+  justify-content: center;
+  height: 5em;
+  flex-direction: column;
+  border: 1px solid rgb(208, 208, 208);
+  padding: 0.5em 0.5em;
+  box-shadow: rgba(221, 221, 221, 0.2) 0px 2px 8px 0px;
+  border-radius: 3px;
+  width: 8em;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.span-document-image img{
+  width: 3em;
+  height: 3em;
+  object-fit: contain;
+  border: 1px solid black;
+}
+
+.span-document-image{
+
 }

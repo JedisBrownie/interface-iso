@@ -6,6 +6,7 @@ import SousProcessus from "../../components/creation/SousProcessus";
 import Fiche from "../../components/creation/Fiche";
 import Fab from '@mui/material/Fab';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Navigateur from "../../components/creation/Navigateur";
 
 export default function Edition(){
 
@@ -31,6 +32,8 @@ export default function Edition(){
                 return <Fiche edition={edition}></Fiche>
             case 'sous-processus':
                 return <SousProcessus edition={edition}></SousProcessus>
+            case 'navigateur':
+                return <Navigateur edition={edition}></Navigateur>
         }
     }
 

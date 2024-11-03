@@ -31,8 +31,6 @@ export default function Util(props){
                 </Alert>
             </Snackbar>
 
-        
-
             <Snackbar open={stateQuitter} >
                 <Alert
                     onClose={() => handleQuitter()}
@@ -41,10 +39,9 @@ export default function Util(props){
                     sx={{ width: '100%' , width:'30em' }}
                     style={{display:'flex',alignItems:'center'}}
                 >
-                <span style={{fontFamily:'Lato',fontSize:'12px',textAlign:'center'}}>Quitter maintentant sans sauvegarder votre document risque de perdre ses informations</span>
+                <span style={{fontFamily:'Lato',fontSize:'12px',textAlign:'center'}}>Si vous quittez maintenant, vous risquez de perdre les données non enregistrée</span>
                 </Alert>
             </Snackbar>
-
 
 
             <Snackbar open={stateRevision}>

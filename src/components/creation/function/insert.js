@@ -24,6 +24,12 @@ export function insertEnregistrement(references){
     return data;
 }
 
+export function insertNavigateur(references){
+    const data = getFormDataEnregistrement(references);
+    console.log(data);
+    return data;
+}
+
 
 
 // brouillon
@@ -47,6 +53,12 @@ export function insertBrouillonFiche(reference){
 }
 
 export function insertBrouillonEnregistrement(reference){
+    const data = getFormDataEnregistrement(reference);
+    console.log(data);
+    return data;
+}
+
+export function insertBrouillonNavigateur(reference){
     const data = getFormDataEnregistrement(reference);
     console.log(data);
     return data;

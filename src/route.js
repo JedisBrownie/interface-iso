@@ -9,6 +9,7 @@ import Document from "./page/Document/Document";
 import Navigateur from "./page/Navigateur/Navigateur";
 import Archive from "./page/Archive/Archive";
 import Manuel from "./page/Manuel/Manuel";
+import Modification from "./page/Document/Modification";
 
 export const routes = [
     {
@@ -36,7 +37,7 @@ export const routes = [
         element : <Edition/>
     },
     {
-        path : '/document/:status/:type/:reference/:version/',
+        path : '/document/:status/:type/:reference/:version',
         element : <Document />
     },
     {
@@ -50,6 +51,11 @@ export const routes = [
     {
         path : '/manuel',
         element : <Manuel />
-    }
+    },
+    {
+        path : '/modification/:type/:reference/:version',
+        element : <Modification />
+    },
+    
 
 ]

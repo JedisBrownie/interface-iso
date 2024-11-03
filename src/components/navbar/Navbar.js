@@ -16,7 +16,7 @@ export default function Navbar(){
 
                 <div className="item" style={{display:'flex',justifyContent:'center',columnGap:'1.6rem',fontSize:'0.9rem'}}>
                     <a href = "/brouillon" className="item">
-                        Mes brouillons
+                        Mes documents
                     </a>    
                     <a href = "/navigateur" className ="item">
                         Accès rapide navigateur
@@ -39,6 +39,7 @@ export default function Navbar(){
                             <DropdownItem text={"Sous Processus"} href="creation/sous-processus"></DropdownItem>
                             <DropdownItem text={"Fiche d'instruction"} href="creation/fiche"></DropdownItem>
                             <DropdownItem text={"Enregistrement"} href="/creation/enregistrement"></DropdownItem>
+                            <DropdownItem text={"Navigateur"} href="/creation/navigateur"></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

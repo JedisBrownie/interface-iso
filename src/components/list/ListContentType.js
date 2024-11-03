@@ -31,7 +31,6 @@ export default function ListContentType(props){
       <div className="content">
         {dataList.map((item, index) => (
           
-  
             <div className="ui grid container liste" key={index} >
               
               
@@ -59,7 +58,7 @@ export default function ListContentType(props){
               </div>
               
                 <div className="one wide column" style={{color:'black'}}>
-                  <ThreePointMenu modification={item.modification} reference={item.referenceDocument} idDocument = {item.idDocument}></ThreePointMenu>
+                  <ThreePointMenu modification={item.modification} reference={item.referenceDocument} idDocument = {item.idDocument} titre = {item.nom}></ThreePointMenu>
                 </div>
 
             </div>

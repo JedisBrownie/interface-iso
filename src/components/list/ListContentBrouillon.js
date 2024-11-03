@@ -19,8 +19,7 @@ export default function ListContentBrouillon(props){
 
     function handleShowDocument(reference,id,typeDocument,status){
         if(status === 'Brouillon'){
-            console.log("Brouillon io");
-
+            navigate(`/modification/${typeDocument}/${reference}/${id}`);
         }else{
             console.log("Hafa ito");
             status = status.toLowerCase();
@@ -28,6 +27,7 @@ export default function ListContentBrouillon(props){
         }
     }
 
+    
 
     const {dataList} = props;
     console.log(dataList);

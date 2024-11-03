@@ -3,15 +3,12 @@ import Processus from "../../components/creation/Processus";
 import SousProcessus from "../../components/creation/SousProcessus";
 import Fiche from "../../components/creation/Fiche";
 import Enregistrement from "../../components/creation/Enregistrement";
-import DocumentMenu from "../../components/shared/DocumentMenu";
-import React from "react";
 import Navigateur from "../../components/creation/Navigateur";
-export default function Document(){
 
-    const {status,type,reference,version} = useParams();
-    const raisonRef = React.useRef(null);
+export default function Modification(){
 
-    const edition = false;
+    const edition = true;
+    const {type,reference,version} = useParams();
 
     // misolo donnee API
     const valeurChamp = [
@@ -29,13 +26,12 @@ export default function Document(){
         {reference : 'champChampLibre' , texte : false , valeur : '<span style="color:red">Redaction an\'ilay procédure<span>'}
     ];
 
-
     const renderContent = () =>{
         switch(type){
-            case '1' :
+            case '1' : 
                 return <Processus edition={edition} valeurChamp={valeurChamp}></Processus>
             case '2' : 
-                return <SousProcessus edition={edition} valeurChamp={valeurChamp}></SousProcessus>
+            return <SousProcessus edition={edition} valeurChamp={valeurChamp}></SousProcessus>
             case '3' : 
                 return <Fiche edition={edition} valeurChamp={valeurChamp}></Fiche>
             case '4' :
@@ -53,35 +49,14 @@ export default function Document(){
                 error.apply(console, arguments)
             }
         }
-    })()
-
-
-    function validerDocument(reference,idDocument){
-
-    }
-
-    function approuverDocument(reference,idDocument){
-
-    }
-
-    function refuserValidationDocument(reference,idDocument,raison){
-
-    }
-
-    function refuserApprobationDocument(reference,idDocument,raison){
-
-    }
-
-    function getRaisonRefus(){
-        const raison = raisonRef.current.textContent;
-        return raison
-    }
+    })();
 
 
     return(
-        <>  
-            <DocumentMenu getRaisonRefus={(() => getRaisonRefus())} status={status} validerDocument={() => validerDocument()} approuverDocument = {() => approuverDocument()} refuserValidationDocument={() => refuserValidationDocument()} refuserApprobationDocument={() => refuserApprobationDocument()} raisonRef={raisonRef}></DocumentMenu>
+        <>
             {renderContent()}
         </>
-    );
+    )
+
+
 }

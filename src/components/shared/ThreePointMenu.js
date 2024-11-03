@@ -64,7 +64,7 @@ import Util from './Util';
   
 export default function ThreePointMenu(props){
 
-    const {modification , reference , idDocument} = props;
+    const {modification , reference , idDocument , titre} = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const refRaisonDemande = React.useRef(null);
     const [stateRevision , setStateRevision] = React.useState(false);
@@ -86,7 +86,14 @@ export default function ThreePointMenu(props){
 
     // fonctionnalité 
     const handleCopy = () => {
-        console.log("vous avez copié : " + reference + " , " + idDocument);
+      const coderef = `#REF_DOC:${reference}&titre:${titre}`;
+      navigator.clipboard.writeText(coderef)
+        .then(() => {
+            console.log("vous avez copié :", reference);
+        })
+        .catch((err) => {
+            console.error("Erreur lors de la copie :", err);
+      });
     }
 
     const handleModification = () =>{

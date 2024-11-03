@@ -18,14 +18,15 @@ import FormatColorTextOutlinedIcon from '@mui/icons-material/FormatColorTextOutl
 import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutlined';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 import Option from './Option';
-import {createTable,execCommand,toggleButton,insertImage,addImageClickListener,toggleSuperSubScript,handleFontSizeChange,handleFontColorChange,handleFontChange} from './tools/function';
+import {createTable,execCommand,toggleButton,insertImage,addImageClickListener,toggleSuperSubScript,handleFontSizeChange,handleFontColorChange,handleFontChange,addDocumentLink} from './tools/function';
 
 export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction , handleQuitterEdition }){
 
 
     const fileInputRef = useRef(null);
-
+    const linkButtonRef = useRef(null);
  
     // ***  Image *** //
    
@@ -39,7 +40,37 @@ export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction ,
     };
 
 
+    const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+
+    useEffect(() => {
+        const checkClipboardForRefDoc = async () => {
+            try {
+                const clipboardText = await navigator.clipboard.readText();
+                
+                // Vérifie si le presse-papier contient "#REF_DOC"
+                if (clipboardText.startsWith("#REF_DOC:")) {
+                    setIsButtonEnabled(true);  // Active le bouton si le texte est trouvé
+                } else {
+                    setIsButtonEnabled(false); // Désactive sinon
+                }
+            } catch (error) {
+
+            }
+        };
+
+        // Exécuter la vérification au chargement
+        checkClipboardForRefDoc();
+
+        // Optionnel : vérifier le presse-papier périodiquement (ex: toutes les 2 secondes)
+        const intervalId = setInterval(checkClipboardForRefDoc, 2000);
+
+        // Nettoyage de l'intervalle lors du démontage du composant
+        return () => clearInterval(intervalId);
+    }, []);
+
+
     return(
+        <>
         <div className='header-editor' >
             <div className='choice' >
                 
@@ -57,9 +88,9 @@ export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction ,
                     <button className='toolbar-button' onClick={() => toggleButton("underline")}><FormatUnderlinedOutlinedIcon sx={{fontSize:17}}/></button>
                     
                     <select className='font-selecor' onChange={handleFontChange} id="fontChoice">
-                        <option value={'arial'}>Arial</option>
-                        <option value={'serif'}>Avec Serif</option>
-                        <option value={'monospace'}>Monospace</option>
+                        <option value={'arial'} >Arial</option>
+                        <option value={'serif'} >Times New Roman</option>
+                        <option value={'Lato'} >Lato</option>
                     </select>
 
                     <select className='font-size-selecor' onChange={handleFontSizeChange} id="fontSizeChoice">
@@ -67,6 +98,7 @@ export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction ,
                         <option value={'10px'}>10</option>
                         <option value={'12px'}>12</option>
                         <option value={'14px'}>14</option>
+                        <option value={'16px'}>16</option>
                         <option value={'18px'}>18</option>
                         <option value={'20px'}>20</option>
                         <option value={'24px'}>24</option>
@@ -75,7 +107,7 @@ export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction ,
                     
                     <div className='font-color-picker'>
                         <button className='toolbar-button' onClick={() => document.getElementById('font-color-text').click()}><FormatColorTextOutlinedIcon sx={{fontSize:17}}/></button>
-                        <input type='color' hidden id='font-color-text' onChange={handleFontColorChange}></input>
+                        <input type='color' hidden id='font-color-text' style={{display:'content'}} onChange={handleFontColorChange}></input>
                     </div>
 
                     <div className='font-color-picker'>
@@ -102,11 +134,14 @@ export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction ,
                         accept="image/*"
                         onChange={handleFileChange}
                         style={{ marginTop: '10px',color:'black'}} />
+
+                    <button className='toolbar-button'  disabled={!isButtonEnabled}  onClick={() => addDocumentLink()}  ref={linkButtonRef}><InsertLinkRoundedIcon sx={{fontSize:'large'}} /></button>
+
                 </div>
 
                 <div className='toolbar-formatage'>
                     <button className='toolbar-button' onClick={() => toggleButton("insertUnorderedList")}>
-                        < FormatListBulletedOutlinedIcon sx={{fontSize:17}}/>
+                        <FormatListBulletedOutlinedIcon sx={{fontSize:17}}/>
                     </button>
                     <button className='toolbar-button' onClick={() => toggleButton("insertOrderedList")}>
                         <FormatListNumberedOutlinedIcon sx={{fontSize:17}}/>
@@ -122,13 +157,10 @@ export default function Toolbar({ handleSaveBrouillon , handleValiderRedaction ,
                     <button className='toolbar-button' onClick={() => toggleButton("justifyFull")}><FormatAlignJustifyRoundedIcon sx={{fontSize:17}}/></button>
                 </div>
 
-            </div>
-
-
-            
-
-            
+            </div>            
         </div>
+
+        </>
     );
 }
 

@@ -19,13 +19,17 @@ import interact from 'interactjs';
         const table = document.createElement('table');
         table.border = '1px solid black';
         table.style.width = '100%';
-        table.style.minHeight = '4em';
+        table.style.minHeight = '8em';
 
         for (let i = 0; i < tableRows; i++) {
         const row = document.createElement('tr');
+        row.style.minHeight = '4em';
+        row.style.height = '4em';
         for (let j = 0; j < tableCols; j++) {
             const cell = document.createElement('td');
             cell.className = 'td-content-editable';
+            cell.style.minWidth = '3em';
+            cell.style.width = '3em';
             row.appendChild(cell);
         }
         table.appendChild(row);
@@ -395,3 +399,64 @@ import interact from 'interactjs';
         console.log(event.target.value);
         handleCursorChange('fontFamily',newFont);
     }
+
+    
+    // ***  Font family (size , choice ) *** //
+
+
+
+
+    const extractData = (coderef) => {
+        const refPart = coderef.split('&')[0];      
+        const titlePart = coderef.split('&')[1];    
+    
+        const reference = refPart.split(':')[1];    
+        const title = titlePart.split(':')[1];      
+    
+        return { reference, title };
+    };
+
+    export  async function addDocumentLink(){
+        try {
+            const clipboardText = await navigator.clipboard.readText();
+    
+            if (clipboardText.startsWith("#REF_DOC:")) {
+                
+                const { reference, title } = extractData(clipboardText);
+    
+                const anchor = document.createElement('a');
+                anchor.href = `/find/${reference}`;
+                anchor.style.textDecoration = "none";
+    
+                const spanLinkedImage = document.createElement('span');
+
+                const image = document.createElement('img');
+                image.src = "/icons/PDF.svg";
+
+                anchor.appendChild(image);
+                spanLinkedImage.appendChild(anchor);
+                spanLinkedImage.className = 'span-document-image';
+                
+                const spanTexteName =  document.createElement('span');
+                spanTexteName.appendChild(document.createTextNode(title));
+                spanTexteName.className = 'span-document-name'
+                spanTexteName.contentEditable = false;
+
+                const divDocument = document.createElement('div');
+                divDocument.className = 'div-document';
+                divDocument.appendChild(spanLinkedImage);
+                divDocument.appendChild(spanTexteName);
+
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    range.deleteContents();
+                    range.insertNode(spanLinkedImage);
+                }
+
+                await navigator.clipboard.writeText("");
+            }
+        } catch (error) {
+
+        }
+    };

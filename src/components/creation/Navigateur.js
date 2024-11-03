@@ -3,7 +3,7 @@ import './css/document.css';
 import { useRef , useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import { createReferenceEnregistrement } from './function/reference/referenceEnregistrement';
-import { insertBrouillonEnregistrement, insertBrouillonFiche, insertEnregistrement } from './function/insert';
+import { insertBrouillonNavigateur, insertEnregistrement, insertNavigateur } from './function/insert';
 import Alert from '@mui/material/Alert';
 import Util from '../shared/Util';
 import { useNavigate } from 'react-router-dom';
@@ -13,13 +13,13 @@ const Champ = lazy(() => import('../support/Champ'));
 const Support = lazy(() => import('../support/Support'));
 const Toolbar = lazy(() => import('../toolbar/Toolbar'))
 
-export default class Enregistrement extends React.Component{
+export default class Navigateur extends React.Component{
 
     constructor(props,context){
         super(props,context);
         this.state = {
-            type:'Enregistrement',
-            idType : 4,
+            type:'Navigateur',
+            idType : 5,
             references : createReferenceEnregistrement(),
             titre : 'Titre du document',
             stateBrouillon : false,
@@ -39,7 +39,7 @@ export default class Enregistrement extends React.Component{
 
     _saveBrouillon = () => {
         if(!this.state.isBrouillonSaved){
-            insertBrouillonEnregistrement(this.state.references);
+            insertBrouillonNavigateur(this.state.references);
 
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
@@ -60,7 +60,7 @@ export default class Enregistrement extends React.Component{
 
     _validerRedaction = () =>{
 
-        insertEnregistrement(this.state.references);
+        insertNavigateur(this.state.references);
 
         this.setState({stateValidation: true});
         this.setState({isRedactionValider : true});
@@ -120,7 +120,6 @@ export default class Enregistrement extends React.Component{
                     </>
                 ) : (
                     <div>
-
 
                         <div className='list-paper' style={{marginTop:'1em'}}>
                             <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>

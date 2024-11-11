@@ -431,7 +431,7 @@ import interact from 'interactjs';
                 const spanLinkedImage = document.createElement('span');
 
                 const image = document.createElement('img');
-                image.src = "/icons/PDF.svg";
+                image.src = "/icons/ALPHA.svg";
 
                 anchor.appendChild(image);
                 spanLinkedImage.appendChild(anchor);
@@ -440,18 +440,36 @@ import interact from 'interactjs';
                 const spanTexteName =  document.createElement('span');
                 spanTexteName.appendChild(document.createTextNode(title));
                 spanTexteName.className = 'span-document-name'
-                spanTexteName.contentEditable = false;
+
 
                 const divDocument = document.createElement('div');
                 divDocument.className = 'div-document';
+                divDocument.contentEditable = false;
                 divDocument.appendChild(spanLinkedImage);
                 divDocument.appendChild(spanTexteName);
 
                 const selection = window.getSelection();
                 if (selection.rangeCount > 0) {
+                    // const range = selection.getRangeAt(0);
+                    // range.deleteContents();
+                    // range.insertNode(divDocument);
+
                     const range = selection.getRangeAt(0);
                     range.deleteContents();
-                    range.insertNode(spanLinkedImage);
+                    range.insertNode(divDocument);
+    
+                    // Ajouter un élément de texte temporaire pour continuer l'édition
+                    const tempElement = document.createElement('span');
+                    tempElement.className = 'span-edited';
+                    tempElement.innerHTML = '&nbsp;';
+    
+                    divDocument.parentNode.insertBefore(tempElement, divDocument.nextSibling);
+    
+                    // Placer le curseur dans l'élément temporaire
+                    range.setStart(tempElement, 0);
+                    range.collapse(true);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
                 }
 
                 await navigator.clipboard.writeText("");

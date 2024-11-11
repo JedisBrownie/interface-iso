@@ -4,6 +4,7 @@ export function createReferenceEnregistrement (){
 
     return {
         // { ****  Ref Base début ****} //
+        champTitre : React.createRef(),
         champMiseApplication : React.createRef(),
 
         champConfidentiel : React.createRef(),

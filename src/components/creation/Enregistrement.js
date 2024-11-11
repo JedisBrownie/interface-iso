@@ -21,7 +21,7 @@ export default class Enregistrement extends React.Component{
             type:'Enregistrement',
             idType : 4,
             references : createReferenceEnregistrement(),
-            titre : 'Titre du document',
+            titre : '<h1>Titre du document</h1>',
             stateBrouillon : false,
             stateValidation : false,
             stateQuitter : false,
@@ -91,7 +91,7 @@ export default class Enregistrement extends React.Component{
     }
 
     _changeTitle = (e) =>{
-        const newTitle = e.target.innerText;
+        const newTitle = e.target.innerHTML;
         this.setState({ titre: newTitle });
     }
 

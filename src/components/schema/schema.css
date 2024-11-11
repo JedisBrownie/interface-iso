@@ -1,14 +1,14 @@
 /* variable */
 :root{
-    --commercial: coral;
-    --crise : coral;
-    --management : #0fcaa7;
-    --ressources : #a06ec6;
-    --production :  #a06ec6; 
-    --supports : #416ff8;
-    --finances : #416ff8;
-    --surveillance : #0fcaa7;
-    --nonConformite : #0fcaa7;
+    --commercial: rgb(236,34,34);
+    --crise : rgb(236,34,34);
+    --management : #696969;
+    --ressources : #f87080;
+    --production :  #f87080; 
+    --supports : #d1d0d1;
+    --finances : #d1d0d1;
+    --surveillance : #696969;
+    --nonConformite : #696969;
     --borderRadiusPrimary : 5px;
 }
 /* variable */
@@ -108,7 +108,7 @@
 
     .grid-shema .title-black{
         text-align: center;
-        color: white;
+        color: black;
         font-size: 0.75em;
         width: 60%;
         height: fit-content;
@@ -242,6 +242,13 @@
         height: fit-content;
         padding-bottom: 0.6em; 
         border-radius: var(--borderRadiusPrimary);
+    }
+
+    .row-two .column-right .contenu-horizontal{
+        min-height: 6em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
 

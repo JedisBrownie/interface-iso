@@ -3,6 +3,8 @@ import  React from "react";
 export function createReferenceProcessus () {
     return {
         // { ****  Ref feuille 1 ****} //
+        champTitre : React.createRef(),
+
         champMiseApplication : React.createRef(),
         champConfidentiel : React.createRef(),
 

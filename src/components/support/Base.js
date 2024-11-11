@@ -2,6 +2,8 @@ import './css/base.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ValeurModal from './ValeurModal';
 import { useEffect, useState } from 'react';
+import ProcessusModal from './ProcessusModal';
+import UserModal from './UserModal';
 export default function Base(props){
 
     const {type , references , edition , valeurChamp , changeTitle} = props;
@@ -52,7 +54,8 @@ export default function Base(props){
             <div className="paper-one">
                     <div className="entete" contentEditable='false'>
                         <div contentEditable='false' className="logo">
-                            <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                            {/* <img src='/logo.png' alt=''/> */}
+                            <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/>
                         </div>
                         <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                             <div className="div-content-editable" role="textbox"  onInput={(e) => changeTitle(e)}  contentEditable={edition} style={{textAlign:'center',color:'red',height:'fit-content'}}>
@@ -67,7 +70,7 @@ export default function Base(props){
                         </div>
                         <div contentEditable='false' className='information'>
                             <div>
-                                <span className='information-list'>Page :</span><span className='information-value'> 1 / 4</span>
+                                <span className='information-list'>Page :</span><span className='information-value'> 1 / 2</span>
                             </div>
 
                             <div > 
@@ -191,7 +194,8 @@ export default function Base(props){
                 {/* fin section 2 liste iso */}
 
                 {/* début section 3 liste processus iso */}
-                    <div className='liste-processus'>
+                    
+                    {/* <div className='liste-processus'>
                         <div className='title'>
                             <div style={{paddingLeft:'1.5em'}}>Processus Global</div>
                             <div style={{paddingLeft:'1.5em'}}>Processus Lie</div>
@@ -204,7 +208,10 @@ export default function Base(props){
 
                             <div className='valeur-champ' ref={references.choixProcessusLie}>&nbsp;</div>
                         </div>
-                    </div>
+                    </div> */}
+
+                    <ProcessusModal reference={references} edition={edition}></ProcessusModal>
+
                 {/* fin section 3 liste processus iso */}
                 
                 {/* début section 4 finalité */}
@@ -308,12 +315,15 @@ export default function Base(props){
 
                                 <div className='diffusion-row'>
                                     <div className='champ' style={{minHeight:'6em'}}>Adresse email externe</div>
+                                    {/* <UserModal reference={references.choixDiffusionEmail} edition={edition}></UserModal> */}
                                     <div className='valeur-champ' ref={references.choixDiffusionEmailExterne}></div>
                                 </div>
 
                                 <div className='diffusion-row'>
                                     <div className='champ'style={{minHeight:'5em'}}>Par papier</div>
-                                    <div className='valeur-champ' ref={references.choixDiffusionPapier}></div>
+                                    <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixDiffusionPapier} suppressContentEditableWarning={true} contentEditable={edition}></div>
+
+                                    {/* <div className='valeur-champ' ref={references.choixDiffusionPapier}></div> */}
                                 </div>
                             </>
                         ) : (
@@ -323,12 +333,16 @@ export default function Base(props){
                                 }
                                 <div className='diffusion-row'>
                                     <div className='champ' >Par email</div>
-                                    <div className='valeur-champ' ref={references.choixDiffusionEmail}></div>
+                                    <UserModal reference={references.choixDiffusionEmail} edition={edition} comiteDirection={false}></UserModal>
+
+                                    {/* <div className='valeur-champ' ref={references.choixDiffusionEmail}></div> */}
                                 </div>
 
                                 <div className='diffusion-row'>
                                     <div className='champ' >Par papier</div>
-                                    <div className='valeur-champ'></div>
+                                    <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixDiffusionPapier} contentEditable={edition}></div>
+
+                                    {/* <div className='valeur-champ'></div> */}
                                 </div>
                             </>
                         )}
@@ -345,20 +359,20 @@ export default function Base(props){
 
                             <div className='workflow-row'>
                                 <div className='champ'>Rédacteur</div>
-                                <div className='valeur-champ'></div>
-                                <div className='valeur-champ' style={{color:'rgb(15, 150, 15)',fontWeight:'800'}}>En cours de rédaction...</div>
+                                <UserModal reference={references.choixRedacteur} edition={edition}  comiteDirection={false} redacteur={true}></UserModal>
+                                <div className='valeur-champ' style={{color:'rgb(15, 150, 15)',fontWeight:'800'}} ref={references.statutRedacteur}>En cours de rédaction...</div>
                             </div>
 
                             <div className='workflow-row'>
                                 <div className='champ'>Vérificateur</div>
-                                <div className='valeur-champ'></div>
-                                <div className='valeur-champ' style={{color:'rgb(15, 150, 15)',fontWeight:'800'}}>En attente</div>
+                                <UserModal reference={references.choixVerificateur} edition={edition}  comiteDirection={false}></UserModal>
+                                <div className='valeur-champ' style={{color:'rgb(15, 150, 15)',fontWeight:'800'}} ref={references.statutVerificateur}>En attente</div>
                             </div>
 
                             <div className='workflow-row'>
                                 <div className='champ'>Approbateur</div>
-                                <div className='valeur-champ'></div>
-                                <div className='valeur-champ' style={{color:'rgb(15, 150, 15)',fontWeight:'800'}}>En attente</div>
+                                <UserModal reference={references.choixApprobateur} edition={edition}  comiteDirection={true}></UserModal>
+                                <div className='valeur-champ' style={{color:'rgb(15, 150, 15)',fontWeight:'800'}} ref={references.statutApprobateur}>En attente</div>
                             </div>
                         </div>
                     )}

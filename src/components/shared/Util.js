@@ -10,7 +10,7 @@ export default function Util(props){
         <>
             <Snackbar open={stateBrouillon}>
                 <Alert
-                    icon = {<BeenhereOutlinedIcon fontSize='15px' />}
+                    // icon = {<BeenhereOutlinedIcon fontSize='15px' />}
                     severity="info"
                     variant="filled"
                     sx={{ width: '100%' , width:'20em' }}

@@ -238,7 +238,6 @@ export function getFormDataFiche(references){
         
         const finalite = references.champFinalite.current.innerHTML;
         const domaineApplication = references.champDomaineApplication.current.innerHTML;
-        const piloteProcessus = references.choixPilote.current.textContent;
         const conditionContrainte = references.champConditionContrainte.current.innerHTML;
 
        
@@ -249,10 +248,14 @@ export function getFormDataFiche(references){
         const verificateur = references.choixVerificateur.current.textContent;
         const approbateur = references.choixApprobateur.current.textContent;
 
-        const lecteur = references.choixLecteur.current.textContent;
-
-        const quiFaitQuoiDescription = references.champFaitQuoiDescription.current.innerHTML;
-        const lienMoyenDescription = references.champLienMoyenDescription.current.innerHTML;
+        var lecteur = '';
+        if(references.choixLecteur.current){
+            lecteur = references.choixLecteur.current.textContent ;
+        }else{
+            console.log("pas de lecteur");
+        }
+        const quiFaitQuoiDescription = references.champFaitQuoiCommentaire.current.innerHTML;
+        const lienMoyenDescription = references.champLienMoyenCommentaire.current.innerHTML;
 
         const formData = [
             {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication},
@@ -267,7 +270,6 @@ export function getFormDataFiche(references){
             {reference : 'choixProcessusLie' , champ : 'processusLie' , valeur : processusLie},
             {reference : 'champFinalite' , champ : 'finalite' , valeur : finalite},
             {reference : 'champDomaineApplication' , champ : 'domaineApplication' , valeur : domaineApplication},
-            {reference : 'choixPilote' , champ : 'piloteProcessus' , valeur : piloteProcessus},
             {reference : 'champConditionContrainte' , champ : 'conditionContrainte' , valeur : conditionContrainte},
 
             {reference : 'choixDiffusionEmail' , champ : 'diffusionEmail' , valeur : diffusionEmail},

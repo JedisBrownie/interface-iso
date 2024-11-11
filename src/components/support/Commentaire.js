@@ -1,17 +1,28 @@
 import './css/commentaire.css';
+import { useEffect } from 'react';
 export default function Commentaire(props){
 
-    const {type,references,edition} = props;
+    const {type,references,edition,titre} = props;
+
+    useEffect(() => {
+        if (references.champTitre.current && edition) {
+            references.champTitre.current.innerHTML = titre; // Injecte le HTML depuis `titre`
+        }
+    }, [titre]);
+
+
     return(
         <>
             <div className="paper-three">
                 <div className="entete" contentEditable='false'>
                     <div contentEditable='false' className="logo">
-                        <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                        {/* <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/> */}
+                        <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/>
+
                     </div>
                     <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
-                        <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
-                            <h1>Titre du document</h1> 
+                        <div className="div-content-editable" role="textbox" ref={references.champTitre}  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
+
                         </div>
                         
                         <div style={{marginTop:'0.8em',fontWeight:'800'}}>
@@ -22,7 +33,7 @@ export default function Commentaire(props){
                     </div>
                     <div contentEditable='false' className='information'>
                         <div>
-                            <span className='information-list'>Page :</span><span className='information-value'> 1 / 4</span>
+                            <span className='information-list'>Page :</span><span className='information-value'> 2 / 2</span>
                         </div>
 
                         <div > 
@@ -44,8 +55,10 @@ export default function Commentaire(props){
                 <div className='commentaire' contentEditable='false'>
                     {type === "Fiche d'instruction" ? (
                         <div className='titre'>Description</div>
+
                     ) : (
                         <div className='titre'>Commentaire</div>
+                        
                     )}
                     
 

@@ -54,7 +54,7 @@ export default function Schema(props){
                                 </div>
 
                                 <div className="cr-row-ressources">
-                                    <div className='title-black'>2000 - Ressources</div>
+                                    <div className='title'>2000 - Ressources</div>
                                     <div className="liste-processus-horizontal" >
                                                                         
                                         {data[2000]?.map((processusLie) => (

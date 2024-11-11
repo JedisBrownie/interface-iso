@@ -1,17 +1,29 @@
+import { useEffect } from 'react';
 import './css/champ.css';
 export default function Champ(props){
 
+
     const {type,references,edition,titre} = props;
+
+    useEffect(() => {
+        if (references.champTitre.current && edition) {
+            references.champTitre.current.innerHTML = titre; 
+        }
+    }, [titre]);
+
+
     return(
         <>  
             <div className="paper-six">
                 <div className="entete" contentEditable='false'>
                     <div contentEditable='false' className="logo">
-                        <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                        {/* <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/> */}
+                        <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/>
+
                     </div>
                     <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
-                        <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
-                            <h1>{titre}</h1> 
+                        <div className="div-content-editable" role="textbox" ref={references.champTitre} suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
+                            {titre}
                         </div>
                         
                         <div style={{marginTop:'0.8em',fontWeight:'800'}}>
@@ -23,7 +35,7 @@ export default function Champ(props){
                     
                     <div contentEditable='false' className='information'>
                         <div>
-                            <span className='information-list'>Page :</span><span className='information-value'> 1 / 4</span>
+                            <span className='information-list'>Page :</span><span className='information-value'> 2 / 2</span>
                         </div>
 
                         <div > 

@@ -77,7 +77,7 @@ import {
                                                 </div>
                                                 
                                                 <div className='two wide column'>
-                                                    10/01/2004
+                                                    {document.dateApplication}
                                                 </div>
                                                 
                                                 <div className='two wide column'>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState ,useEffect} from 'react';
 import './css/support.css';
 
 
@@ -62,15 +62,25 @@ export default function Support(props){
         link.click();
     };
 
+    useEffect(() => {
+        if (champTitre.current && edition) {
+            champTitre.current.innerHTML = titre; // Injecte le HTML depuis `titre`
+        }
+    }, [titre]);
+
+    const champTitre = useRef();
+
     return(
         <div className='paper-five'>
             <div className="entete" contentEditable='false'>
                 <div contentEditable='false' className="logo">
-                    <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                    {/* <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/> */}
+                    <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/>
+
                 </div>
                 <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
-                    <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
-                        <h1>{titre}</h1> 
+                    <div className="div-content-editable" role="textbox" ref={champTitre} suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
+                        {titre}
                     </div>
                     
                     <div style={{marginTop:'0.8em',fontWeight:'800'}}>

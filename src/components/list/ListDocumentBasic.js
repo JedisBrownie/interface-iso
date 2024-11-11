@@ -24,24 +24,24 @@ export default function ListDocumentBasic(){
                     </div>
 
 
-                    <div className="eight wide column" style={{display:'flex',alignItems:'center'}}>
+                    <div className="seven wide column" style={{display:'flex',alignItems:'center'}}>
                     {/* <div className="key">{item.confidentiel === true && <i className="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}</div> */}
-                    <div>Nom du document recherché ou du manuel intégré</div>
+                    <div>Manuel de Management Intégré</div>
                     </div>
                     
-                    <div className="two wide column">
+                    <div className="three wide column">
                         <i className="check circle outline icon" style={{ visibility: 'visible', marginRight: '10px', color: 'limegreen', fontSize: '1.1em'}}></i>
                         Applicable
                         {/* {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red', fontSize: '1.65em' , fontWeight:'bold' }}>*</span>} */}
                     </div>
 
                     <div className="two wide column">
-                        10 / 12 / 2024
+                        27/10/2021
                     </div>
 
 
                     <div className="one wide column">
-                        4
+                        16
                     {/* {item.nombreRevision !== 0 && <span>{item.nombreRevision}</span>} */}
                     </div>
                 </div>
@@ -60,24 +60,24 @@ export default function ListDocumentBasic(){
                     </div>
 
 
-                    <div className="eight wide column" style={{display:'flex',alignItems:'center'}}>
+                    <div className="seven wide column" style={{display:'flex',alignItems:'center'}}>
                     {/* <div className="key">{item.confidentiel === true && <i className="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}</div> */}
-                    <div>Nom du document recherché ou du manuel intégré</div>
+                    <div>Manuel de Management Intégré</div>
                     </div>
                     
-                    <div className="two wide column">
+                    <div className="three wide column">
                         <i className="check circle outline icon" style={{ visibility: 'visible', marginRight: '10px', color: 'limegreen', fontSize: '1.1em'}}></i>
                         Applicable
                         {/* {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red', fontSize: '1.65em' , fontWeight:'bold' }}>*</span>} */}
                     </div>
 
                     <div className="two wide column">
-                        10 / 12 / 2024
+                        25/09/2018
                     </div>
 
 
                     <div className="one wide column">
-                        4
+                        18
                     {/* {item.nombreRevision !== 0 && <span>{item.nombreRevision}</span>} */}
                     </div>
                 </div>
@@ -87,6 +87,44 @@ export default function ListDocumentBasic(){
                 </div>
 
             </div>
+
+            <div className="ui grid container liste" style={{paddingLeft:'1em',cursor:'pointer',minHeight:'6em',backgroundColor:'#e4e4e4'}}>
+                
+                <div className="row fifteen wide column">
+                    <div className='three wide column' style={{fontSize:'15px',fontWeight:'600'}}>
+                        Cementis Madagascar
+                    </div>
+
+
+                    <div className="seven wide column" style={{display:'flex',alignItems:'center'}}>
+                    {/* <div className="key">{item.confidentiel === true && <i className="key icon" style={{visibility:'visible',width:'2rem',color:'goldenrod'}}></i>}</div> */}
+                    <div>Domaine d'application du systeme de management de la qualite et de l'environnement</div>
+                    </div>
+                    
+                    <div className="three wide column">
+                        <i className="check circle outline icon" style={{ visibility: 'visible', marginRight: '10px', color: 'limegreen', fontSize: '1.1em'}}></i>
+                        Applicable
+                        <span style={{ paddingLeft: '10px', color: 'red', fontSize: '1.65em' , fontWeight:'bold' }}>*</span>
+                        {/* {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red', fontSize: '1.65em' , fontWeight:'bold' }}>*</span>} */}
+                    </div>
+
+                    <div className="two wide column">
+                        03/08/2023
+                    </div>
+
+
+                    <div className="one wide column">
+                        24
+                    {/* {item.nombreRevision !== 0 && <span>{item.nombreRevision}</span>} */}
+                    </div>
+                </div>
+            
+                <div className="one wide column" style={{color:'black'}}>
+                {/* <ThreePointMenu modification={item.modification} reference={item.referenceDocument} idDocument = {item.idDocument}></ThreePointMenu> */}
+                </div>
+
+            </div>
+            
 
             
         </div>

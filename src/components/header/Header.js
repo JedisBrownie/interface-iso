@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import './header.css';
 
 export default function Header({type,entete,titreDocument,nomDocument}){
+
+    const navigate = useNavigate();
+
+    const backHome = () =>{
+        navigate('/home');
+    }
 
     const renderContent = () =>{
         switch (type) {
@@ -17,7 +24,7 @@ export default function Header({type,entete,titreDocument,nomDocument}){
                                 <i className="search link icon" style={{marginRight:'0.2em',fontSize:'12px'}}></i>
                             </div>
                             <div className='list-button' style={{minHeight:'0.5em'}}>
-                                <button className='ui mini button' style={{backgroundColor:'white'}}>Retour</button>
+                                <button className='ui mini button' style={{backgroundColor:'white'}} onClick={() => backHome()}>Retour</button>
                                 <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
                                 <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
                             </div>
@@ -37,7 +44,7 @@ export default function Header({type,entete,titreDocument,nomDocument}){
                                 <i className="search link icon" style={{marginRight:'0.2em',fontSize:'12px'}}></i>
                             </div>
                             <div className='list-button' style={{minHeight:'0.5em'}}>
-                                <button className='ui mini button' style={{backgroundColor:'white'}}>Retour</button>
+                                <button className='ui mini button' style={{backgroundColor:'white'}} onClick={() => backHome()}>Retour</button>
                                 <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
                                 <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
                             </div>
@@ -58,7 +65,7 @@ export default function Header({type,entete,titreDocument,nomDocument}){
                                     <i className="search link icon" style={{marginRight:'0.2em',fontSize:'12px'}}></i>
                                 </div>
                                 <div className='list-button' style={{minHeight:'0.5em'}}>
-                                    <button className='ui mini button' style={{backgroundColor:'white'}}>Retour</button>
+                                    <button className='ui mini button' style={{backgroundColor:'white'}} onClick={() => backHome()}>Retour</button>
                                     <button className='ui mini button' style={{backgroundColor:'white'}}>Tout développer</button>
                                     <button className='ui mini button' style={{backgroundColor:'white'}}>Tout réduire</button>
                                 </div>

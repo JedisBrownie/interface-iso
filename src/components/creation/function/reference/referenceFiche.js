@@ -4,6 +4,8 @@ export function createReferenceFiche () {
 
     return {
         // { ****  Ref feuille  1 Base  ****} //
+        champTitre : React.createRef(),
+
         champMiseApplication : React.createRef(),
         champConfidentiel : React.createRef(),
 
@@ -31,6 +33,10 @@ export function createReferenceFiche () {
         choixRedacteur : React.createRef(),
         choixVerificateur : React.createRef(),
         choixApprobateur : React.createRef(),
+
+        statutRedacteur : React.createRef(),
+        statutVerificateur : React.createRef(),
+        statutApprobateur : React.createRef(),
 
     // { ****  Ref feuille 2 commentaire **** } //
         champFaitQuoiCommentaire : React.createRef(),

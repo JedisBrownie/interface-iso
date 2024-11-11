@@ -1,12 +1,16 @@
 import './css/description.css';
 export default function Description(props){
     const {type,references,edition} = props; 
+
+    
     return(
         <>
             <div className="paper-two">
                 <div className="entete" contentEditable='false'>
                     <div contentEditable='false' className="logo">
-                        <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                        {/* <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/> */}
+                        <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/>
+
                     </div>
                     <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                         <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
@@ -22,7 +26,7 @@ export default function Description(props){
                     
                     <div contentEditable='false' className='information'>
                         <div>
-                            <span className='information-list'>Page :</span><span className='information-value'> 1 / 4</span>
+                            <span className='information-list'>Page :</span><span className='information-value'> 2 / 3</span>
                         </div>
 
                         <div > 

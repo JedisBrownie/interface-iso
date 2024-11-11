@@ -4,7 +4,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-
+import { getDataFromUrl } from '../../function';
 
 const style = {
     position: 'absolute',
@@ -16,7 +16,7 @@ const style = {
     borderRadius : '0.5em',
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
     p: '1em 1.5em 1em 1.5em',
-  };
+};
 
 const dataActivite = [
     {id:'1',nom:"Ciment"},
@@ -112,7 +112,7 @@ export default function ValeurModal({type,reference,edition}){
                                 ))}
 
                                 <div className='choice_button' style={{marginTop:'15px',display:'flex',justifyContent:'end'}}>
-                                    <Button onClick={handleClose} size='small' variant="contained" style={{boxShadow:'none'}}><span style={{textTransform:'none',fontSize:'12px',padding:'2px 14px 2px 14px'}}>Fermer</span></Button>
+                                    <Button onClick={handleClose} size='small' variant="contained" style={{boxShadow:'none'}}><span style={{textTransform:'none',fontSize:'12px',fontFamily:'Lato',padding:'2px 14px 2px 14px'}}>Valider</span></Button>
                                 </div>
                                 
                             </form>

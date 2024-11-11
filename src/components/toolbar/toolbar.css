@@ -198,24 +198,28 @@ justify-content: center;
 .div-document{
   display: flex;
   justify-content: center;
-  height: 5em;
+  height: 5.5em;
   flex-direction: column;
   border: 1px solid rgb(208, 208, 208);
   padding: 0.5em 0.5em;
   box-shadow: rgba(221, 221, 221, 0.2) 0px 2px 8px 0px;
   border-radius: 3px;
-  width: 8em;
+  width: 6em;
   align-items: center;
   white-space: nowrap;
+  margin-bottom: 0.5em;
 }
 
 .span-document-image img{
-  width: 3em;
-  height: 3em;
+  height: 2.3em;
+  width: 2.3em;
   object-fit: contain;
-  border: 1px solid black;
 }
 
-.span-document-image{
-
+.span-document-name{
+  font-size: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

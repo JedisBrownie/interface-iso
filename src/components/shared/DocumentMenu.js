@@ -11,7 +11,7 @@ import Modal from '@mui/material/Modal';
 import Stack from '@mui/material/Stack';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import Util from '../shared/Util';
-
+import { useNavigate } from 'react-router-dom';
 import './css/document.css';
 
 const styleModal = {
@@ -77,7 +77,11 @@ export default function DocumentMenu(props) {
   }, [open]);
 
 
+  const navigate = useNavigate();
 
+    const backBrouillon = () =>{
+        navigate('/brouillon');
+    }
 
   const handleValidation = () =>{
     
@@ -86,6 +90,7 @@ export default function DocumentMenu(props) {
     setStatus(true);
     setMessageValider("Ce document a été validé");
     setTimeout(() =>{
+      backBrouillon();
       setStatus(false);
     },3000);
   }
@@ -99,6 +104,7 @@ export default function DocumentMenu(props) {
       handleCloseModal();
       setTimeout(() =>{
         setStateStatusRefuser(false);
+        backBrouillon();
       },3000);
     }else{
 
@@ -112,8 +118,9 @@ export default function DocumentMenu(props) {
     setStatus(true);
     setMessageValider("Ce document a été approuver");
     setTimeout(() =>{
+      backBrouillon();
       setStatus(false);
-    },4000);
+    },3000);
   }
 
 
@@ -126,11 +133,44 @@ export default function DocumentMenu(props) {
       handleCloseModal();
       setTimeout(() =>{
         setStateStatusRefuser(false);
+        backBrouillon();
       },3000);
     }else{
 
     }
   } 
+
+  const handleDemande = () =>{
+    approuverDocument();
+
+    setStatus(true);
+    setMessageValider("Cette demande a été validé");
+    setTimeout(() =>{
+      backBrouillon();
+      setStatus(false);
+    },3000);
+  }
+
+
+  const handleDownloadPdf = () =>{
+    const fileUrl = '/assets/pdf/new/FI4150-20241112-2.pdf'; // Chemin relatif depuis le dossier public
+    const link = document.createElement('a'); // Crée un élément <a>
+    link.href = fileUrl; // Définit l'URL du fichier
+    link.download = 'FI4150-20241112-2.pdf'; // Définit le nom de fichier lors du téléchargement
+    document.body.appendChild(link); // Ajoute le lien au DOM
+    link.click(); // Simule un clic sur le lien
+    document.body.removeChild(link); 
+  } 
+
+  const handleDownloadDocument = () =>{
+    const fileUrl = '/assets/zip/FI4150-20241112-2.zip'; // Chemin relatif depuis le dossier public
+    const link = document.createElement('a'); // Crée un élément <a>
+    link.href = fileUrl; // Définit l'URL du fichier
+    link.download = 'FI4150-20241112-2.zip'; // Définit le nom de fichier lors du téléchargement
+    document.body.appendChild(link); // Ajoute le lien au DOM
+    link.click(); // Simule un clic sur le lien
+    document.body.removeChild(link); 
+  }
 
   const generateMenuItem = () =>{
     switch(status){
@@ -191,6 +231,15 @@ export default function DocumentMenu(props) {
             </Modal>
           </> 
         );
+
+        case 'approbation' : 
+        return  (
+          <>
+            <MenuItem onClick={handleDemande}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Approuver demande</span></MenuItem>
+            <MenuItem onClick={() =>{}}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Rejeter demande</span></MenuItem>
+            
+          </> 
+        );
     }
   }
 
@@ -238,8 +287,8 @@ export default function DocumentMenu(props) {
                     >
                       {generateMenuItem()}
                       
-                      <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Télécharger PDF</span></MenuItem>
-                      <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Télécharger document</span></MenuItem>
+                      <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}} onClick={handleDownloadPdf}>Télécharger PDF</span></MenuItem>
+                      <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}} onClick={handleDownloadDocument}>Télécharger document</span></MenuItem>
                       <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Fermer document</span></MenuItem>
 
                       {/* <MenuItem onClick={handleClose}><span style={{fontFamily:'Lato',fontSize:'0.85em',fontWeight:'600'}}>Partager document</span></MenuItem> */}

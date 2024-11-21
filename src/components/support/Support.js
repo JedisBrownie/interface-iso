@@ -71,17 +71,17 @@ export default function Support(props){
     const champTitre = useRef();
 
     return(
-        <div className='paper-five'>
+        <div className='paper-five'> 
             <div className="entete" contentEditable='false'>
                 <div contentEditable='false' className="logo">
-                    {/* <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/> */}
-                    <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/>
+                    <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
+                    {/* <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/> */}
 
                 </div>
                 <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                     <div className="div-content-editable" role="textbox" ref={champTitre} suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
-                        {titre}
                     </div>
+
                     
                     <div style={{marginTop:'0.8em',fontWeight:'800'}}>
                         <h3>{type}</h3> 
@@ -153,7 +153,9 @@ export default function Support(props){
                 ): (
                     <>
                         <div className='head-title'>Document support</div>
-                        <div className='liste-champ'></div>
+                        <div className='liste-champ' >
+
+                        </div>
                     </>
                 )}
                 

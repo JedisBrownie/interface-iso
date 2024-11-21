@@ -1,18 +1,25 @@
 import './css/evaluation.css';
+import { useEffect } from 'react';
+
 export default function Evaluation(props){
-    const{type,references,edition} = props;
+    const {type,references,edition,titre} = props; 
+
+    useEffect(() => {
+        if (references.champTitre.current && edition) {
+            references.champTitre.current.innerHTML = titre; 
+        }
+    }, [titre]);
+
     return(
         <>
             <div className="paper-four">
                 <div className="entete" contentEditable='false'>
                     <div contentEditable='false' className="logo">
-                        {/* <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/> */}
-                        <img src="/logo/secondaire-rouge.svg" alt="" style={{height:'7em'}}/>
+                        <img src="/logo.png" alt="" style={{width:'9em',margin:'0 auto'}}/>
 
                     </div>
                     <div className='titre' contentEditable="false" style={{textAlign:'center'}}>
                         <div className="div-content-editable" role="textbox"  suppressContentEditableWarning={true} contentEditable="false" style={{textAlign:'center',color:'red',height:'fit-content'}}>
-                            <h1>Titre du document</h1> 
                         </div>
                         
                         <div style={{marginTop:'0.8em',fontWeight:'800'}}>

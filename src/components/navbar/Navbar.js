@@ -10,8 +10,8 @@ export default function Navbar(){
         <div className="ui inverted large top fixed text menu" style={{padding:'5px 50px 5px 50px',marginBottom:'20vh'}} id="menu">
                 <div className="left menu">
                     <div className="ui image" style={{marginTop:'6px'}}>
-                        {/* <img src="./logo_blanc.png" alt="logo"></img>     */}
-                        <img src='/logo/secondaire-blanc.svg' style={{width:'8.5em',height:'4em',objectFit:'contain'}} alt='logo'/>
+                        <img src="./logo_blanc.png" alt="logo" style={{width:'8.5em',height:'4em',objectFit:'contain'}}></img>    
+                        {/* <img src='/logo/secondaire-blanc.svg' style={{width:'8.5em',height:'4em',objectFit:'contain'}} alt='logo'/> */}
                     </div>
                 </div>
 

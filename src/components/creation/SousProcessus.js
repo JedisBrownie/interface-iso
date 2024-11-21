@@ -2,6 +2,7 @@ import React, { lazy , Suspense} from 'react';
 import './css/document.css';
 import { createReferenceSousProcessus } from './function/reference/referenceSousProcessus';
 import { insertBrouillonSousProcessus } from './function/insert';
+import Util from '../shared/Util';
 
 const Base = lazy(() => import('../support/Base')); 
 const Description = lazy(() => import('../support/Description')); 
@@ -17,36 +18,109 @@ export default class SousProcessus extends React.Component{
             type:'Sous-Processus',
             idType : 2,
             references : createReferenceSousProcessus(),
-            titre : 'Titre du document'
+            titre : '<h1>Titre du document</h1>',
+            stateBrouillon : false,
+            stateValidation : false,
+            stateQuitter : false,
+            isBrouillonSaved : false,
+            isRedactionValider : false
         }
     }
 
-    _saveBrouillon = (e) => {
-        insertBrouillonSousProcessus(this.state.references);
+    _backHome = (timeout) =>{
+        setTimeout(() => {
+            window.location.assign("/home");
+        } , timeout);
+    }
+
+    _saveBrouillon = (e) =>{
+        if(!this.state.isBrouillonSaved){
+
+            // insertBrouillonSousProcessus(this.state.references);
+
+            this.setState({stateBrouillon:true});
+            this.setState({isBrouillonSaved : true});
+            
+            setTimeout(() => {
+                this.setState({ stateBrouillon: false });
+            }, 2000);
+
+        }else{
+
+            this.setState({stateBrouillon:true});
+            setTimeout(() => {
+                this.setState({ stateBrouillon: false });
+            }, 2000);
+        }    
+    }
+
+    
+    _validerRedaction = () =>{
+
+        // insertSousProcessus(this.state.references)
+
+        this.setState({stateValidation: true});
+        this.setState({isRedactionValider : true});
+
+        setTimeout(() => {
+            this.setState({ stateValidation : false });
+        }, 2000);
+
+        this._backHome(2200);
+    }
+
+    _quitterEdition = () =>{
+        if(!this.state.isBrouillonSaved){
+            this.setState({stateQuitter : true});
+
+            setTimeout(() =>{
+                this.setState({stateQuitter : false});
+            } , 5000);
+        }else{
+            this._backHome(1000);
+        }
+    }
+
+    _handleCloseQuitter = () =>{
+        this._backHome(1000);
     }
 
     _changeTitle = (e) =>{
-        const newTitle = e.target.innerText;
-        this.setState({titre : newTitle});
+        const newTitle = e.target.innerHTML;
+        this.setState({ titre: newTitle });
     }
+
+
 
     render(){
         const {edition,valeurChamp} = this.props;
-        const {type,references,titre} = this.state;
-        
+        const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;
+
         return(
             <Suspense fallback={<div></div>}>
                 {edition ? (
-                    <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()}></Toolbar>
+                    <>
+                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()}  handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                        
+                        <div className="list-paper" style={{marginTop:'7em'}}>
+                            <Base type={type}  references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
+                            <Description type={type} titre={titre} references={references} edition={edition}></Description>
+                            <Support type={type} titre={titre} edition={edition} references={references}></Support>
+                        </div>
+
+                        <Util stateBrouillon={stateBrouillon} stateValidation={stateValidation} stateQuitter = {stateQuitter} handleQuitter = {() => this._handleCloseQuitter()}></Util>
+
+                    </>
                 ) : (
-                    <></>
+                    <>
+                        <div className="list-paper" style={{marginTop:'1em'}}>
+                            <Base type={type}  references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
+                            <Description type={type} titre={titre} references={references} edition={edition}></Description>
+                            <Support type={type} titre={titre} edition={edition} references={references}></Support>
+                        </div>
+                    </>
                 )}
-                <div className="list-paper" style={{marginTop:'7em'}}>
-                    {/* <Base type={sousProcessus.type} champMiseApplication = {champMiseApplication} champConfidentiel={champConfidentiel} ></Base> */}
-                    <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
-                    <Description type={type} references={references} edition={edition}></Description>
-                    <Support type={type}></Support>
-                </div>
+                
             </Suspense>
         );
     }

@@ -36,7 +36,8 @@ export default class Fiche extends React.Component{
 
     _saveBrouillon = (e) =>{
         if(!this.state.isBrouillonSaved){
-            insertBrouillonFiche(this.state.references);
+
+            // insertBrouillonFiche(this.state.references);
 
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
@@ -56,7 +57,8 @@ export default class Fiche extends React.Component{
 
     
     _validerRedaction = () =>{
-        insertFiche(this.state.references)
+
+        // insertFiche(this.state.references)
 
         this.setState({stateValidation: true});
         this.setState({isRedactionValider : true});
@@ -94,8 +96,6 @@ export default class Fiche extends React.Component{
 
         const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;
         
-
-        const fiche = {type:"Fiche d'instruction",idType: 3}
         
         return(
             <Suspense fallback={<div></div>}>
@@ -103,20 +103,22 @@ export default class Fiche extends React.Component{
                     {edition ? (
                         <>
                             <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()} handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                            
                             <div className='list-paper' style={{marginTop:'7em'}}>  
                                 <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
                                 <Commentaire type={type} titre={titre} references={references} edition={edition}></Commentaire>
-                                <Support type={type} titre={titre} edition={edition}></Support>
+                                <Support type={type} titre={titre} edition={edition} references={references}></Support>
                             </div>
+
                             <Util stateBrouillon={stateBrouillon} stateValidation={stateValidation} stateQuitter = {stateQuitter} handleQuitter = {() => this._handleCloseQuitter()}></Util>
 
                         </>
                     ) : (
                         <div>
                             <div className='list-paper' style={{marginTop:'1em'}}>  
-                                <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
+                                <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp}></Base>
                                 <Commentaire type={type} titre={titre} references={references} edition={edition}></Commentaire>
-                                <Support type={type} titre={titre} edition={edition}></Support>
+                                <Support type={type} titre={titre} edition={edition} references={references}></Support>
                             </div>
                         </div>
                     )}

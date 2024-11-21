@@ -64,7 +64,7 @@ export default function UserModal(props){
     });
 
     useEffect(() => {
-        if (redacteur && userToken) {
+        if (edition && redacteur && userToken) {
             const userName = `${userToken.prenom} ${userToken.nom}`;
             setSelectedValues((prevValues) => (
                 prevValues.includes(userName) ? prevValues : [...prevValues, userName]
@@ -75,24 +75,19 @@ export default function UserModal(props){
     return(
         <>
             <div className='valeur-champ'>
-                <span className='span-value' ref={reference}>
-                    {selectedValues.join(', ')}
-                </span>
-
-                {edition ?(
+                <span className='span-value' ref={reference}>{selectedValues.join(', ')}</span> 
+                {edition ? (
                     <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
-                ) : (
+                ):(
                     <></>
                 )}
-
             </div>
 
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
+                aria-describedby="modal-modal-description" >
                 <Box sx={style}>
                         <div>
                             

@@ -9,7 +9,6 @@ import React, { Suspense, useEffect, useState } from "react";
 const Auth = React.lazy(() => import('./page/Auth/Auth'));
 const Home = React.lazy(() => import('./page/Home/Home'));
 const Brouillon = React.lazy(() => import('./page/Brouillon/Brouillon'));
-const CreationJodit = React.lazy(() => import('./page/Creation/CreationJodit'));
 const DocumentValable = React.lazy(() => import('./page/Home/DocumentValable'));
 const Edition = React.lazy(() => import('./page/Creation/Edition'));
 

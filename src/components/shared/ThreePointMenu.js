@@ -7,6 +7,7 @@ import Modal from '@mui/material/Modal';
 import { styled, alpha } from '@mui/material/styles';
 import React from 'react';
 import Util from './Util';
+import { useNavigate } from 'react-router-dom';
   const StyledMenu = styled((props) => (
       <Menu
         elevation={0}
@@ -69,6 +70,8 @@ export default function ThreePointMenu(props){
     const refRaisonDemande = React.useRef(null);
     const [stateRevision , setStateRevision] = React.useState(false);
 
+    const navigate = useNavigate();
+
     const open = Boolean(anchorEl);
     
     const handleClick = (event) => {
@@ -97,6 +100,7 @@ export default function ThreePointMenu(props){
     }
 
     const handleModification = () =>{
+        navigate("/modification/3/FI4150-20241112-2/1")
         console.log("Modifier");
     }
 
@@ -108,12 +112,13 @@ export default function ThreePointMenu(props){
       const raison = refRaisonDemande.current.textContent;
 
       if(raison){
-        envoiRevision(reference,idDocument,raison);
+        // envoiRevision(reference,idDocument,raison);
 
         setStateRevision(true);
         
         setTimeout(() =>{
           setStateRevision(false);
+          navigate("/home");
         },3000);
 
         handleCloseModal();

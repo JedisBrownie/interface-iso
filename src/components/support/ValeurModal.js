@@ -72,13 +72,12 @@ export default function ValeurModal({type,reference,edition}){
 
     return(
         <>
-            <div className='valeur-champ-choice'>
-
-                
+            <div className='valeur-champ-choice'>                
 
                 <span className='span-value' ref={reference}>
                     {selectedValues.join(', ')}
                 </span>
+
 
                 {edition ?(
                     <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>

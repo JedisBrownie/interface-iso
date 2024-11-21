@@ -54,7 +54,7 @@ export default class AccordionListBrouillon extends Component{
                   <section style={{fontWeight:'bold',fontSize:'1.1em',paddingTop:'0em'}} className='accordion-title-brouillon'><Icon name='dropdown' />{item.nom} </section>
                 </AccordionTitle>
     
-                <AccordionContent  style={{marginTop:'1.5em'}} active={activeIndex === index} className="accordion content">
+                <AccordionContent  style={{marginTop:'1.5em',marginBottom:'2em'}} active={activeIndex === index} className="accordion content">
                     <ListContentBrouillon dataList={item.listeDocument}></ListContentBrouillon>
                 </AccordionContent>
               </div>

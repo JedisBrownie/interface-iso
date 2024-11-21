@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState , useEffect} from 'react';
 import './header.css';
 
 export default function Header({type,entete,titreDocument,nomDocument}){
@@ -9,6 +10,20 @@ export default function Header({type,entete,titreDocument,nomDocument}){
         navigate('/home');
     }
 
+    const [userName, setUserName] = useState("");
+
+    useEffect(() => {
+        // Récupérer le userToken depuis le localStorage
+        const userToken = localStorage.getItem('userToken');
+        
+        if (userToken) {
+            const { nom, prenom } = JSON.parse(userToken); // Extraire nom et prénom
+            setUserName(`${prenom} ${nom}`); // Mettre à jour le state avec le nom complet
+        }
+        
+    }, []);
+
+
     const renderContent = () =>{
         switch (type) {
             case 'Brouillon':
@@ -16,7 +31,7 @@ export default function Header({type,entete,titreDocument,nomDocument}){
                     <>
                         <div className="title header" style={{color:'white',paddingTop:'1em',paddingBottom:'1.5em'}}>
                             <h2> Mes documents </h2>
-                            <h4 style={{marginTop:'-0.3em',fontSize:'1.2em'}}>Aina Razafindrakoto</h4>
+                            <h4 style={{marginTop:'-0.3em',fontSize:'1.2em'}}>{userName}</h4>
                         </div>
                         <div className="item-right">
                             <div className="ui icon input">

@@ -5,60 +5,60 @@ import { useParams } from "react-router-dom";
 export default function Archive(){
 
     const dataArchiveParDate = [
-        {date : 2023 , listeProcessusGlobal : [
-            {idProcessusGlobal : '1000' , nomProcessusGlobal : 'Processus Management',listeProcessusLie : [
-                {idProcessusLie : '1100' , nomProcessusLie : 'Planification' , listeTypeDocument : [
+        // {date : 2023 , listeProcessusGlobal : [
+        //     {idProcessusGlobal : '1000' , nomProcessusGlobal : 'Processus Management',listeProcessusLie : [
+        //         {idProcessusLie : '1100' , nomProcessusLie : 'Planification' , listeTypeDocument : [
                     
-                    {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
-                        {referenceDoc : 'EN1100-20001205',idDocument:1,nom:'Indicateurs et Objectifs 2001',status:'Archive',nombreRevision:8,dateApplication:'12/05/2000',dateArchive:'15/03/2000'},
-                        {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2001',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                    {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
-                        {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                        {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                ]},
+        //             {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
+        //                 {referenceDoc : 'EN1100-20001205',idDocument:1,nom:'Indicateurs et Objectifs 2001',status:'Archive',nombreRevision:8,dateApplication:'12/05/2000',dateArchive:'15/03/2000'},
+        //                 {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2001',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //             {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //         ]},
 
-                {idProcessusLie : '1200' , nomProcessusLie : 'Revue de direction' , listeTypeDocument : [
+        //         {idProcessusLie : '1200' , nomProcessusLie : 'Revue de direction' , listeTypeDocument : [
                     
-                    {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
-                        {referenceDoc : 'EN1100-20001205',idDocument:1,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                        {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                    {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
-                        {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                        {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                ]}
+        //             {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
+        //                 {referenceDoc : 'EN1100-20001205',idDocument:1,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //                 {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //             {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //         ]}
 
-            ]} ,
+        //     ]} ,
             
-            {idProcessusGlobal : '2000' , nomProcessusGlobal : 'Ressources',listeProcessusLie : [
-                {idProcessusLie : '2100' , nomProcessusLie : 'Ressources Humaines' , listeTypeDocument : [
+        //     {idProcessusGlobal : '2000' , nomProcessusGlobal : 'Ressources',listeProcessusLie : [
+        //         {idProcessusLie : '2100' , nomProcessusLie : 'Ressources Humaines' , listeTypeDocument : [
                     
-                    {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
-                        {referenceDoc : 'EN1100-20001205',idDocument:1,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                        {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                    {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
-                        {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                        {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                ]},
+        //             {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
+        //                 {referenceDoc : 'EN1100-20001205',idDocument:1,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //                 {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //             {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //         ]},
 
-                {idProcessusLie : '2300' , nomProcessusLie : 'Travaux neufs' , listeTypeDocument : [
+        //         {idProcessusLie : '2300' , nomProcessusLie : 'Travaux neufs' , listeTypeDocument : [
                     
-                    {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
-                        {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                    {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
-                        {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                        {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
-                    ]},
-                ]}
+        //             {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
+        //                 {referenceDoc : 'EN1100-20001205',idDocument:2,nom:'Indicateurs et Objectifs 2008',status:'Archive',nombreRevision:8,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //             {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //                 {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2004'},
+        //             ]},
+        //         ]}
 
-            ]},
-        ]},
+        //     ]},
+        // ]},
 
 
         {date : 2024 , listeProcessusGlobal : [
@@ -66,12 +66,12 @@ export default function Archive(){
                 {idProcessusLie : '1100' , nomProcessusLie : 'Planification' , listeTypeDocument : [
                     
                     {idTypeDocument : 4 , nomTypeDocument : 'Enregistrement' , listeDocument : [
-                        {referenceDoc : 'EN1100-20241005-4',idDocument:1,nom:'Planification Budgetaire',status:'Archive',nombreRevision:2,dateApplication:'05/10/2024',dateArchive:'12/07/2024'},
+                        {referenceDoc : 'EN1100-20241005-4',idDocument:1,nom:'Analyse Fournisseur Distributeur',status:'Archive',nombreRevision:2,dateApplication:'05/10/2024',dateArchive:'12/07/2024'},
                         {referenceDoc : 'EN1100-20231215-2',idDocument:2,nom:'Indicateur Objectif 2024',status:'Archive',nombreRevision:8,dateApplication:'15/12/2023',dateArchive:'16/08/2024'},
                     ]},
                     {idTypeDocument : 3 , nomTypeDocument : 'Fiche d\'instruction' , listeDocument : [
-                        {referenceDoc : 'FI1100-20001205',idDocument:1,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2024'},
-                        {referenceDoc : 'FI1100-20001205',idDocument:2,nom:'TT - Déchargement des ajouts en big bag',status:'Archive',nombreRevision:2,dateApplication:'10/01/2004',dateArchive:'31/03/2024'},
+                        {referenceDoc : 'FI1100-20241102-1',idDocument:1,nom:'Suivi fiche client',status:'Archive',nombreRevision:2,dateApplication:'11/02/2024',dateArchive:'10/05/2024'},
+                        {referenceDoc : 'FI1100-20240805-1',idDocument:2,nom:'Prix fournisseur Tana , Tamatave',status:'Archive',nombreRevision:1,dateApplication:'08/05/2024',dateArchive:'15/07/2024'},
                     ]},
                 ]},
 

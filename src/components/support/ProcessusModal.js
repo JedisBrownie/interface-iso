@@ -128,10 +128,15 @@ export default function ProcessusModal(props){
                 </div>
                 <div className='processus'>
 
-                    <div className='valeur-champ-choice' style={{justifyContent:'flex-end'}}>
+                    {/* style={{justifyContent:'flex-end'}} */}
+
+                    
+                    <div className='valeur-champ-choice' >
                         <span className='span-value' ref={reference.choixProcessusGlobal}> 
                             {pgSelected.nomPg.join(', ')}
                         </span>
+
+                        
                         {edition ?(
                                 <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
                             ) : (
@@ -139,10 +144,13 @@ export default function ProcessusModal(props){
                         )}
                     </div>
 
-                    <div className='valeur-champ-choice' style={{justifyContent:'flex-end'}}>
+                    <div className='valeur-champ-choice' >
                         <span className='span-value' ref={reference.choixProcessusLie}> 
                             {plSelected.nomPl.join(', ')}
                         </span>
+
+                        {/* <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span> */}
+
                         {edition && showProcessusLie ?(
                             <>
                                 <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>

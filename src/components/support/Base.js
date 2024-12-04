@@ -199,7 +199,7 @@ export default function Base(props){
 
                 {/* début section 3 liste processus iso */}
                     
-                    <ProcessusModal reference={references} edition={edition}></ProcessusModal>
+                    <ProcessusModal reference={references} edition={edition} type1="Global" type2="Lie" ></ProcessusModal>
                     
                 {/* fin section 3 liste processus iso */}
                 
@@ -220,10 +220,10 @@ export default function Base(props){
                         
                         {type === "Fiche d'instruction" ?(
                             <></>
-                        ) :  (
+                        ) : (
                             <div className='finalite-row'>
                                 <div className='champ'>Pilote du processus</div>
-                                <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixPilote}></div>
+                                <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixPilote} contentEditable={edition}></div>
                             </div>
                         )}
                         
@@ -262,14 +262,7 @@ export default function Base(props){
                     <></>
                 ) : ( 
                     <div className='processus-appel'>
-                        <div className='titre'>
-                            <div style={{paddingLeft:'1.5em'}}>Processus Appelant</div>
-                            <div style={{paddingLeft:'1.5em'}}>Processus Appelé</div>
-                        </div>
-                        <div className='valeur'>
-                            <div></div>
-                            <div></div>
-                        </div>
+                        <ProcessusModal reference={references} edition={edition} type1="Appelants" type2="Appelés" ></ProcessusModal>
                     </div>
                 )}
                 {/* fin section 6 processus appel*/}

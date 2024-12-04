@@ -12,7 +12,7 @@ export default function DocumentValable(){
     const [isLoading, setIsLoading] = useState(true);
     const[listeDocument , setListeDocument] = useState([]);
     
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = "http://localhost:8080";
 
     useEffect(()=>{
         const fetchData = async () =>{

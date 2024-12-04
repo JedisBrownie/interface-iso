@@ -30,7 +30,7 @@ export const routes = [
     },
     {
         path : '/creation/:type',
-        element : <Edition/>
+        element : <Edition />
     },
     {
         path : '/document/:status/:type/:reference/:version',

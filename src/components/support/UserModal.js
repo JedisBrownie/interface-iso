@@ -53,24 +53,24 @@ export default function UserModal(props){
 
 
     // Ovaina rehefa token vrai
-    const userToken = JSON.parse(localStorage.getItem('userToken'));
+    const user = JSON.parse(localStorage.getItem('user'));
 
     const filteredData = data.filter(item => {
         
-        if (item.matricule === userToken.matricule) return false;
+        if (item.matricule === user.user_matricule) return false;
         
-        if (comiteDirection) return item.commite_direction;
+        // if (comiteDirection) return item.commite_direction;
         return true;
     });
 
     useEffect(() => {
-        if (edition && redacteur && userToken) {
-            const userName = `${userToken.prenom} ${userToken.nom}`;
+        if (edition && redacteur && user) {
+            const userName = `${user.user_first_name} ${user.user_last_name}`;
             setSelectedValues((prevValues) => (
                 prevValues.includes(userName) ? prevValues : [...prevValues, userName]
             ));
         }
-    }, [redacteur, userToken]);
+    }, [redacteur, user]);
 
     return(
         <>

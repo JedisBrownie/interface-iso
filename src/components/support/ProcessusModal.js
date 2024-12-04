@@ -40,7 +40,7 @@ export default function ProcessusModal(props){
 
     const [processusGlobal , setProcessusGlobal] = React.useState([]);
 
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = "http://localhost:8080";
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -123,8 +123,8 @@ export default function ProcessusModal(props){
         <>
             <div className='liste-processus'>
                 <div className='title'>
-                    <div style={{paddingLeft:'1.5em'}}>Processus Global</div>
-                    <div style={{paddingLeft:'1.5em'}}>Processus Lie</div>
+                    <div style={{paddingLeft:'1.5em'}}>Processus {props.type1}</div>
+                    <div style={{paddingLeft:'1.5em'}}>Processus {props.type2}</div>
                 </div>
                 <div className='processus'>
 
@@ -174,7 +174,7 @@ export default function ProcessusModal(props){
                                 {processusGlobal? (
                                     <>
                                         <div className='row-checkbox'>
-                                            {processusGlobal.map((item,index) => (
+                                            {processusGlobal.map((item, index) => (
 
                                                 <div className='choice_checkbox' key={index} ref={refCheckBox}>
                                                     <input type='checkbox' name="valuePg[]" value={`${item.idProcessusGlobal} - ${item.nom}`} id={item.idProcessusGlobal} checked={pgSelected.nomPg.includes(`${item.idProcessusGlobal} - ${item.nom}`)} onChange={handleChoixPg}/>

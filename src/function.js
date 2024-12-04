@@ -10,6 +10,7 @@ export function getDataFromUrl(url) {
                     resolve(response);
                 } else {
                     reject(new Error("Échec de la requête. Statut : " + xhr.status));
+                    console.log(xhr.status);
                 }
             }
         };

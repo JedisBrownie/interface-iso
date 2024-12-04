@@ -1,8 +1,7 @@
 import './navbar.css';
 import { Dropdown, DropdownItem , DropdownMenu} from 'semantic-ui-react';
-import { useNavigate } from 'react-router-dom';
-import Badge from '@mui/material/Badge';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+
+
 export default function Navbar(){
     
 

@@ -6,17 +6,17 @@ import React, { Suspense, useEffect, useState } from "react";
 
 function App() {
   
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      localStorage.removeItem("user");
-    };
+  // useEffect(() => {
+  //   const handleUnload = () => {
+  //     localStorage.removeItem("user");
+  //   };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("unload", handleUnload);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("unload", handleUnload);
+  //   };
+  // }, []);
 
   return (
     <BrowserRouter>

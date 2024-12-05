@@ -5,19 +5,6 @@ import React, { Suspense, useEffect, useState } from "react";
 
 
 function App() {
-  
-  // useEffect(() => {
-  //   const handleUnload = () => {
-  //     localStorage.removeItem("user");
-  //   };
-
-  //   window.addEventListener("unload", handleUnload);
-
-  //   return () => {
-  //     window.removeEventListener("unload", handleUnload);
-  //   };
-  // }, []);
-
   return (
     <BrowserRouter>
         <Routes>

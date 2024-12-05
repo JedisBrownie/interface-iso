@@ -37,9 +37,9 @@ export default class Fiche extends React.Component{
     _saveBrouillon = (e) =>{
         if(!this.state.isBrouillonSaved){
 
-            // insertBrouillonFiche(this.state.references);
+            insertBrouillonFiche(this.state.references);
 
-            this.setState({stateBrouillon:true});
+            this.setState({stateBrouillon: true});
             this.setState({isBrouillonSaved : true});
             
             setTimeout(() => {
@@ -50,7 +50,7 @@ export default class Fiche extends React.Component{
 
             this.setState({stateBrouillon:true});
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
         }    
     }

@@ -1,5 +1,6 @@
 #menu{
     background-color: rgb(236, 34, 34);
+    box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.295);
     /* background-color: rgb(77, 77, 77); */
     display: grid;
     grid-template-columns: 20% 60% 20%;

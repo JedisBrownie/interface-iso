@@ -29,35 +29,35 @@ export default class Processus extends React.Component{
     }
 
 
-    _backHome = (timeout) =>{
+    _backHome = (timeout) => {
         setTimeout(() => {
             window.location.assign("/home");
         } , timeout);
     }
 
-    _saveBrouillon = (e) =>{
-        if(!this.state.isBrouillonSaved){
+    _saveBrouillon = () =>{
+        if(!this.state.isBrouillonSaved) {
 
-            // insertBrouillonProcessus(this.state.references);
+            insertBrouillonProcessus(this.state.references);
 
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
             
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
 
-        }else{
+        } else {
 
             this.setState({stateBrouillon:true});
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
         }    
     }
 
     
-    _validerRedaction = () =>{
+    _validerRedaction = () => {
 
         // insertProcessus(this.state.references)
 
@@ -65,20 +65,20 @@ export default class Processus extends React.Component{
         this.setState({isRedactionValider : true});
 
         setTimeout(() => {
-            this.setState({ stateValidation : false });
+            this.setState({stateValidation : false});
         }, 2000);
 
         this._backHome(2200);
     }
 
-    _quitterEdition = () =>{
-        if(!this.state.isBrouillonSaved){
+    _quitterEdition = () => {
+        if(!this.state.isBrouillonSaved) {
             this.setState({stateQuitter : true});
 
             setTimeout(() =>{
                 this.setState({stateQuitter : false});
             } , 5000);
-        }else{
+        } else {
             this._backHome(1000);
         }
     }
@@ -87,14 +87,14 @@ export default class Processus extends React.Component{
         this._backHome(1000);
     }
 
-    _changeTitle = (e) =>{
+    _changeTitle = (e) => {
         const newTitle = e.target.innerHTML;
-        this.setState({ titre: newTitle });
+        this.setState({titre: newTitle});
     }
 
 
     
-    render(){
+    render() {
         const {edition,valeurChamp} = this.props;
 
         const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;

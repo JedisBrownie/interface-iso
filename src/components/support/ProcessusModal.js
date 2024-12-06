@@ -21,7 +21,7 @@ const style = {
 
 export default function ProcessusModal(props){
 
-    const {reference,edition} = props;
+    const {reference, edition, type1} = props;
     
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -130,35 +130,69 @@ export default function ProcessusModal(props){
 
                     {/* style={{justifyContent:'flex-end'}} */}
 
-                    
-                    <div className='valeur-champ-choice' >
-                        <span className='span-value' ref={reference.choixProcessusGlobal}> 
-                            {pgSelected.nomPg.join(', ')}
-                        </span>
-
-                        
-                        {edition ?(
-                                <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
-                            ) : (
-                                <></>
-                        )}
-                    </div>
-
-                    <div className='valeur-champ-choice' >
-                        <span className='span-value' ref={reference.choixProcessusLie}> 
-                            {plSelected.nomPl.join(', ')}
-                        </span>
-
-                        {/* <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span> */}
-
-                        {edition && showProcessusLie ?(
+                    <>
+                        {type1 === 'Global' ?(
                             <>
-                                <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
+                                <div className='valeur-champ-choice'>
+                                    <span className='span-value' ref={reference.choixProcessusGlobal}>
+                                        {pgSelected.nomPg.join(', ')}
+                                    </span>
+
+
+                                    {edition ? (
+                                        <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small' style={{ fontWeight: 900 }} /></span>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                                <div className='valeur-champ-choice'>
+                                    <span className='span-value' ref={reference.choixProcessusLie}>
+                                        {plSelected.nomPl.join(', ')}
+                                    </span>
+
+                                    {/* <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span> */}
+
+                                    {edition && showProcessusLie ? (
+                                        <>
+                                            <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small' style={{ fontWeight: 900 }} /></span>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
                             </>
-                        ):(
-                            <></>
+                        ) : (
+                            <>
+                                <div className='valeur-champ-choice'>
+                                    <span className='span-value' ref={reference.champProcessusAppelant}>
+                                        {pgSelected.nomPg.join(', ')}
+                                    </span>
+
+
+                                    {edition ? (
+                                        <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small' style={{ fontWeight: 900 }} /></span>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                                <div className='valeur-champ-choice'>
+                                    <span className='span-value' ref={reference.champProcessusAppele}>
+                                        {plSelected.nomPl.join(', ')}
+                                    </span>
+
+                                    {/* <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span> */}
+
+                                    {edition && showProcessusLie ? (
+                                        <>
+                                            <span className='span-arrow iso' onClick={handleOpenPl}><KeyboardArrowDownIcon fontSize='small' style={{ fontWeight: 900 }} /></span>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                            </>
                         )}
-                    </div>
+                    </>
                 </div>
             </div>
 

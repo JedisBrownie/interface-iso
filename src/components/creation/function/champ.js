@@ -5,9 +5,10 @@ import { useReferenceSousProcessus } from "./reference/referenceSousProcessus";
 
 export function getFormDataProcessus(references){
 
-    const dateMiseApplication = references.champMiseApplication.current.value;
+        const titre = references.champTitre.current.textContent;
+        const dateMiseApplication = references.champMiseApplication.current.value;
         const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
-            ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
+                             ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
         const iso9001 = references.choixIso9001.current.textContent;
         const iso14001 = references.choixIso14001.current.textContent;
         const securite = references.choixSecurite.current.textContent;
@@ -45,10 +46,9 @@ export function getFormDataProcessus(references){
 
         const performanceAttendues = references.champPerformanceAttendues.current.innerHTML;
         const propositionSurveillance = references.champPropositionSurveillance.current.innerHTML;
-        
-
 
         const formData = [
+            {reference : 'champTitre' , champ : 'titre' , valeur : titre},
             {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication},
             {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel},
             {reference : 'choixIso9001' , champ : 'iso9001' , valeur : iso9001},

@@ -36,7 +36,7 @@ export default class Processus extends React.Component{
     }
 
     _saveBrouillon = () =>{
-        if(!this.state.isBrouillonSaved) {
+        if (!this.state.isBrouillonSaved) {
 
             insertBrouillonProcessus(this.state.references);
 

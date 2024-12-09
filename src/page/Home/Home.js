@@ -14,7 +14,7 @@ export default function Home() {
     const location = useLocation();
     const apiUrl = "http://localhost:8080";
 
-    useEffect(()=>{
+    useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const user = queryParams.get("user");
         if (user) {
@@ -22,7 +22,7 @@ export default function Home() {
             localStorage.setItem("user", decodeURIComponent(user));
         }
 
-        const fetchData = async () =>{
+        const fetchData = async () => {
             try {
                 const response = await getDataFromUrl(`${apiUrl}/processus/global/all`);
                 const result = {};
@@ -32,7 +32,7 @@ export default function Home() {
                 setListeProcessus(result);
             } catch (error) {
                 console.error("Erreur lors de la récupération des données : ",error.message);
-            }finally{
+            } finally {
                 setIsLoading(false);
             }
         };
@@ -43,9 +43,9 @@ export default function Home() {
     return(
         <>
             <Navbar></Navbar>
-            {isLoading ?(
+            {isLoading ? (
                 <></>
-            ): (
+            ) : (
                 <Schema data={listeProcessus}></Schema>
             )}
             

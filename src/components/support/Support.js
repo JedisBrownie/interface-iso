@@ -147,7 +147,8 @@ export default function Support(props){
                                 type="file"
                                 onChange={handleFileUpload}
                                 hidden
-                                style={{ marginTop: '10px',color:'black'}} />                            
+                                style={{ marginTop: '10px',color:'black'}} 
+                            />                            
                         </div>
                     </>
                 ): (

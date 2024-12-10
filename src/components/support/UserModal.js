@@ -1,4 +1,4 @@
-import data from "../../page/Auth/data/user";
+// import data from "../../page/Auth/data/user";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRef, useState } from 'react';
 import React from 'react';
@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useEffect } from "react";
+import axios from 'axios';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -26,11 +27,9 @@ export default function UserModal(props){
 
     const {reference,edition,comiteDirection , redacteur} = props;
     const [selectedValues , setSelectedValues] = useState([]);
-
-
-
-    
     const [open, setOpen] = React.useState(false);
+    const [users, setUsers] = useState([]);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -51,15 +50,24 @@ export default function UserModal(props){
         }
     };
 
+    useEffect(() => {
+        const fetchData = () => {
+            axios.get("http://localhost:3005/users/all")
+                .then(response => {
+                    setUsers(response.data);
+                })
+                .catch(error => {
+                    console.error("Error fetching users:", error);
+                });
+        };
 
-    // Ovaina rehefa token vrai
+        console.log(users);
+        fetchData();
+    }, []);
+
     const user = JSON.parse(localStorage.getItem('user'));
-
-    const filteredData = data.filter(item => {
-        
+    const filteredData = users.filter(item => {
         if (item.matricule === user.user_matricule) return false;
-        
-        // if (comiteDirection) return item.commite_direction;
         return true;
     });
 

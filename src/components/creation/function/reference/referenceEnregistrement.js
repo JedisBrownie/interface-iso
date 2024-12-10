@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export function createReferenceEnregistrement (){
+export function createReferenceEnregistrement () {
 
     return {
         // { ****  Ref Base début ****} //

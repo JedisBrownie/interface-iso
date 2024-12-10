@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import './css/description.css';
+
+
+
+
 export default function     Description(props){
-    const {type,references,edition,titre} = props; 
+    const {type, references, edition, titre} = props; 
 
     useEffect(() => {
         if (references.champTitre.current && edition) {

@@ -40,10 +40,11 @@ export function insertNavigateur(references) {
 
 
 // Brouillon
-export function insertBrouillonProcessus(reference) {
-    const data = getFormDataProcessus(reference);
+export function insertBrouillonProcessus(typeId, reference) {
+    const data = getFormDataProcessus(typeId, reference);
     console.log(data);
-    return data;
+
+    
 }
 
 

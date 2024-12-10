@@ -8,7 +8,7 @@ import Navigateur from "../../components/creation/Navigateur";
 export default function Modification(){
 
     const edition = true;
-    const {type,reference,version} = useParams();
+    const {type, reference, version} = useParams();
 
     // misolo donnee API
     const valeurChamp = [

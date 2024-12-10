@@ -11,10 +11,18 @@ import React from 'react';
 import './css/document.css';
 import { createReferenceProcessus } from './function/reference/referenceProcessus';
 import { insertBrouillonProcessus } from './function/insert';
-export default class Processus extends React.Component{
 
-    constructor(props,context){
-        super(props,context);
+
+
+/**
+ * Processus Component
+ */
+export default class Processus extends React.Component{
+    /**
+     * Constructor
+     */
+    constructor(props, context){
+        super(props, context);
         this.state = {
             type:'Processus',
             idType : 1,
@@ -29,26 +37,27 @@ export default class Processus extends React.Component{
     }
 
 
+    /**
+     * Methods
+     */
     _backHome = (timeout) => {
         setTimeout(() => {
             window.location.assign("/home");
         } , timeout);
     }
 
-    _saveBrouillon = () =>{
+
+    _saveBrouillon = (typeId) => {
         if (!this.state.isBrouillonSaved) {
-
-            insertBrouillonProcessus(this.state.references);
-
+            insertBrouillonProcessus(typeId, this.state.references);
+            
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
             
             setTimeout(() => {
                 this.setState({stateBrouillon: false});
             }, 2000);
-
         } else {
-
             this.setState({stateBrouillon:true});
             setTimeout(() => {
                 this.setState({stateBrouillon: false});
@@ -71,6 +80,7 @@ export default class Processus extends React.Component{
         this._backHome(2200);
     }
 
+
     _quitterEdition = () => {
         if(!this.state.isBrouillonSaved) {
             this.setState({stateQuitter : true});
@@ -83,9 +93,11 @@ export default class Processus extends React.Component{
         }
     }
 
+
     _handleCloseQuitter = () =>{
         this._backHome(1000);
     }
+
 
     _changeTitle = (e) => {
         const newTitle = e.target.innerHTML;
@@ -95,17 +107,14 @@ export default class Processus extends React.Component{
 
     
     render() {
-        const {edition,valeurChamp} = this.props;
-
-        const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;
-
-            
+        const {edition, valeurChamp, typeId} = this.props;
+        const {type, references, titre, stateBrouillon, stateValidation, stateQuitter} = this.state;
+ 
         return(
             <>
-    
                 {edition ? (
                     <>
-                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()} handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon(typeId)} handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
                         <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>
     
                             <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
@@ -140,9 +149,6 @@ export default class Processus extends React.Component{
                         </div>
                     </>
                 )}
-    
-    
-                
             </>
         );
     }

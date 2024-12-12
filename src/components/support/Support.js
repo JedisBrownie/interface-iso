@@ -107,8 +107,7 @@ export default function Support(props){
                                             </span>
                                             <span className='span-support-titre'>
                                                 {file.fileName}
-                                            </span>
-                                        
+                                            </span>                  
 
                                         {hoveredIndex === index && (
                                             <button 
@@ -151,11 +150,10 @@ export default function Support(props){
                             />                            
                         </div>
                     </>
-                ): (
+                ) : (
                     <>
                         <div className='head-title'>Document support</div>
                         <div className='liste-champ' >
-
                         </div>
                     </>
                 )}

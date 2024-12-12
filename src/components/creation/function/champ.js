@@ -78,6 +78,12 @@ export function getFormDataProcessus(typeId, references){
 
     const performanceAttendues = references.champPerformanceAttendues.current.innerHTML;
     const propositionSurveillance = references.champPropositionSurveillance.current.innerHTML;
+    const indicateurEventuel = references.champIndicateurEventuel.current.innerHTML;
+
+    const evenementFrequence = references.champEvenementFrequence.current.innerHTML;
+    const participant = references.champParticipant.current.innerHTML;
+    const pointAbordes = references.champPointAbordes.current.innerHTML;
+    const document = references.champDocument.current.innerHTML;
 
     /**
      * Data Treatment
@@ -120,7 +126,12 @@ export function getFormDataProcessus(typeId, references){
         {reference : 'champFaitQuoiCommentaire' , champ : 'quiFaitQuoiCommentaire' , valeur : quiFaitQuoiCommentaire, tableau_valeur: null},
         {reference : 'champLienMoyenCommentaire' , champ : 'lienMoyenCommentaire' , valeur : lienMoyenCommentaire, tableau_valeur: null},
         {reference : 'champPerformanceAttendues' , champ : 'performanceAttendues' , valeur : performanceAttendues, tableau_valeur: null},
-        {reference : 'champPropositionSurveillance' , champ : 'propositionSurveillance' , valeur : propositionSurveillance, tableau_valeur: null}
+        {reference : 'champPropositionSurveillance' , champ : 'propositionSurveillance' , valeur : propositionSurveillance, tableau_valeur: null},
+        {reference : 'champIndicateurEventuel' , champ : 'indicateurEventuel' , valeur : indicateurEventuel, tableau_valeur: null},
+        {reference : 'champEvenementFrequence' , champ : 'evenementFrequence' , valeur : evenementFrequence, tableau_valeur: null},
+        {reference : 'champParticipant' , champ : 'participant' , valeur : participant, tableau_valeur: null},
+        {reference : 'champPointAbordes' , champ : 'pointAbordes' , valeur : pointAbordes, tableau_valeur: null},
+        {reference : 'champDocument' , champ : 'document' , valeur : document, tableau_valeur: null},
     ];
 
     return formData;

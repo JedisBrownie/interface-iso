@@ -23,10 +23,10 @@ const style = {
 
 
 
-export default function UserModal(props){
+export default function UserModal(props) {
 
-    const {reference,edition,comiteDirection , redacteur} = props;
-    const [selectedValues , setSelectedValues] = useState([]);
+    const {reference, edition, comiteDirection, redacteur} = props;
+    const [selectedValues, setSelectedValues] = useState([]);
     const [open, setOpen] = React.useState(false);
     const [users, setUsers] = useState([]);
 
@@ -44,27 +44,36 @@ export default function UserModal(props){
 
         setSelectedValues(updatedValues);
 
-        // Update the innerHTML or textContent of the ref
         if (reference && reference.current) {
             reference.current.textContent = updatedValues.join(', ');
         }
     };
 
     useEffect(() => {
-        const fetchData = () => {
-            axios.get("http://localhost:3005/users/all")
-                .then(response => {
-                    setUsers(response.data);
-                })
-                .catch(error => {
-                    console.error("Error fetching users:", error);
-                });
-        };
+        const fetchData = async () => {
+            try {
+                const cachedUsers = localStorage.getItem('users');
+                if (cachedUsers) {
+                    setUsers(JSON.parse(cachedUsers));
+                } else {
+                    const response = await axios.get("http://localhost:3005/users/all", {
+                        headers: {
+                            'Cache-Control': 'no-cache',
+                        }
+                    });
+                    // console.log("Fetched data from server:", response.data.all_users);
+                    const userList = response.data.all_users;
 
-        console.log(users);
+                    localStorage.setItem('users', JSON.stringify(userList));
+                    setUsers(userList);
+                }
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
         fetchData();
     }, []);
-
+    
     const user = JSON.parse(localStorage.getItem('user'));
     const filteredData = users.filter(item => {
         if (item.matricule === user.user_matricule) return false;

@@ -37,25 +37,27 @@ export function createReferenceProcessus () {
         choixVerificateur : React.createRef(),
         choixApprobateur : React.createRef(),
 
-    // { ****  Ref feuille 2 **** } //
+        // { ****  Ref feuille 2 **** } //
 
         champQuiRealise : React.createRef(),
         champQuiDecide : React.createRef(),
         champFaitQuoiDescription : React.createRef(),
         champLienMoyenDescription : React.createRef(),
 
-    // { ****  Ref feuille 3 **** } //
+        // { ****  Ref feuille 3 **** } //
         champFaitQuoiCommentaire : React.createRef(),
         champLienMoyenCommentaire : React.createRef(),
 
-    // { ****  Ref feuille 4 **** } //
+        // { ****  Ref feuille 4 **** } //
         champPerformanceAttendues : React.createRef(),
         champPropositionSurveillance : React.createRef(),
         champIndicateurEventuel : React.createRef(),
         champEvenementFrequence : React.createRef(),
         champParticipant : React.createRef(),
         champPointAbordes : React.createRef(),
-        champDocument : React.createRef()
-    
+        champDocument : React.createRef(),
+        
+        // { ****  Ref feuille 5 **** } //
+        champDocumentDeSupport : React.createRef(),
     }
 }   

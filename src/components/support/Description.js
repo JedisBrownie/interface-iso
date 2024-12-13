@@ -4,7 +4,7 @@ import './css/description.css';
 
 
 
-export default function     Description(props){
+export default function Description(props){
     const {type, references, edition, titre} = props; 
 
     useEffect(() => {

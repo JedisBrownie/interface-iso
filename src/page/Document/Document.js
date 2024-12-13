@@ -15,7 +15,7 @@ export default function Document(){
     const edition = false;
 
     // misolo donnee API
-    const allValeudDocument = [
+    const allValeurDocument = [
 
         {
             reference : 'BR100-20241112-5',
@@ -40,8 +40,8 @@ export default function Document(){
     ];
 
     const getValeurChamp = (referenceChamp) => {
-        // Recherche l'objet dans la liste `allValeudDocument` dont la référence correspond
-        const document = allValeudDocument.find(doc => doc.reference === reference);
+        // Recherche l'objet dans la liste `allValeurDocument` dont la référence correspond
+        const document = allValeurDocument.find(doc => doc.reference === reference);
     
         if (!document) {
             console.error("Document introuvable pour la référence donnée.");

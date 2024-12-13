@@ -44,7 +44,7 @@ export function insertBrouillonProcessus(typeId, reference) {
     const data = getFormDataProcessus(typeId, reference);
     console.log(data);
 
-    
+    return data;
 }
 
 

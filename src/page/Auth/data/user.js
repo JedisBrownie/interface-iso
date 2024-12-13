@@ -7,9 +7,10 @@ import axios from "axios";
  * Data
  */
 let data = [];
+const apiUrl = process.env.REACT_APP_NODE_API_URL;
 
 const fetchData = () => {
-    axios.get("http://localhost:3005/users/all")
+    axios.get(`${apiUrl}/users/all`)
         .then(response => {
             data = response.data;
         })

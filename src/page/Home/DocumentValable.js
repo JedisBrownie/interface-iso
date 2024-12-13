@@ -12,9 +12,9 @@ export default function DocumentValable(){
     const [isLoading, setIsLoading] = useState(true);
     const[listeDocument , setListeDocument] = useState([]);
     
-    const apiUrl = "http://localhost:8080";
+    const apiUrl = process.env.REACT_APP_API_URL;
 
-    useEffect(()=>{
+    useEffect(() => {
         const fetchData = async () =>{
             setIsLoading(true);
             try{
@@ -27,7 +27,7 @@ export default function DocumentValable(){
             }
         };
         fetchData();
-    },[]);
+    }, []);
 
     // console.log(listeDocument.listeType);
     // console.log(listeDocument);

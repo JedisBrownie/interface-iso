@@ -27,32 +27,29 @@ export default function ProcessusModal(props){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-
     const [showProcessusLie, setShowProcessusLie] = useState(false);
-
 
     const [openPl , setOpenPl] = React.useState(false);
     const handleOpenPl = () => setOpenPl(true);
     const handleClosePl = () => setOpenPl(false);
 
-
     const refCheckBox = useRef();
 
     const [processusGlobal , setProcessusGlobal] = React.useState([]);
 
-    const apiUrl = "http://localhost:8080";
+    const apiUrl = process.env.REACT_APP_JAVA_API_URL;
 
-    useEffect(()=>{
+    useEffect(() => {
         const fetchData = async () =>{
-            try{
+            try {
                 const response = await getDataFromUrl(`${apiUrl}/processus/global/all`);
                 setProcessusGlobal(response);
-            }catch(error){
+            } catch(error) {
                 console.error("Erreur lors de la récupération des données : ",error);
             }
         };
         fetchData();
-    },[]);
+    }, []);
 
     
     const [pgSelected , setPgSelected ] = useState({nomPg : [], idPg : []});
@@ -74,7 +71,6 @@ export default function ProcessusModal(props){
     };
 
 
-
     const [processusLie , setProcessusLie] = React.useState([]);
 
     // Fetch linked processes based on selected IDs
@@ -92,10 +88,10 @@ export default function ProcessusModal(props){
         };
 
         if (pgSelected.idPg.length > 0) {
-            setShowProcessusLie(true); // Show the arrow only if something is selected
+            setShowProcessusLie(true);
             fetchProcessusLie();
         } else {
-            setShowProcessusLie(false); // Hide the arrow if nothing is selected
+            setShowProcessusLie(false);
             setProcessusLie([]);
         }
     }, [pgSelected]);
@@ -231,8 +227,6 @@ export default function ProcessusModal(props){
                         </div>
                     </Box>
             </Modal>
-
-
 
             <Modal
                 open={openPl}

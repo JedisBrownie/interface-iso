@@ -49,6 +49,8 @@ export default function UserModal(props) {
         }
     };
 
+    const apiUrl = process.env.REACT_APP_NODE_API_URL;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -56,7 +58,7 @@ export default function UserModal(props) {
                 if (cachedUsers) {
                     setUsers(JSON.parse(cachedUsers));
                 } else {
-                    const response = await axios.get("http://localhost:3005/users/all", {
+                    const response = await axios.get(`${apiUrl}/users/all`, {
                         headers: {
                             'Cache-Control': 'no-cache',
                         }

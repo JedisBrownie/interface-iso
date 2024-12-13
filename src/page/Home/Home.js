@@ -12,7 +12,7 @@ export default function Home() {
     const[isLoading , setIsLoading] = useState(true);
 
     const location = useLocation();
-    const apiUrl = "http://localhost:8080";
+    const apiUrl = process.env.REACT_APP_JAVA_API_URL;
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
@@ -24,6 +24,8 @@ export default function Home() {
 
         const fetchData = async () => {
             try {
+                console.log(`${apiUrl}/processus/global/all`);
+                
                 const response = await getDataFromUrl(`${apiUrl}/processus/global/all`);
                 const result = {};
                 response.forEach(processus => {

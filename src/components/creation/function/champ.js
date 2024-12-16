@@ -32,7 +32,7 @@ export function splitUser(data) {
 /**
  * Processus Data Fetching
  */
-export function getFormDataProcessus(typeId, references){
+export async function getFormDataProcessus(typeId, references){
     /**
      * Data Fetching
      */
@@ -85,16 +85,47 @@ export function getFormDataProcessus(typeId, references){
     const pointAbordes = references.champPointAbordes.current.innerHTML;
     const document = references.champDocument.current.innerHTML;
 
-    /**
-     * Data Treatment
-     */
+
+    const getUploadedFilesFromLocalStorage = () => {
+        const uploadedFiles = JSON.parse(localStorage.getItem('uploaded_files')) || [];
+        return uploadedFiles;
+    };
+
+    const convertBlobToBase64 = (blob) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+            reader.readAsDataURL(blob);
+        });
+    };
+
+    const convertFilesToBase64Array = async () => {
+        const uploadedFiles = getUploadedFilesFromLocalStorage();
+        const fileBase64Array = [];
+    
+        for (const file of uploadedFiles) {
+            try {
+                const response = await fetch(file.fileURL);
+                const blob = await response.blob();
+                const base64 = await convertBlobToBase64(blob);
+                fileBase64Array.push(base64);
+            } catch (error) {
+                console.error(`Error converting file ${file.fileName} to base64:`, error);
+            }
+        }
+    
+        return fileBase64Array;
+    };
+
+    const fileBase64Array = await convertFilesToBase64Array();
 
 
     /**
      * Final Data
      */
     const formData = [
-        {reference : 'typeDocument' , champ : 'type' , valeur : typeId, tableau_valeur: null},
+        {reference : 'typeDocument' , champ : 'type' , valeur : type, tableau_valeur: null},
         {reference : 'champTitre' , champ : 'titre' , valeur : titre, tableau_valeur: null},
         {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication, tableau_valeur: null},
         {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel, tableau_valeur: null},
@@ -132,6 +163,7 @@ export function getFormDataProcessus(typeId, references){
         {reference : 'champParticipant' , champ : 'participant' , valeur : participant, tableau_valeur: null},
         {reference : 'champPointAbordes' , champ : 'pointAbordes' , valeur : pointAbordes, tableau_valeur: null},
         {reference : 'champDocument' , champ : 'document' , valeur : document, tableau_valeur: null},
+        {reference : 'champDocumentDeSupport' , champ : 'documentDeSupport' , valeur : null, tableau_valeur: fileBase64Array},
     ];
 
     return formData;

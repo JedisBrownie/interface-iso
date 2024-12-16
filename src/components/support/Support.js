@@ -4,7 +4,7 @@ import './css/support.css';
 
 export default function Support(props){
 
-    const {type,edition,titre} = props;
+    const { type, edition, titre, references} = props;
 
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
@@ -31,28 +31,49 @@ export default function Support(props){
     ];
     
     const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const fileExtension = file.name.split('.').pop().toLowerCase();
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            const newFiles = Array.from(files).map(file => {
+                const fileExtension = file.name.split('.').pop().toLowerCase();
 
-            const fileIcon = imageIcon.find(item => 
-                item.extensions.includes(fileExtension)
-            )?.icon || '/icons/DEFAULT.svg'; 
+                const fileIcon = imageIcon.find(item =>
+                    item.extensions.includes(fileExtension)
+                )?.icon || '/icons/DEFAULT.svg'; 
 
-            const fileURL = URL.createObjectURL(file);
+                const fileURL = URL.createObjectURL(file);
 
-            const newFile = {
-                fileName: file.name,
-                fileLocation: file.path || '',
-                fileExtension: fileExtension,
-                fileIcon: fileIcon,
-                fileURL: fileURL
-            };
+                return {
+                    fileName: file.name,
+                    fileLocation: file.path || '',
+                    fileExtension: fileExtension,
+                    fileIcon: fileIcon,
+                    fileURL: fileURL
+                };
+            });
 
-            console.log(newFile); 
-            setUploadedFiles((prevFiles) => [...prevFiles, newFile]);
+            setUploadedFiles(prevFiles => {
+                const updatedFiles = [...prevFiles, ...newFiles];
+                localStorage.setItem('uploaded_files', JSON.stringify(updatedFiles));
+                return updatedFiles;
+            });
         }
     };
+
+    // const readFileAsBase64 = (file) => {
+    //     return new Promise((resolve, reject) => {
+    //         const reader = new FileReader();
+    
+    //         reader.onload = () => {
+    //             resolve(reader.result.split(',')[1]);
+    //         };
+    
+    //         reader.onerror = (error) => {
+    //             reject(error);
+    //         };
+    
+    //         reader.readAsDataURL(file);
+    //     });
+    // };
 
     const handlePreviewOrDownload = (file) => {
         const link = document.createElement('a');
@@ -146,14 +167,16 @@ export default function Support(props){
                                 type="file"
                                 onChange={handleFileUpload}
                                 hidden
-                                style={{ marginTop: '10px',color:'black'}} 
+                                ref={references.champDocumentDeSupport}
+                                style={{ marginTop: '10px',color:'black'}}
+                                multiple
                             />                            
                         </div>
                     </>
                 ) : (
                     <>
                         <div className='head-title'>Document support</div>
-                        <div className='liste-champ' >
+                        <div className='liste-champ'>
                         </div>
                     </>
                 )}

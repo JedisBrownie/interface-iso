@@ -50,7 +50,8 @@ export default class Processus extends React.Component{
     _saveBrouillon = (typeId) => {
         if (!this.state.isBrouillonSaved) {
             insertBrouillonProcessus(typeId, this.state.references);
-            
+            localStorage.removeItem("uploaded_files");
+
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
             

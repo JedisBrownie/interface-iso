@@ -41,10 +41,16 @@ export function insertNavigateur(references) {
 
 // Brouillon
 export function insertBrouillonProcessus(typeId, reference) {
-    const data = getFormDataProcessus(typeId, reference);
-    console.log(data);
-
-    return data;
+    getFormDataProcessus(typeId, reference)
+    .then((formData) => {
+        return formData;
+    })
+    .then((processedResult) => {
+        console.log("Processed data:", processedResult);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }
 
 

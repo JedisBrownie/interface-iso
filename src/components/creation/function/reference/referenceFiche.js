@@ -38,9 +38,12 @@ export function createReferenceFiche () {
         statutVerificateur : React.createRef(),
         statutApprobateur : React.createRef(),
 
-    // { ****  Ref feuille 2 commentaire **** } //
+        // { ****  Ref feuille 2 commentaire **** } //
         champFaitQuoiCommentaire : React.createRef(),
-        champLienMoyenCommentaire : React.createRef()
+        champLienMoyenCommentaire : React.createRef(),
+
+        // { ****  Ref feuille 5 **** } //
+        champDocumentDeSupport : React.createRef(),
     }
     
 } 

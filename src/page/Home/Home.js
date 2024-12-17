@@ -8,8 +8,8 @@ import { useLocation } from "react-router-dom";
 
 export default function Home() {
 
-    const[listeProcessus , setListeProcessus] = useState([]);
-    const[isLoading , setIsLoading] = useState(true);
+    const [listeProcessus , setListeProcessus] = useState([]);
+    const [isLoading , setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
 
     const location = useLocation();

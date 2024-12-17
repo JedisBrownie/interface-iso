@@ -7,7 +7,7 @@
 
 
 /**
- * Data Splitting Methods
+ * Data Methods
  */
 export function splitSection2(data) {
     return data.split(',').map(item => item.trim());

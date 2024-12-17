@@ -39,11 +39,14 @@ export function createReferenceSousProcessus () {
         choixVerificateur : React.createRef(),
         choixApprobateur : React.createRef(),
 
-    // { ****  Ref feuille 2 Descriptio **** } //
+        // { ****  Ref feuille 2 Descriptio **** } //
 
         champQuiRealise : React.createRef(),
         champQuiDecide : React.createRef(),
         champFaitQuoiDescription : React.createRef(),
-        champLienMoyenDescription : React.createRef()
+        champLienMoyenDescription : React.createRef(),
+
+        // { ****  Ref feuille 5 **** } //
+        champDocumentDeSupport : React.createRef(),
     }
 }   

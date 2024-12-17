@@ -1,3 +1,4 @@
+import axios from "axios";
 import { getFormDataEnregistrement, getFormDataFiche, getFormDataProcessus, getFormDataSousProcessus } from "./champ";
 
 
@@ -46,7 +47,49 @@ export function insertBrouillonProcessus(typeId, reference) {
         return formData;
     })
     .then((processedResult) => {
-        console.log("Processed data:", processedResult);
+        const data = processedResult;
+        console.log(data);
+
+        let typeDocument = 0;
+        let titre = null;
+        let miseEnApplication = null;
+        let confidentiel = null;
+
+        data.forEach(element => {
+            if (element.reference === "typeDocument") {
+                typeDocument = element.valeur;
+            }
+            if (element.reference === "champTitre") {
+                titre = element.valeur;
+            }
+            if (element.reference === "champMiseApplication") {
+                miseEnApplication = element.valeur;
+            }
+            if (element.reference === "champConfidentiel") {
+                switch (element.valeur) {
+                    case 'Oui':
+                        confidentiel = true;
+                        break;
+                    case 'Non':
+                        confidentiel = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        console.log(user.user_matricule);
+        
+        const requestData = new URLSearchParams();
+        requestData.append('titre', titre);
+        requestData.append('type', typeDocument.toString());
+        requestData.append('date_mise_application', miseEnApplication);
+        requestData.append('confidentiel', confidentiel.toString());
+        requestData.append('user_matricule', user.user_matricule);
+
+        axios.post('http://10.192.193.81:8080/document/add-draft', requestData);
     })
     .catch((error) => {
         console.error("Error:", error);

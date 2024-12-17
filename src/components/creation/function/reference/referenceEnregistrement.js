@@ -28,6 +28,9 @@ export function createReferenceEnregistrement () {
         choixLecteur : React.createRef(),
 
         // { ****  Ref champ libre début **** } //
-        champChampLibre : React.createRef()
+        champChampLibre : React.createRef(),
+
+        // { ****  Ref feuille 5 **** } //
+        champDocumentDeSupport : React.createRef(),
     }
 }

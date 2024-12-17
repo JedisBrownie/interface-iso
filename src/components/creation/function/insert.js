@@ -80,7 +80,7 @@ export function insertBrouillonProcessus(typeId, reference) {
         });
 
         const user = JSON.parse(localStorage.getItem("user"));
-        console.log(user.user_matricule);
+        // console.log(user.user_matricule);
         
         const requestData = new URLSearchParams();
         requestData.append('titre', titre);
@@ -88,8 +88,15 @@ export function insertBrouillonProcessus(typeId, reference) {
         requestData.append('date_mise_application', miseEnApplication);
         requestData.append('confidentiel', confidentiel.toString());
         requestData.append('user_matricule', user.user_matricule);
+        requestData.append('data', JSON.stringify(data));
 
-        axios.post('http://10.192.193.81:8080/document/add-draft', requestData);
+        console.log(requestData);
+
+        axios.post('http://10.192.193.81:8080/document/add-draft', requestData, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
     })
     .catch((error) => {
         console.error("Error:", error);

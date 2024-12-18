@@ -112,7 +112,7 @@ export default class Navigateur extends React.Component{
                         <div className='list-paper' style={{marginTop:'7em'}}>
                             <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
                             <Champ type={type} titre={titre} references={references} edition={edition}></Champ>
-                            <Support type={type} titre={titre} edition={edition}></Support>    
+                            <Support type={type} titre={titre} references={references} edition={edition}></Support>    
                         </div>
 
                         <Util stateBrouillon={stateBrouillon} stateValidation={stateValidation} stateQuitter = {stateQuitter} handleQuitter = {() => this._handleCloseQuitter()}></Util>
@@ -124,7 +124,7 @@ export default class Navigateur extends React.Component{
                         <div className='list-paper' style={{marginTop:'1em'}}>
                             <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>
                             <Champ type={type} titre={titre} references={references} edition={edition}></Champ>
-                            <Support type={type} titre={titre} edition={edition}></Support>
+                            <Support type={type} titre={titre} references={references} edition={edition}></Support>
             
                         </div>
                     </div>

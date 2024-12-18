@@ -80,21 +80,29 @@ export function insertBrouillonProcessus(typeId, reference) {
         });
 
         const user = JSON.parse(localStorage.getItem("user"));
+        const uploadedFiles = JSON.parse(localStorage.getItem("uploaded_files")); 
         // console.log(user.user_matricule);
         
-        const requestData = new URLSearchParams();
-        requestData.append('titre', titre);
-        requestData.append('type', typeDocument.toString());
-        requestData.append('date_mise_application', miseEnApplication);
-        requestData.append('confidentiel', confidentiel.toString());
-        requestData.append('user_matricule', user.user_matricule);
-        requestData.append('data', JSON.stringify(data));
+        const formData = new FormData();
+        formData.append('titre', titre);
+        formData.append('type', typeDocument.toString());
+        formData.append('date_mise_application', miseEnApplication);
+        formData.append('confidentiel', confidentiel.toString());
+        formData.append('user_matricule', user.user_matricule);
+        formData.append('data', JSON.stringify(data));
 
-        console.log(requestData);
+        uploadedFiles.forEach(file => {
+            const fileBlob = fetch(file.fileURL)
+                .then(response => response.blob())
+                .catch(err => console.error("File fetch failed", err));
+            formData.append('files', new File([fileBlob], file.fileName));
+        });
 
-        axios.post('http://10.192.193.81:8080/document/add-draft', requestData, {
+        console.log(formData);
+
+        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'multipart/form-data'
             }
         });
     })

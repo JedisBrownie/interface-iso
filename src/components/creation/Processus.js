@@ -10,7 +10,7 @@ import Util from '../shared/Util';
 import React from 'react';
 import './css/document.css';
 import { createReferenceProcessus } from './function/reference/referenceProcessus';
-import { insertBrouillonProcessus } from './function/insert';
+import { insertBrouillonProcessus, insertProcessus } from './function/insert';
 
 
 
@@ -67,18 +67,23 @@ export default class Processus extends React.Component{
     }
 
     
-    _validerRedaction = () => {
+    _validerRedaction = (typeId) => {
+        if (!this.state.isBrouillonSaved) {
+            insertProcessus(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
-        // insertProcessus(this.state.references)
-
-        this.setState({stateValidation: true});
-        this.setState({isRedactionValider : true});
-
-        setTimeout(() => {
-            this.setState({stateValidation : false});
-        }, 2000);
-
-        this._backHome(2200);
+            this.setState({stateBrouillon:true});
+            this.setState({isBrouillonSaved : true});
+            
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        } else {
+            this.setState({stateBrouillon:true});
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        }   
     }
 
 
@@ -115,7 +120,7 @@ export default class Processus extends React.Component{
             <>
                 {edition ? (
                     <>
-                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon(typeId)} handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon(typeId)} handleValiderRedaction = {() => this._validerRedaction(typeId)} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
                         <div className='list-paper' style={{marginTop:'7em',backgroundColor:''}}>
     
                             <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>

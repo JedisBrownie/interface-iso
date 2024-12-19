@@ -297,7 +297,7 @@ export default function Base(props){
 
                                 <div className='diffusion-row'>
                                     <div className='champ' style={{minHeight:'6em'}}>Adresse email externe</div>
-                                    {/* <UserModal reference={references.choixDiffusionEmail} edition={edition}></UserModal> */}
+                                    <UserModal reference={references.choixDiffusionEmail} edition={edition}></UserModal>
                                     <div className='valeur-champ' ref={references.choixDiffusionEmailExterne}></div>
                                 </div>
 

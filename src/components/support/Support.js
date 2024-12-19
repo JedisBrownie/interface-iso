@@ -11,7 +11,12 @@ export default function Support(props){
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const handleRemoveFile = (indexToRemove) => {
-        setUploadedFiles((prevFiles) => prevFiles.filter((_, index) => index !== indexToRemove));
+        setUploadedFiles((prevFiles) => {
+            const updatedFiles = prevFiles.filter((_, index) => index !== indexToRemove);
+            localStorage.setItem('uploaded_files', JSON.stringify(updatedFiles));
+            
+            return updatedFiles;
+        });
     };
 
 

@@ -21,11 +21,9 @@ const style = {
 const dataActivite = [
     {id:'1',nom:"Ciment"},
     {id:'2',nom:"Pouzzolane"},
-    {id:'3',nom:"Granulat"},
-    {id:'4',nom:"Béton"},
-    {id:'5',nom:"Précontraint"},
-    {id:'6',nom:"Support"},
-    {id:'7',nom:"Toutes activités"}
+    {id:'3',nom:"Béton"},
+    {id:'4',nom:"Support"},
+    {id:'5',nom:"Toutes activités"}
 ];
 
 const dataSite = [

@@ -3,7 +3,7 @@ import './css/document.css';
 import { useRef , useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import { createReferenceEnregistrement } from './function/reference/referenceEnregistrement';
-import { insertBrouillonNavigateur, insertEnregistrement, insertNavigateur } from './function/insert';
+import { insertBrouillonNavigateur, insertDocumentEnregistrement, insertDocumentNavigateur } from './function/insert';
 import Alert from '@mui/material/Alert';
 import Util from '../shared/Util';
 import { useNavigate } from 'react-router-dom';
@@ -60,7 +60,7 @@ export default class Navigateur extends React.Component{
 
     _validerRedaction = () =>{
 
-        insertNavigateur(this.state.references);
+        insertDocumentNavigateur(this.state.references);
 
         this.setState({stateValidation: true});
         this.setState({isRedactionValider : true});

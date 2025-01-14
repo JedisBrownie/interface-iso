@@ -3,7 +3,7 @@ import './css/document.css';
 import { useRef , useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import { createReferenceEnregistrement } from './function/reference/referenceEnregistrement';
-import { insertBrouillonEnregistrement, insertBrouillonFiche, insertEnregistrement } from './function/insert';
+import { insertBrouillonEnregistrement, insertBrouillonFiche, insertDocumentEnregistrement } from './function/insert';
 import Alert from '@mui/material/Alert';
 import Util from '../shared/Util';
 import { useNavigate } from 'react-router-dom';
@@ -60,7 +60,7 @@ export default class Enregistrement extends React.Component{
 
     _validerRedaction = () =>{
 
-        insertEnregistrement(this.state.references);
+        insertDocumentEnregistrement(this.state.references);
 
         this.setState({stateValidation: true});
         this.setState({isRedactionValider : true});

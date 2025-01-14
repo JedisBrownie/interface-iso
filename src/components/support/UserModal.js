@@ -29,6 +29,8 @@ export default function UserModal(props) {
     const [selectedValues, setSelectedValues] = useState([]);
     const [open, setOpen] = React.useState(false);
     const [users, setUsers] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 7;
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -91,14 +93,29 @@ export default function UserModal(props) {
         }
     }, [redacteur, user]);
 
-    return(
+
+    // UserModal Pagination
+    const totalPages = Math.ceil(filteredData.length / usersPerPage);
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = filteredData.slice(indexOfFirstUser, indexOfLastUser);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(prevPage => prevPage + 1);
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) setCurrentPage(prevPage => prevPage - 1);
+    };
+
+    return (
         <>
             <div className='valeur-champ'>
-                <span className='span-value' ref={reference}>{selectedValues.join(', ')}</span> 
-                {edition ? (
-                    <span className='span-arrow iso' onClick={handleOpen}><KeyboardArrowDownIcon fontSize='small'  style={{fontWeight:900}}/></span>
-                ):(
-                    <></>
+                <span className='span-value' ref={reference}>{selectedValues.join(', ')}</span>
+                {edition && (
+                    <span className='span-arrow iso' onClick={handleOpen}>
+                        <KeyboardArrowDownIcon fontSize='small' style={{ fontWeight: 900 }} />
+                    </span>
                 )}
             </div>
 
@@ -106,34 +123,53 @@ export default function UserModal(props) {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description" >
+                aria-describedby="modal-modal-description">
                 <Box sx={style}>
-                        <div>
-                            
-                            <form style={{fontSize:'13px',marginTop:'5px'}} >
-
-                                {filteredData.map((item,index) => (
-                                    <div className='choice_checkbox' key={index} ref={refCheckBox} style={{display:'flex'}}>
-                                        <input type='checkbox' name="value[]" value={`${item.prenom} ${item.nom}`} id={item.matricule} checked={selectedValues.includes(`${item.prenom} ${item.nom}`)} onChange={handleCheckboxChange}/>
-                                        <label htmlFor={item.matricule} style={{marginLeft:'15px'}}>
-                                            <div className="list-choice-user">
-                                                <span className="list-choice-user-name">{item.prenom} {item.nom} </span>
-                                                <span className="list-choice-user-place">{item.lieu}</span>
-                                                <span className="list-choice-user-poste">{item.fonction_poste}</span>
-                                                <span className="list-choice-user-service">{item.service}</span>
-                                            </div>
-                                        </label>
-                                    </div>
-                                ))}
-
-                                <div className='choice_button' style={{marginTop:'15px',display:'flex',justifyContent:'end'}}>
-                                    <Button onClick={handleClose} size='small' variant="contained" style={{boxShadow:'none'}}><span style={{textTransform:'none',fontSize:'12px',fontFamily:'Lato',padding:'2px 14px 2px 14px'}}>Valider</span></Button>
+                    <div>
+                        <form style={{ fontSize: '13px', marginTop: '5px' }}>
+                            {currentUsers.map((item, index) => (
+                                <div className='choice_checkbox' key={index} ref={refCheckBox} style={{ display: 'flex' }}>
+                                    <input
+                                        type='checkbox'
+                                        name="value[]"
+                                        value={`${item.prenom} ${item.nom}`}
+                                        id={item.matricule}
+                                        checked={selectedValues.includes(`${item.prenom} ${item.nom}`)}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    <label htmlFor={item.matricule} style={{ marginLeft: '15px' }}>
+                                        <div className="list-choice-user">
+                                            <span className="list-choice-user-name">{item.prenom} {item.nom}</span>
+                                            <span className="list-choice-user-service"><b>{item.service}</b></span>
+                                        </div>
+                                    </label>
                                 </div>
-                                
-                            </form>
-                        </div>
+                            ))}
+                            <div className='pagination-controls' style={{ marginTop: '15px', display: 'flex', gap: "26%" }}>
+                                <Button
+                                    disabled={currentPage === 1}
+                                    onClick={handlePreviousPage}
+                                    size='small'
+                                    variant="outlined">
+                                    Précedent
+                                </Button>
+                                <span>Page {currentPage} sur {totalPages}</span>
+                                <Button
+                                    disabled={currentPage === totalPages}
+                                    onClick={handleNextPage}
+                                    size='small'
+                                    variant="outlined">
+                                    Suivant
+                                </Button>
+                            </div>
+                            <div className='choice_button' style={{ marginTop: '15px', display: 'flex', justifyContent: 'center' }}>
+                                <Button onClick={handleClose} size='small' variant="contained" style={{ boxShadow: 'none' }}>
+                                    <span style={{ textTransform: 'none', fontSize: '12px', fontFamily: 'Lato', padding: '2px 14px 2px 14px' }}>Valider</span>
+                                </Button>
+                            </div>
+                        </form>
+                    </div>
                 </Box>
-            
             </Modal>
         </>
     );

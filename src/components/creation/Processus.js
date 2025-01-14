@@ -10,7 +10,7 @@ import Util from '../shared/Util';
 import React from 'react';
 import './css/document.css';
 import { createReferenceProcessus } from './function/reference/referenceProcessus';
-import { insertBrouillonProcessus, insertProcessus } from './function/insert';
+import { insertBrouillonProcessus, insertDocumentProcessus } from './function/insert';
 
 
 
@@ -46,7 +46,6 @@ export default class Processus extends React.Component{
         } , timeout);
     }
 
-
     _saveBrouillon = (typeId) => {
         if (!this.state.isBrouillonSaved) {
             insertBrouillonProcessus(typeId, this.state.references);
@@ -65,11 +64,10 @@ export default class Processus extends React.Component{
             }, 2000);
         }    
     }
-
     
     _validerRedaction = (typeId) => {
         if (!this.state.isBrouillonSaved) {
-            insertProcessus(typeId, this.state.references);
+            insertDocumentProcessus(typeId, this.state.references);
             // localStorage.removeItem("uploaded_files");
 
             this.setState({stateBrouillon:true});
@@ -86,7 +84,6 @@ export default class Processus extends React.Component{
         }   
     }
 
-
     _quitterEdition = () => {
         if(!this.state.isBrouillonSaved) {
             this.setState({stateQuitter : true});
@@ -99,11 +96,9 @@ export default class Processus extends React.Component{
         }
     }
 
-
     _handleCloseQuitter = () =>{
         this._backHome(1000);
     }
-
 
     _changeTitle = (e) => {
         const newTitle = e.target.innerHTML;

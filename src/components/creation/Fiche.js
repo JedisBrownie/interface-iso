@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import './css/document.css';
 import { useRef } from 'react';
 import { createReferenceFiche } from './function/reference/referenceFiche';
-import { insertBrouillonFiche, insertFiche } from './function/insert';
+import { insertBrouillonFiche, insertDocumentFiche } from './function/insert';
 import Util from '../shared/Util';
 
 

@@ -1,7 +1,7 @@
 import React, { lazy , Suspense} from 'react';
 import './css/document.css';
 import { createReferenceSousProcessus } from './function/reference/referenceSousProcessus';
-import { insertBrouillonSousProcessus } from './function/insert';
+import { insertBrouillonSousProcessus, insertDocumentSousProcessus } from './function/insert';
 import Util from '../shared/Util';
 
 const Base = lazy(() => import('../support/Base')); 
@@ -11,7 +11,9 @@ const Toolbar = lazy(() => import('../toolbar/Toolbar'));
  
 
 export default class SousProcessus extends React.Component{
-
+    /**
+     * Constructor
+     */
     constructor(props,context){
         super(props,context);
         this.state = {
@@ -27,46 +29,52 @@ export default class SousProcessus extends React.Component{
         }
     }
 
+
+    /**
+     * Methods
+     */
     _backHome = (timeout) =>{
         setTimeout(() => {
             window.location.assign("/home");
         } , timeout);
     }
 
-    _saveBrouillon = (e) =>{
-        if(!this.state.isBrouillonSaved){
-
-            // insertBrouillonSousProcessus(this.state.references);
+    _saveBrouillon = (typeId) => {
+        if (!this.state.isBrouillonSaved) {
+            insertBrouillonSousProcessus(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
             
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
-
-        }else{
-
+        } else {
             this.setState({stateBrouillon:true});
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
         }    
     }
-
     
-    _validerRedaction = () =>{
+    _validerRedaction = (typeId) => {
+        if (!this.state.isBrouillonSaved) {
+            insertDocumentSousProcessus(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
-        // insertSousProcessus(this.state.references)
-
-        this.setState({stateValidation: true});
-        this.setState({isRedactionValider : true});
-
-        setTimeout(() => {
-            this.setState({ stateValidation : false });
-        }, 2000);
-
-        this._backHome(2200);
+            this.setState({stateBrouillon:true});
+            this.setState({isBrouillonSaved : true});
+            
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        } else {
+            this.setState({stateBrouillon:true});
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        }   
     }
 
     _quitterEdition = () =>{
@@ -93,14 +101,14 @@ export default class SousProcessus extends React.Component{
 
 
     render(){
-        const {edition,valeurChamp} = this.props;
+        const {edition,valeurChamp, typeId} = this.props;
         const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;
 
         return(
             <Suspense fallback={<div></div>}>
                 {edition ? (
                     <>
-                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()}  handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon(typeId)}  handleValiderRedaction = {() => this._validerRedaction(typeId)} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
                         
                         <div className="list-paper" style={{marginTop:'7em'}}>
                             <Base type={type}  references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>

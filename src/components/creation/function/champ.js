@@ -148,7 +148,7 @@ export async function getFormDataProcessus(typeId, references){
 /**
  * Sous Processus Data Fetching
  */
-export function getFormDataSousProcessus(references){
+export async function getFormDataSousProcessus(references){
 
     const dateMiseApplication = references.champMiseApplication.current.value;
         const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
@@ -187,6 +187,13 @@ export function getFormDataSousProcessus(references){
         const quiFaitQuoiDescription = references.champFaitQuoiDescription.current.innerHTML;
         const lienMoyenDescription = references.champLienMoyenDescription.current.innerHTML;
 
+        const getUploadedFilesFromLocalStorage = () => {
+            const uploadedFiles = JSON.parse(localStorage.getItem('uploaded_files')) || [];
+            return uploadedFiles;
+        };
+
+        const fileBlobArray = await getUploadedFilesFromLocalStorage();
+
         const formData = [
             {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication},
             {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel},
@@ -215,7 +222,8 @@ export function getFormDataSousProcessus(references){
             {reference : 'champQuiRealise' , champ : 'quiRealise' , valeur :  quiRealise},
             {reference : 'champQuiDecide' , champ : 'quiDecide' , valeur :  quiDecide},
             {reference : 'champFaitQuoiDescription' , champ : 'quiFaitQuoi' , valeur :  quiFaitQuoiDescription},
-            {reference : 'champLienMoyenDescription' , champ : 'lienMoyen' , valeur :  lienMoyenDescription}
+            {reference : 'champLienMoyenDescription' , champ : 'lienMoyen' , valeur :  lienMoyenDescription},
+            {reference : 'champDocumentDeSupport' , champ : 'documentDeSupport' , valeur : null, tableau_valeur: fileBlobArray},
         ];
 
     return formData;

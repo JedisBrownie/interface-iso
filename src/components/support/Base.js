@@ -105,7 +105,8 @@ export default function Base(props){
                                         {type === 'Enregistrement' || type === 'Navigateur' ? (
                                             <>
                                                 <div className='champ'></div>
-                                                <div className='valeur-champ' ref={references.champMiseApplication}></div>
+                                                {/* <div className='valeur-champ' ref={references.champMiseApplication}></div> */}
+                                                <div className='valeur-champ'><input type='date' ref={references.champMiseApplication} /></div>
                                             </>
                                         ) : (
                                             <>
@@ -268,7 +269,7 @@ export default function Base(props){
                 {/* fin section 6 processus appel*/}
                 
                 {/* debut intersection pour Rédacteur */}
-                { type === 'Enregistrement' || type === 'Navigateur' ?(
+                { type === 'Enregistrement' || type === 'Navigateur' ? (
                     <div className='redacteur-row' contentEditable='false'>
                         <div className='champ'>Rédacteur</div>
                         <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixRedacteur} suppressContentEditableWarning={true} contentEditable={edition}></div>
@@ -287,9 +288,9 @@ export default function Base(props){
                         
                         {type === 'Enregistrement' || type === 'Navigateur' ?(
                             <>
-                                {isConfidentiel && 
+                                {/* {isConfidentiel && 
                                     renderLecteurComponent('6em')
-                                }
+                                } */}
                                 <div className='diffusion-row'>
                                     <div className='champ' style={{minHeight:'6em'}}>Par email</div>
                                     <UserModal reference={references.choixDiffusionEmail} edition={edition} comiteDirection={false} ></UserModal>
@@ -297,14 +298,14 @@ export default function Base(props){
 
                                 <div className='diffusion-row'>
                                     <div className='champ' style={{minHeight:'6em'}}>Adresse email externe</div>
-                                    <UserModal reference={references.choixDiffusionEmail} edition={edition}></UserModal>
-                                    <div className='valeur-champ' ref={references.choixDiffusionEmailExterne}></div>
+                                    <UserModal reference={references.choixDiffusionEmailExterne} edition={edition}></UserModal>
+                                    {/* <div className='valeur-champ' role="textbox" contentEditable={edition} ref={references.choixDiffusionEmailExterne} ></div> */}
                                 </div>
 
                                 <div className='diffusion-row'>
                                     <div className='champ'style={{minHeight:'5em'}}>Par papier</div>
-                                    <UserModal reference={references.choixDiffusionPapier} edition={edition} comiteDirection={false} ></UserModal>
-
+                                    <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixDiffusionPapier} contentEditable={edition}></div>
+                                    {/* <UserModal reference={references.choixDiffusionPapier} edition={edition} comiteDirection={false} ></UserModal> */}
                                     {/* <div className='valeur-champ' ref={references.choixDiffusionPapier}></div> */}
                                 </div>
                             </>
@@ -341,7 +342,7 @@ export default function Base(props){
 
                             <div className='workflow-row'>
                                 <div className='champ'>Rédacteur</div>
-                                <UserModal reference={references.choixRedacteur} edition={edition}   comiteDirection={false}  redacteur={true} edit={"Aina Razafindrakoto"}></UserModal>
+                                <UserModal reference={references.choixRedacteur} edition={edition} comiteDirection={false} redacteur={true} edit={"Aina Razafindrakoto"}></UserModal>
                                 <div className='valeur-champ' style={{color:'rgb(15, 150, 15)',fontWeight:'800'}} ref={references.statutRedacteur}></div>
                             </div>
 

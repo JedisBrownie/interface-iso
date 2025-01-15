@@ -1,12 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import './css/document.css';
-import { useRef , useState } from 'react';
-import Snackbar from '@mui/material/Snackbar';
 import { createReferenceEnregistrement } from './function/reference/referenceEnregistrement';
-import { insertBrouillonEnregistrement, insertBrouillonFiche, insertDocumentEnregistrement } from './function/insert';
-import Alert from '@mui/material/Alert';
+import { insertBrouillonEnregistrement, insertDocumentEnregistrement } from './function/insert';
 import Util from '../shared/Util';
-import { useNavigate } from 'react-router-dom';
 
 const Base = lazy(() => import('../support/Base'));
 const Champ = lazy(() => import('../support/Champ'));
@@ -37,24 +33,23 @@ export default class Enregistrement extends React.Component{
     }
 
 
-    _saveBrouillon = () => {
-        if(!this.state.isBrouillonSaved){
-            insertBrouillonEnregistrement(this.state.references);
+    _saveBrouillon = (typeId) => {
+        if (!this.state.isBrouillonSaved) {
+            insertBrouillonEnregistrement(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
             
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
-
-        }else{
-
+        } else {
             this.setState({stateBrouillon:true});
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
-        }
+        }    
     }
 
 
@@ -101,13 +96,13 @@ export default class Enregistrement extends React.Component{
     render(){
         const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;
                 
-        const {edition , valeurChamp} = this.props;
+        const {edition , valeurChamp, typeId} = this.props;
 
         return(
             <Suspense fallback={<div></div>}>
                 {edition ? (
                     <>
-                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()} handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon(typeId)} handleValiderRedaction = {() => this._validerRedaction(typeId)} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
 
                         <div className='list-paper' style={{marginTop:'7em'}}>
                             <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>

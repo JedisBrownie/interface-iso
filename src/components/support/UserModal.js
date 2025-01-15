@@ -86,7 +86,7 @@ export default function UserModal(props) {
 
     useEffect(() => {
         if (edition && redacteur && user) {
-            const userName = `${user.user_first_name} ${user.user_last_name}`;
+            const userName = `${user.user_first_name}-${user.user_last_name}`;
             setSelectedValues((prevValues) => (
                 prevValues.includes(userName) ? prevValues : [...prevValues, userName]
             ));
@@ -132,9 +132,9 @@ export default function UserModal(props) {
                                     <input
                                         type='checkbox'
                                         name="value[]"
-                                        value={`${item.prenom} ${item.nom}`}
+                                        value={`${item.prenom}-${item.nom}`}
                                         id={item.matricule}
-                                        checked={selectedValues.includes(`${item.prenom} ${item.nom}`)}
+                                        checked={selectedValues.includes(`${item.prenom}-${item.nom}`)}
                                         onChange={handleCheckboxChange}
                                     />
                                     <label htmlFor={item.matricule} style={{ marginLeft: '15px' }}>

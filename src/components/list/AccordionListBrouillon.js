@@ -4,63 +4,80 @@ import {
     AccordionContent,
     Accordion,
     Icon
-  } from 'semantic-ui-react';
-  import ListContentType from './ListContentType';
-  import './css/list.css';
+} from 'semantic-ui-react';
 import ListContentBrouillon from "./ListContentBrouillon";
-  
+import './css/list.css';
 
-export default class AccordionListBrouillon extends Component{
+export default class AccordionListBrouillon extends Component {
     state = { 
-        activeIndex: 0,
-        allExpanded: false,
-      };
-    
-      expandAll = () =>{
-        this.setState({ allExpanded: true });
-      }
-    
-      collapseAll = () =>{
-        this.setState({ allExpanded: false });
-      }
-    
-      handleClick = (e, titleProps) => {
-        const { index } = titleProps
-        const { activeIndex , allExpanded } = this.state
-    
-        let newIndex;
-        if (allExpanded) {
-          newIndex = activeIndex === index ? -1 : index;
-        } else {
-          newIndex = index;
-        }
+        activeIndices: [], // Array to track active indices
+        allExpanded: false, // Tracks whether all items are expanded
+    };
 
-        if(activeIndex === newIndex){
-          newIndex = '';
-        }
-        // const newIndex = activeIndex === index ? -1 : index
-        this.setState({ activeIndex: newIndex })
-    }
+    expandAll = () => {
+        const allIndices = this.props.data.map((_, index) => index); // Create an array of all indices
+        this.setState({ activeIndices: allIndices, allExpanded: true });
+    };
+
+    collapseAll = () => {
+        this.setState({ activeIndices: [], allExpanded: false }); // Clear the active indices
+    };
+
+    handleClick = (e, titleProps) => {
+        const { index } = titleProps;
+        const { activeIndices } = this.state;
+
+        const isActive = activeIndices.includes(index);
+        const newActiveIndices = isActive
+            ? activeIndices.filter(i => i !== index) // Remove index if already active
+            : [...activeIndices, index]; // Add index if not active
+
+        this.setState({ activeIndices: newActiveIndices });
+    };
 
     render() {
-        const { activeIndex , allExpanded } = this.state
+        const { activeIndices, allExpanded } = this.state;
         const { data } = this.props;
-      
+
         return (
-          <Accordion>
-            {data.map((item,index) =>(
-              <div key={item.idMatricule}>
-                <AccordionTitle active={activeIndex === index} index={index} onClick={this.handleClick} className='accordion-section'>
-                  <section style={{fontWeight:'bold',fontSize:'1.1em',paddingTop:'0em'}} className='accordion-title-brouillon'><Icon name='dropdown' />{item.nom} </section>
-                </AccordionTitle>
-    
-                <AccordionContent  style={{marginTop:'1.5em',marginBottom:'2em'}} active={activeIndex === index} className="accordion content">
+          <div>
+            <div style={{ marginBottom: '1em' }}>
+              {/* Buttons to expand/collapse all */}
+              <button onClick={this.expandAll} disabled={allExpanded}>
+                Tout développer
+              </button>
+              <button onClick={this.collapseAll} disabled={!allExpanded}>
+                Tout réduire
+              </button>
+            </div>
+            <Accordion fluid>
+              {data.map((item, index) => (
+                <div key={item.idMatricule}>
+                  <AccordionTitle
+                    active={activeIndices.includes(index)}
+                    index={index}
+                    onClick={this.handleClick}
+                    className="accordion-section"
+                  >
+                    <section
+                      style={{ fontWeight: 'bold', fontSize: '1.1em', paddingTop: '0em' }}
+                      className="accordion-title-brouillon"
+                    >
+                      <Icon name="dropdown" />
+                      {item.nom}
+                    </section>
+                  </AccordionTitle>
+                  <AccordionContent
+                    style={{ marginTop: '1.5em', marginBottom: '2em' }}
+                    active={activeIndices.includes(index)}
+                    className="accordion content"
+                  >
                     <ListContentBrouillon dataList={item.listeDocument}></ListContentBrouillon>
-                </AccordionContent>
-              </div>
-            ))}
-          </Accordion>
-        )
+                  </AccordionContent>
+                </div>
+              ))}
+            </Accordion>
+          </div>
+        );
     }
-    
 }

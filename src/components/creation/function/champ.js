@@ -243,6 +243,7 @@ export async function getFormDataEnregistrement(typeId, references){
 
         const type = typeId;
         const titre = references.champTitre.current.textContent;
+        const dateMiseApplication = references.champMiseApplication.current.value;
         const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
             ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
 
@@ -271,12 +272,19 @@ export async function getFormDataEnregistrement(typeId, references){
         //     console.log("pas de lecteur");
         // }
         
-
         const champLibre = references.champChampLibre.current.innerHTML;
+
+        const getUploadedFilesFromLocalStorage = () => {
+            const uploadedFiles = JSON.parse(localStorage.getItem('uploaded_files')) || [];
+            return uploadedFiles;
+        };
+    
+        const fileBlobArray = await getUploadedFilesFromLocalStorage();
 
         const formData = [
             {reference : 'typeDocument' , champ : 'type' , valeur : type, tableau_valeur: null},
             {reference : 'champTitre' , champ : 'titre' , valeur : titre, tableau_valeur: null},
+            {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication, tableau_valeur: null},
             {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel, tableau_valeur: null},
             {reference : 'choixIso9001' , champ : 'iso9001' , valeur : iso9001, tableau_valeur: splitSection2(iso9001)},
             {reference : 'choixIso14001' , champ : 'iso14001' , valeur : iso14001, tableau_valeur: splitSection2(iso14001)},
@@ -289,8 +297,9 @@ export async function getFormDataEnregistrement(typeId, references){
             {reference : 'choixDiffusionEmail' , champ : 'diffusionEmail' , valeur : diffusionEmail, tableau_valeur: splitUser(diffusionEmail)},
             {reference : 'choixDiffusionEmailExterne' , champ : 'diffusionEmailExterne' , valeur : diffusionEmailExterne, tableau_valeur: null},
             {reference : 'choixDiffusionPapier' , champ : 'diffusionPapier' , valeur : diffusionPapier, tableau_valeur: null},
-            {reference : 'choixRedacteur' , champ : 'redacteur' , valeur : redacteur, tableau_valeur: null},
-            {reference : 'champChampLibre' , champ : 'champLibre' , valeur : champLibre, tableau_valeur: null}
+            {reference : 'choixRedacteur' , champ : 'redacteur' , valeur : redacteur, tableau_valeur: splitUser(redacteur)},
+            {reference : 'champChampLibre' , champ : 'champLibre' , valeur : champLibre, tableau_valeur: null},
+            {reference : 'champDocumentDeSupport' , champ : 'documentDeSupport' , valeur : null, tableau_valeur: fileBlobArray},
         ];
 
     return formData;
@@ -302,68 +311,76 @@ export async function getFormDataEnregistrement(typeId, references){
 /**
  * Fiche Data Fetching
  */
-export async function getFormDataFiche(references){
+export async function getFormDataFiche(typeId, references){
     
+    const type = typeId;
+    const titre = references.champTitre.current.textContent;
     const dateMiseApplication = references.champMiseApplication.current.value;
-        const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
-            ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
-        const iso9001 = references.choixIso9001.current.textContent;
-        const iso14001 = references.choixIso14001.current.textContent;
-        const securite = references.choixSecurite.current.textContent;
-        const siteIso9001 = references.choixSiteIso9001.current.textContent;
-        const siteIso14001 = references.choixSiteIso14001.current.textContent; 
-        const siteSecurite = references.choixSiteSecurite.current.textContent;
-        
-        const processusGlobal = references.choixProcessusGlobal.current.textContent;
-        const processusLie = references.choixProcessusLie.current.textContent;
-        
-        const finalite = references.champFinalite.current.innerHTML;
-        const domaineApplication = references.champDomaineApplication.current.innerHTML;
-        const conditionContrainte = references.champConditionContrainte.current.innerHTML;
+    const confidentiel = references.champConfidentiel.current.querySelector('input[type="radio"]:checked') 
+        ? references.champConfidentiel.current.querySelector('input[type="radio"]:checked').value : '';
+    const iso9001 = references.choixIso9001.current.textContent;
+    const iso14001 = references.choixIso14001.current.textContent;
+    const securite = references.choixSecurite.current.textContent;
+    const siteIso9001 = references.choixSiteIso9001.current.textContent;
+    const siteIso14001 = references.choixSiteIso14001.current.textContent; 
+    const siteSecurite = references.choixSiteSecurite.current.textContent;
+    
+    const processusGlobal = references.choixProcessusGlobal.current.textContent;
+    const processusLie = references.choixProcessusLie.current.textContent;
+    
+    const finalite = references.champFinalite.current.innerHTML;
+    const domaineApplication = references.champDomaineApplication.current.innerHTML;
+    const conditionContrainte = references.champConditionContrainte.current.innerHTML;
 
-       
-        const diffusionEmail = references.choixDiffusionEmail.current.textContent;
-        const diffusionPapier = references.choixDiffusionPapier.current.textContent;
+    
+    const diffusionEmail = references.choixDiffusionEmail.current.textContent;
+    const diffusionPapier = references.choixDiffusionPapier.current.textContent;
 
-        const redacteur = references.choixRedacteur.current.textContent;
-        const verificateur = references.choixVerificateur.current.textContent;
-        const approbateur = references.choixApprobateur.current.textContent;
+    const redacteur = references.choixRedacteur.current.textContent;
+    const verificateur = references.choixVerificateur.current.textContent;
+    const approbateur = references.choixApprobateur.current.textContent;
 
-        var lecteur = '';
-        if(references.choixLecteur.current){
-            lecteur = references.choixLecteur.current.textContent ;
-        }else{
-            console.log("pas de lecteur");
-        }
-        const quiFaitQuoiDescription = references.champFaitQuoiCommentaire.current.innerHTML;
-        const lienMoyenDescription = references.champLienMoyenCommentaire.current.innerHTML;
+    // var lecteur = '';
+    // if(references.choixLecteur.current){
+    //     lecteur = references.choixLecteur.current.textContent ;
+    // }else{
+    //     console.log("pas de lecteur");
+    // }
+    const quiFaitQuoiDescription = references.champFaitQuoiCommentaire.current.innerHTML;
+    const lienMoyenDescription = references.champLienMoyenCommentaire.current.innerHTML;
 
-        const formData = [
-            {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication},
-            {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel},
-            {reference : 'choixIso9001' , champ : 'iso9001' , valeur : iso9001},
-            {reference : 'choixIso14001' , champ : 'iso14001' , valeur : iso14001},
-            {reference : 'choixSecurite' , champ : 'securite' , valeur : securite},
-            {reference : 'choixSiteIso9001' , champ : 'siteIso9001' , valeur : siteIso9001},
-            {reference : 'choixSiteIso14001' , champ : 'siteIso14001' , valeur : siteIso14001},
-            {reference : 'choixSiteSecurite' , champ : 'siteSecurite' , valeur : siteSecurite},
-            {reference : 'choixProcessusGlobal' , champ : 'processusGlobal' , valeur : processusGlobal},
-            {reference : 'choixProcessusLie' , champ : 'processusLie' , valeur : processusLie},
-            {reference : 'champFinalite' , champ : 'finalite' , valeur : finalite},
-            {reference : 'champDomaineApplication' , champ : 'domaineApplication' , valeur : domaineApplication},
-            {reference : 'champConditionContrainte' , champ : 'conditionContrainte' , valeur : conditionContrainte},
+    const getUploadedFilesFromLocalStorage = () => {
+        const uploadedFiles = JSON.parse(localStorage.getItem('uploaded_files')) || [];
+        return uploadedFiles;
+    };
 
-            {reference : 'choixDiffusionEmail' , champ : 'diffusionEmail' , valeur : diffusionEmail},
-            {reference : 'choixDiffusionPapier' , champ : 'diffusionPapier' , valeur : diffusionPapier},
-            
-            {reference : 'choixRedacteur' , champ : 'redacteur' , valeur : redacteur},
-            {reference : 'choixVerificateur' , champ : 'verificateur' , valeur : verificateur},
-            {reference : 'choixApprobateur' , champ : 'approbateur' , valeur : approbateur},
-            {reference : 'choixLecteur' , champ : 'lecteur' , valeur : lecteur },
+    const fileBlobArray = await getUploadedFilesFromLocalStorage();
 
-            {reference : 'champFaitQuoiDescription' , champ : 'quiFaitQuoi' , valeur :  quiFaitQuoiDescription},
-            {reference : 'champLienMoyenDescription' , champ : 'lienMoyen' , valeur :  lienMoyenDescription}
-        ];
+    const formData = [
+        {reference : 'typeDocument' , champ : 'type' , valeur : type, tableau_valeur: null},
+        {reference : 'champTitre' , champ : 'titre' , valeur : titre, tableau_valeur: null},
+        {reference : 'champMiseApplication' , champ : 'dateApplication' , valeur : dateMiseApplication, tableau_valeur: null},
+        {reference : 'champConfidentiel' , champ : 'confidentiel' , valeur : confidentiel, tableau_valeur: null},
+        {reference : 'choixIso9001' , champ : 'iso9001' , valeur : iso9001, tableau_valeur: splitSection2(iso9001)},
+        {reference : 'choixIso14001' , champ : 'iso14001' , valeur : iso14001, tableau_valeur: splitSection2(iso14001)},
+        {reference : 'choixSecurite' , champ : 'securite' , valeur : securite, tableau_valeur: splitSection2(securite)},
+        {reference : 'choixSiteIso9001' , champ : 'siteIso9001' , valeur : siteIso9001, tableau_valeur: splitSection2(siteIso9001)},
+        {reference : 'choixSiteIso14001' , champ : 'siteIso14001' , valeur : siteIso14001, tableau_valeur: splitSection2(siteIso14001)},
+        {reference : 'choixSiteSecurite' , champ : 'siteSecurite' , valeur : siteSecurite, tableau_valeur: splitSection2(siteSecurite)},
+        {reference : 'choixProcessusGlobal' , champ : 'processusGlobal' , valeur : processusGlobal, tableau_valeur: splitProcessus(processusGlobal)},
+        {reference : 'choixProcessusLie' , champ : 'processusLie' , valeur : processusLie, tableau_valeur: splitProcessus(processusLie)},
+        {reference : 'champFinalite' , champ : 'finalite' , valeur : finalite, tableau_valeur: null},
+        {reference : 'champDomaineApplication' , champ : 'domaineApplication' , valeur : domaineApplication, tableau_valeur: null},
+        {reference : 'champConditionContrainte' , champ : 'conditionContrainte' , valeur : conditionContrainte, tableau_valeur: null},
+        {reference : 'choixDiffusionEmail' , champ : 'diffusionEmail' , valeur : diffusionEmail, tableau_valeur: splitUser(diffusionEmail)},
+        {reference : 'choixDiffusionPapier' , champ : 'diffusionPapier' , valeur : diffusionPapier, tableau_valeur: null},
+        {reference : 'choixRedacteur' , champ : 'redacteur' , valeur : redacteur, tableau_valeur: splitUser(redacteur)},
+        {reference : 'choixVerificateur' , champ : 'verificateur' , valeur : verificateur, tableau_valeur: splitUser(verificateur)},
+        {reference : 'choixApprobateur' , champ : 'approbateur' , valeur : approbateur, tableau_valeur: splitUser(approbateur)},
+        {reference : 'champFaitQuoiDescription' , champ : 'quiFaitQuoi' , valeur :  quiFaitQuoiDescription, tableau_valeur: null},
+        {reference : 'champLienMoyenDescription' , champ : 'lienMoyen' , valeur :  lienMoyenDescription, tableau_valeur: null},
+        {reference : 'champDocumentDeSupport' , champ : 'documentDeSupport' , valeur : null, tableau_valeur: fileBlobArray},
+    ];
 
     return formData;
 }

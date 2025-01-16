@@ -146,9 +146,74 @@ export function insertDocumentSousProcessus(typeId, reference) {
 }
 
 
-export function insertDocumentFiche(reference) {
-    const data = getFormDataFiche(reference);
-    return data;
+export function insertDocumentFiche(typeId, reference) {
+    getFormDataFiche(typeId, reference)
+    .then((formData) => {
+        return formData;
+    })
+    .then((processedResult) => {
+        const data = processedResult;
+        console.log(data);
+
+        // let typeDocument = 0;
+        let titre = null;
+        let miseEnApplication = null;
+        let confidentiel = null;
+
+        data.forEach(element => {
+            // if (element.reference === "typeDocument") {
+            //     typeDocument = element.valeur;
+            // }
+            if (element.reference === "champTitre") {
+                titre = element.valeur;
+            }
+            if (element.reference === "champMiseApplication") {
+                miseEnApplication = element.valeur;
+            }
+            if (element.reference === "champConfidentiel") {
+                switch (element.valeur) {
+                    case 'Oui':
+                        confidentiel = true;
+                        break;
+                    case 'Non':
+                        confidentiel = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        const uploadedFiles = JSON.parse(localStorage.getItem("uploaded_files")); 
+        // console.log(user.user_matricule);
+        
+        const formData = new FormData();
+        formData.append('titre', titre);
+        formData.append('type', typeId.toString());
+        formData.append('date_mise_application', miseEnApplication);
+        formData.append('confidentiel', confidentiel.toString());
+        formData.append('user_matricule', user.user_matricule);
+        formData.append('data', JSON.stringify(data));
+
+        uploadedFiles.forEach(file => {
+            const fileBlob = fetch(file.fileURL)
+                .then(response => response.blob())
+                .catch(err => console.error("File fetch failed", err));
+            formData.append('files', new File([fileBlob], file.fileName));
+        });
+
+        console.log(formData);
+
+        axios.post('http://10.192.193.81:8080/document/add-redaction', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }
 
 
@@ -223,10 +288,74 @@ export function insertDocumentEnregistrement(typeId, reference) {
 }
 
 
-export function insertDocumentNavigateur(reference) {
-    const data = getFormDataEnregistrement(reference);
-    console.log(data);
-    return data;
+export function insertDocumentNavigateur(typeId, reference) {
+    getFormDataEnregistrement(typeId, reference)
+    .then((formData) => {
+        return formData;
+    })
+    .then((processedResult) => {
+        const data = processedResult;
+        console.log(data);
+
+        // let typeDocument = 0;
+        let titre = null;
+        let miseEnApplication = null;
+        let confidentiel = null;
+
+        data.forEach(element => {
+            // if (element.reference === "typeDocument") {
+            //     typeDocument = element.valeur;
+            // }
+            if (element.reference === "champTitre") {
+                titre = element.valeur;
+            }
+            if (element.reference === "champMiseApplication") {
+                miseEnApplication = element.valeur;
+            }
+            if (element.reference === "champConfidentiel") {
+                switch (element.valeur) {
+                    case 'Oui':
+                        confidentiel = true;
+                        break;
+                    case 'Non':
+                        confidentiel = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        const uploadedFiles = JSON.parse(localStorage.getItem("uploaded_files")); 
+        // console.log(user.user_matricule);
+        
+        const formData = new FormData();
+        formData.append('titre', titre);
+        formData.append('type', typeId.toString());
+        formData.append('date_mise_application', miseEnApplication);
+        formData.append('confidentiel', confidentiel.toString());
+        formData.append('user_matricule', user.user_matricule);
+        formData.append('data', JSON.stringify(data));
+
+        uploadedFiles.forEach(file => {
+            const fileBlob = fetch(file.fileURL)
+                .then(response => response.blob())
+                .catch(err => console.error("File fetch failed", err));
+            formData.append('files', new File([fileBlob], file.fileName));
+        });
+
+        console.log(formData);
+
+        axios.post('http://10.192.193.81:8080/document/add-redaction', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }
 
 
@@ -375,10 +504,74 @@ export function insertBrouillonSousProcessus(typeId, reference) {
 }
 
 
-export function insertBrouillonFiche(reference) {
-    const data = getFormDataFiche(reference);
-    console.log(data);
-    return data;
+export function insertBrouillonFiche(typeId, reference) {
+    getFormDataFiche(typeId, reference)
+    .then((formData) => {
+        return formData;
+    })
+    .then((processedResult) => {
+        const data = processedResult;
+        console.log(data);
+
+        // let typeDocument = 0;
+        let titre = null;
+        let miseEnApplication = null;
+        let confidentiel = null;
+
+        data.forEach(element => {
+            // if (element.reference === "typeDocument") {
+            //     typeDocument = element.valeur;
+            // }
+            if (element.reference === "champTitre") {
+                titre = element.valeur;
+            }
+            if (element.reference === "champMiseApplication") {
+                miseEnApplication = element.valeur;
+            }
+            if (element.reference === "champConfidentiel") {
+                switch (element.valeur) {
+                    case 'Oui':
+                        confidentiel = true;
+                        break;
+                    case 'Non':
+                        confidentiel = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        const uploadedFiles = JSON.parse(localStorage.getItem("uploaded_files")); 
+        // console.log(user.user_matricule);
+        
+        const formData = new FormData();
+        formData.append('titre', titre);
+        formData.append('type', typeId.toString());
+        formData.append('date_mise_application', miseEnApplication);
+        formData.append('confidentiel', confidentiel.toString());
+        formData.append('user_matricule', user.user_matricule);
+        formData.append('data', JSON.stringify(data));
+
+        uploadedFiles.forEach(file => {
+            const fileBlob = fetch(file.fileURL)
+                .then(response => response.blob())
+                .catch(err => console.error("File fetch failed", err));
+            formData.append('files', new File([fileBlob], file.fileName));
+        });
+
+        console.log(formData);
+
+        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }
 
 
@@ -453,8 +646,72 @@ export function insertBrouillonEnregistrement(typeId, reference) {
 }
 
 
-export function insertBrouillonNavigateur(reference) {
-    const data = getFormDataEnregistrement(reference);
-    console.log(data);
-    return data;
+export function insertBrouillonNavigateur(typeId, reference) {
+    getFormDataEnregistrement(typeId, reference)
+    .then((formData) => {
+        return formData;
+    })
+    .then((processedResult) => {
+        const data = processedResult;
+        console.log(data);
+
+        // let typeDocument = 0;
+        let titre = null;
+        let miseEnApplication = null;
+        let confidentiel = null;
+
+        data.forEach(element => {
+            // if (element.reference === "typeDocument") {
+            //     typeDocument = element.valeur;
+            // }
+            if (element.reference === "champTitre") {
+                titre = element.valeur;
+            }
+            if (element.reference === "champMiseApplication") {
+                miseEnApplication = element.valeur;
+            }
+            if (element.reference === "champConfidentiel") {
+                switch (element.valeur) {
+                    case 'Oui':
+                        confidentiel = true;
+                        break;
+                    case 'Non':
+                        confidentiel = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        const uploadedFiles = JSON.parse(localStorage.getItem("uploaded_files")); 
+        // console.log(user.user_matricule);
+        
+        const formData = new FormData();
+        formData.append('titre', titre);
+        formData.append('type', typeId.toString());
+        formData.append('date_mise_application', miseEnApplication);
+        formData.append('confidentiel', confidentiel.toString());
+        formData.append('user_matricule', user.user_matricule);
+        formData.append('data', JSON.stringify(data));
+
+        uploadedFiles.forEach(file => {
+            const fileBlob = fetch(file.fileURL)
+                .then(response => response.blob())
+                .catch(err => console.error("File fetch failed", err));
+            formData.append('files', new File([fileBlob], file.fileName));
+        });
+
+        console.log(formData);
+
+        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }

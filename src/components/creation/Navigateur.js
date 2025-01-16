@@ -37,39 +37,43 @@ export default class Navigateur extends React.Component{
     }
 
 
-    _saveBrouillon = () => {
-        if(!this.state.isBrouillonSaved){
-            insertBrouillonNavigateur(this.state.references);
+    _saveBrouillon = (typeId) => {
+        if (!this.state.isBrouillonSaved) {
+            insertBrouillonNavigateur(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
             this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
             
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
-
-        }else{
-
+        } else {
             this.setState({stateBrouillon:true});
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
         }
     }
 
 
-    _validerRedaction = () =>{
+    _validerRedaction = (typeId) =>{
+        if (!this.state.isBrouillonSaved) {
+            insertDocumentNavigateur(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
-        insertDocumentNavigateur(this.state.references);
-
-        this.setState({stateValidation: true});
-        this.setState({isRedactionValider : true});
-
-        setTimeout(() => {
-            this.setState({ stateValidation : false });
-        }, 2000);
-
-        this._backHome(2200);
+            this.setState({stateBrouillon:true});
+            this.setState({isBrouillonSaved : true});
+            
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        } else {
+            this.setState({stateBrouillon:true});
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        }
     }
 
 
@@ -101,13 +105,13 @@ export default class Navigateur extends React.Component{
     render(){
         const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;
                 
-        const {edition , valeurChamp} = this.props;
+        const {edition , valeurChamp, typeId} = this.props;
 
         return(
             <Suspense fallback={<div></div>}>
                 {edition ? (
                     <>
-                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()} handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                        <Toolbar handleSaveBrouillon = {() => this._saveBrouillon(typeId)} handleValiderRedaction = {() => this._validerRedaction(typeId)} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
 
                         <div className='list-paper' style={{marginTop:'7em'}}>
                             <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>

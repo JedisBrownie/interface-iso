@@ -1,8 +1,6 @@
 import Header from "../../components/header/Header";
 import AccordionListBrouillon from "../../components/list/AccordionListBrouillon";
-import AccordionListType from "../../components/list/AccordionListType";
-import ListContentBrouillon from "../../components/list/ListContentBrouillon";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Brouillon(){
     

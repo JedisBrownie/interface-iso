@@ -1,5 +1,4 @@
 import './css/base.css';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ValeurModal from './ValeurModal';
 import { useEffect, useState } from 'react';
 import ProcessusModal from './ProcessusModal';
@@ -106,7 +105,7 @@ export default function Base(props){
                                             <>
                                                 <div className='champ'></div>
                                                 {/* <div className='valeur-champ' ref={references.champMiseApplication}></div> */}
-                                                <div className='valeur-champ'><input type='date' ref={references.champMiseApplication} /></div>
+                                                <div className='valeur-champ'><input type='date' ref={references.champMiseApplication} hidden /></div>
                                             </>
                                         ) : (
                                             <>
@@ -272,7 +271,7 @@ export default function Base(props){
                 { type === 'Enregistrement' || type === 'Navigateur' ? (
                     <div className='redacteur-row' contentEditable='false'>
                         <div className='champ'>Rédacteur</div>
-                        <div className='div-content-editable valeur-champ' role="textbox" ref={references.choixRedacteur} suppressContentEditableWarning={true} contentEditable={edition}></div>
+                        <UserModal reference={references.choixRedacteur} edition={edition} comiteDirection={false} redacteur={true} edit={"Aina Razafindrakoto"}></UserModal>
                     </div>
                 ) : (
                     <></>

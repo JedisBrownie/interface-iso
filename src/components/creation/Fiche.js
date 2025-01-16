@@ -1,6 +1,5 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import './css/document.css';
-import { useRef } from 'react';
 import { createReferenceFiche } from './function/reference/referenceFiche';
 import { insertBrouillonFiche, insertDocumentFiche } from './function/insert';
 import Util from '../shared/Util';
@@ -34,20 +33,18 @@ export default class Fiche extends React.Component{
         } , timeout);
     }
 
-    _saveBrouillon = () =>{
-        if(!this.state.isBrouillonSaved){
+    _saveBrouillon = (typeId) => {
+        if (!this.state.isBrouillonSaved) {
+            insertBrouillonFiche(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
-            insertBrouillonFiche(this.state.references);
-
-            this.setState({stateBrouillon: true});
+            this.setState({stateBrouillon:true});
             this.setState({isBrouillonSaved : true});
             
             setTimeout(() => {
-                this.setState({ stateBrouillon: false });
+                this.setState({stateBrouillon: false});
             }, 2000);
-
-        }else{
-
+        } else {
             this.setState({stateBrouillon:true});
             setTimeout(() => {
                 this.setState({stateBrouillon: false});
@@ -56,19 +53,25 @@ export default class Fiche extends React.Component{
     }
 
     
-    _validerRedaction = () =>{
+    _validerRedaction = (typeId) =>{
+        if (!this.state.isBrouillonSaved) {
+            insertDocumentFiche(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
-        // insertFiche(this.state.references)
-
-        this.setState({stateValidation: true});
-        this.setState({isRedactionValider : true});
-
-        setTimeout(() => {
-            this.setState({ stateValidation : false });
-        }, 2000);
-
-        this._backHome(2200);
+            this.setState({stateBrouillon:true});
+            this.setState({isBrouillonSaved : true});
+            
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        } else {
+            this.setState({stateBrouillon:true});
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        }
     }
+
 
     _quitterEdition = () =>{
         if(!this.state.isBrouillonSaved){
@@ -92,7 +95,7 @@ export default class Fiche extends React.Component{
     }
 
     render(){
-        const {edition,valeurChamp} = this.props;
+        const {edition,valeurChamp, typeId} = this.props;
 
         const {type,references,titre, stateBrouillon , stateValidation , stateQuitter} = this.state;
         
@@ -102,7 +105,7 @@ export default class Fiche extends React.Component{
                 <>
                     {edition ? (
                         <>
-                            <Toolbar handleSaveBrouillon = {() => this._saveBrouillon()} handleValiderRedaction = {() => this._validerRedaction()} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
+                            <Toolbar handleSaveBrouillon = {() => this._saveBrouillon(typeId)} handleValiderRedaction = {() => this._validerRedaction(typeId)} handleQuitterEdition = {() => this._quitterEdition()}></Toolbar>
                             
                             <div className='list-paper' style={{marginTop:'7em'}}>  
                                 <Base type={type} references={references} edition={edition} valeurChamp={valeurChamp} changeTitle = {this._changeTitle}></Base>

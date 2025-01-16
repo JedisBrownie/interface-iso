@@ -53,18 +53,23 @@ export default class Enregistrement extends React.Component{
     }
 
 
-    _validerRedaction = () =>{
+    _validerRedaction = (typeId) =>{
+        if (!this.state.isBrouillonSaved) {
+            insertDocumentEnregistrement(typeId, this.state.references);
+            // localStorage.removeItem("uploaded_files");
 
-        insertDocumentEnregistrement(this.state.references);
-
-        this.setState({stateValidation: true});
-        this.setState({isRedactionValider : true});
-
-        setTimeout(() => {
-            this.setState({ stateValidation : false });
-        }, 2000);
-
-        this._backHome(2200);
+            this.setState({stateBrouillon:true});
+            this.setState({isBrouillonSaved : true});
+            
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        } else {
+            this.setState({stateBrouillon:true});
+            setTimeout(() => {
+                this.setState({stateBrouillon: false});
+            }, 2000);
+        }
     }
 
 

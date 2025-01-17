@@ -37,12 +37,13 @@ export default class AccordionListBrouillon extends Component {
 
     render() {
         const { activeIndices, allExpanded } = this.state;
-        const { data } = this.props;
+        const { section, data } = this.props;
 
         return (
           <div>
             <div style={{ marginBottom: '1em' }}>
               {/* Buttons to expand/collapse all */}
+              <h2>{section}</h2>
               <button onClick={this.expandAll} disabled={allExpanded}>
                 Tout développer
               </button>

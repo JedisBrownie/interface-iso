@@ -42,7 +42,7 @@ export default function ProcessusModal(props){
     useEffect(() => {
         const fetchData = async () =>{
             try {
-                const response = await getDataFromUrl(`${apiUrl}/processus/global/all`);
+                const response = await getDataFromUrl(`http://localhost:8080/processus/global/all`);
                 setProcessusGlobal(response);
             } catch(error) {
                 console.error("Erreur lors de la récupération des données : ",error);
@@ -78,7 +78,7 @@ export default function ProcessusModal(props){
         const fetchProcessusLie = async () => {
             try {
                 const linkedProcessusPromises = pgSelected.idPg.map(id =>
-                    getDataFromUrl(`${apiUrl}/processus/liste/${id}`)
+                    getDataFromUrl(`http://localhost:8080/processus/liste/${id}`)
                 );
                 const linkedProcessusArray = await Promise.all(linkedProcessusPromises);
                 setProcessusLie(linkedProcessusArray.flat()); // Flatten the array if multiple responses

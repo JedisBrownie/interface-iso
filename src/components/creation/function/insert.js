@@ -63,7 +63,7 @@ export function insertDocumentProcessus(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-redaction', formData, {
+        axios.post('http://localhost:8080/document/add-redaction', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -134,7 +134,7 @@ export function insertDocumentSousProcessus(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-redaction', formData, {
+        axios.post('http://localhost:8080/document/add-redaction', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -205,7 +205,7 @@ export function insertDocumentFiche(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-redaction', formData, {
+        axios.post('http://localhost:8080/document/add-redaction', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -276,7 +276,7 @@ export function insertDocumentEnregistrement(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-redaction', formData, {
+        axios.post('http://localhost:8080/document/add-redaction', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -347,7 +347,7 @@ export function insertDocumentNavigateur(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-redaction', formData, {
+        axios.post('http://localhost:8080/document/add-redaction', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -421,7 +421,7 @@ export function insertBrouillonProcessus(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
+        axios.post('http://localhost:8080/document/add-draft', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -492,7 +492,7 @@ export function insertBrouillonSousProcessus(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
+        axios.post('http://localhost:8080/document/add-draft', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -563,7 +563,7 @@ export function insertBrouillonFiche(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
+        axios.post('http://localhost:8080/document/add-draft', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -634,7 +634,7 @@ export function insertBrouillonEnregistrement(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
+        axios.post('http://localhost:8080/document/add-draft', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -705,7 +705,7 @@ export function insertBrouillonNavigateur(typeId, reference) {
 
         console.log(formData);
 
-        axios.post('http://10.192.193.81:8080/document/add-draft', formData, {
+        axios.post('http://localhost:8080/document/add-draft', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

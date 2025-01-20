@@ -13,7 +13,7 @@ export default function Home() {
     const [user, setUser] = useState(null);
 
     const location = useLocation();
-    const apiUrl = "http://10.192.193.81:8080";
+    const apiUrl = "http://localhost:8080";
 
     useEffect(() => {
         /**
@@ -33,7 +33,7 @@ export default function Home() {
         const token = params.get('token');
 
         if (token) {
-            fetch(`http://10.192.193.81:3005/redirect/get-user-data?token=${token}`)
+            fetch(`http://localhost:3005/redirect/get-user-data?token=${token}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch the user data');
@@ -50,7 +50,7 @@ export default function Home() {
 
         const fetchData = async () => {
             try {
-                const response = await getDataFromUrl(`${apiUrl}/processus/global/all`);
+                const response = await getDataFromUrl(`http://localhost:8080/processus/global/all`);
                 const result = {};
                 response.forEach(processus => {
                     result[processus.idProcessusGlobal] = processus.processusLie;

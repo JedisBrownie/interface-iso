@@ -20,7 +20,7 @@ export default function DocumentValable(){
         const fetchData = async () =>{
             setIsLoading(true);
             try {
-                const response = await getDataFromUrl(`${apiUrl}/viewdocument/valable/${identifiant}`);
+                const response = await getDataFromUrl(`http://localhost:8080/viewdocument/valable/${identifiant}`);
                 setListeDocument(response);
             } catch(error) {
                 console.error("Erreur lors de la récupération des données : ",error);

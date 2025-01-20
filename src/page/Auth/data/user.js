@@ -10,7 +10,7 @@ let data = [];
 const apiUrl = process.env.REACT_APP_NODE_API_URL;
 
 const fetchData = () => {
-    axios.get(`${apiUrl}/users/all`)
+    axios.get(`http://localhost:3005/users/all`)
         .then(response => {
             data = response.data;
         })

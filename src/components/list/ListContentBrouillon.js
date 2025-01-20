@@ -30,7 +30,7 @@ export default function ListContentBrouillon(props){
     
 
     const {dataList} = props;
-    console.log(dataList);
+    // console.log(dataList);
     return(
         <div className="content">
 
@@ -47,19 +47,7 @@ export default function ListContentBrouillon(props){
               
                         <div className="two wide column">{item.nomTypeDocument}</div>
               
-                        <div className="five wide column">{item.nom}</div>
-              
-                        <div className="one wide column">
-                            <span>{item.nombreRevision}</span>
-                            {item.modification === true && <span style={{ paddingLeft: '10px', color: 'red',fontSize: '1.65em' , fontWeight:'bold' }}>*</span>}
-                        </div>
-              
-                        <div className="two wide column">
-                            {/* list of listeProcessusLie */}
-                            {item.listeProcessusLie
-                            .map(processus => processus.idProcessusLie)
-                            .join(", ")}
-                        </div>              
+                        <div className="five wide column">{item.nom}</div>             
                     </div>
                 </div>
                 ))

@@ -60,7 +60,7 @@ export default function UserModal(props) {
                 if (cachedUsers) {
                     setUsers(JSON.parse(cachedUsers));
                 } else {
-                    const response = await axios.get(`${apiUrl}/users/all`, {
+                    const response = await axios.get(`http://localhost:3005/users/all`, {
                         headers: {
                             'Cache-Control': 'no-cache',
                         }

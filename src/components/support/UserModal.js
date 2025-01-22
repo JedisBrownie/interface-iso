@@ -60,7 +60,8 @@ export default function UserModal(props) {
                 if (cachedUsers) {
                     setUsers(JSON.parse(cachedUsers));
                 } else {
-                    const response = await axios.get(`http://localhost:3005/users/all`, {
+                    const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:3005' : 'http://10.192.193.81:3005';
+                    const response = await axios.get(backEnd + '/users/all', {
                         headers: {
                             'Cache-Control': 'no-cache',
                         }

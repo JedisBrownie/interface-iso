@@ -15,7 +15,7 @@ export default function ListContentMyDocs(props) {
     
         gridContainers.forEach((container, index) => {
             if (index % 2 === 1) {
-            container.classList.add('alternate-color');
+                container.classList.add('alternate-color');
             }
         });
     },[]);
@@ -34,7 +34,7 @@ export default function ListContentMyDocs(props) {
 
 
     const { dataList } = props;
-    console.log(dataList);
+    // console.log(dataList);
     
 
 
@@ -44,9 +44,9 @@ export default function ListContentMyDocs(props) {
                 <div className="ui grid container liste" key={index} >
                     <div className="row">
                         <div className="two wide column">{item.nom}</div>
-                        <div className="two wide column">{item.refDocument}</div>
-                        <div className="two wide column">{item.titre}</div>
-                        <div className="five wide column">{item.dateHeureEtat}</div>             
+                        <div className="three wide column">{item.refDocument}</div>
+                        <div className="three wide column">{item.titre}</div>
+                        <div className="four wide column">{item.dateHeureEtat.split("T")[0]}</div>             
                     </div>
                 </div>
             ))}

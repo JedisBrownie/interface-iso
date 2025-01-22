@@ -44,6 +44,9 @@ export default class AccordionListMyDocs extends Component {
         const { activeIndices, allExpanded } = this.state;
         const { section, data } = this.props;
 
+        // console.log(data);
+        
+
         return (
             <div>
                 <div style={{ marginBottom: '1em' }}>

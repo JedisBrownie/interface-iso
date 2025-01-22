@@ -20,7 +20,8 @@ export default function DocumentValable(){
         const fetchData = async () =>{
             setIsLoading(true);
             try {
-                const response = await getDataFromUrl(`http://localhost:8080/viewdocument/valable/${identifiant}`);
+                const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
+                const response = await getDataFromUrl(`${backEnd}/viewdocument/valable/${identifiant}`);
                 setListeDocument(response);
             } catch(error) {
                 console.error("Erreur lors de la récupération des données : ",error);

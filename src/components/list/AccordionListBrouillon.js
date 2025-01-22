@@ -20,7 +20,7 @@ export default class AccordionListBrouillon extends Component {
     };
 
     collapseAll = () => {
-        this.setState({ activeIndices: [], allExpanded: false }); // Clear the active indices
+        this.setState({ activeIndices: [], allExpanded: false }); // Clear the active ind ices
     };
 
     handleClick = (e, titleProps) => {

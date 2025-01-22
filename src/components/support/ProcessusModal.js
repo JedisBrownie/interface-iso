@@ -37,12 +37,12 @@ export default function ProcessusModal(props){
 
     const [processusGlobal , setProcessusGlobal] = React.useState([]);
 
-    const apiUrl = process.env.REACT_APP_JAVA_API_URL;
 
     useEffect(() => {
         const fetchData = async () =>{
             try {
-                const response = await getDataFromUrl(`http://localhost:8080/processus/global/all`);
+                const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
+                const response = await getDataFromUrl(backEnd + '/processus/global/all');
                 setProcessusGlobal(response);
             } catch(error) {
                 console.error("Erreur lors de la récupération des données : ",error);
@@ -75,10 +75,11 @@ export default function ProcessusModal(props){
 
     // Fetch linked processes based on selected IDs
     useEffect(() => {
+        const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
         const fetchProcessusLie = async () => {
             try {
                 const linkedProcessusPromises = pgSelected.idPg.map(id =>
-                    getDataFromUrl(`http://localhost:8080/processus/liste/${id}`)
+                    getDataFromUrl(`${backEnd}/processus/liste/${id}`)
                 );
                 const linkedProcessusArray = await Promise.all(linkedProcessusPromises);
                 setProcessusLie(linkedProcessusArray.flat()); // Flatten the array if multiple responses

@@ -6,19 +6,22 @@ import AccordionListMyDocs from "../../components/list/AccordionListMyDocs";
 
 export default function Brouillon(){
     
+    const [currentUser, setCurrentUser] = useState(null);
+
     const [myDrafts, setMyDrafts] = useState([]);
     const [myToBeVerified, setMyToBeVerified] = useState([]);
+    const [myToBeApproved, setMyToBeApproved] = useState([]);
     
     const [filteredData, setFilteredData] = useState([]);
 
 
-    const fetchMyDrafts = async (documentState) => {
+    const fetchMyDrafts = async (userMatricule, documentState) => {
         const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
 
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
-                    "userMatricule": "10540",
+                    "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
             });
@@ -28,13 +31,13 @@ export default function Brouillon(){
         }
     }
 
-    const fetchMyToBeVerified = async (documentState) => {
+    const fetchMyToBeVerified = async (userMatricule, documentState) => {
         const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
 
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
-                    "userMatricule": "10540",
+                    "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
             });
@@ -44,20 +47,41 @@ export default function Brouillon(){
         }
     }
 
+    const fetchMyToBeApproved = async (userMatricule, documentState) => {
+        const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
+
+        try {
+            const response = await axios.get(backEnd + '/document/get', {
+                params: {
+                    "userMatricule": userMatricule,
+                    "documentState": documentState,
+                }
+            });
+            setMyToBeApproved(response.data);
+        } catch (error) {
+            console.error('Error fetching drafts:', error);
+        }
+    }
+
     useEffect(() => {
-        fetchMyDrafts(1);
-        // console.log(myDrafts);
+        const currentUser = JSON.parse(localStorage.getItem("user"));
+        setCurrentUser(currentUser);
+        console.log(currentUser.user_matricule);
         
-        fetchMyToBeVerified(2);
-        // console.log(myToBeVerified);
-        
+
+        fetchMyDrafts(currentUser.user_matricule, 1);
+        fetchMyToBeVerified(currentUser.user_matricule, 2);
+        fetchMyToBeApproved(currentUser.user_matricule, 4);
     }, []);
 
+    console.log(myDrafts);
+    console.log(myToBeVerified);
+    
 
     const myDocs = [
         {idType: 1, status: "Broullion", listeDocument: myDrafts},
         {idType: 2, status: "En cours de vérification", listeDocument: myToBeVerified},
-        {idType: 2, status: "En cours d\'approbation", listeDocument: []},
+        {idType: 2, status: "En cours d\'approbation", listeDocument: myToBeApproved},
     ];
 
     const data =

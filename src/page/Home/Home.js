@@ -31,9 +31,11 @@ export default function Home() {
          */
         const params = new URLSearchParams(window.location.search);
         const token = params.get('token');
+        const backEndNode = window.location.hostname === 'localhost' ? 'http://localhost:3005' : 'http://10.192.193.81:3005';
+        const backEndJava = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
 
         if (token) {
-            fetch(`http://localhost:3005/redirect/get-user-data?token=${token}`)
+            fetch(`${backEndNode}/redirect/get-user-data?token=${token}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch the user data');
@@ -50,7 +52,7 @@ export default function Home() {
 
         const fetchData = async () => {
             try {
-                const response = await getDataFromUrl(`http://localhost:8080/processus/global/all`);
+                const response = await getDataFromUrl(`${backEndJava}/processus/global/all`);
                 const result = {};
                 response.forEach(processus => {
                     result[processus.idProcessusGlobal] = processus.processusLie;

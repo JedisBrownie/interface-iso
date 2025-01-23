@@ -11,7 +11,7 @@ import ListContentMyDocs from "./ListContentMyDocs";
 
 
 
-export default class AccordionListMyDocs extends Component {
+export default class AccordionListMyDocsToHandle extends Component {
 
     state = { 
         activeIndices: [],
@@ -73,7 +73,7 @@ export default class AccordionListMyDocs extends Component {
                                     className="accordion-title-brouillon"
                                 >
                                     <Icon name="dropdown" />
-                                    {item.status}
+                                    {item.full_name}
                                 </section>
                             </AccordionTitle>
                             

@@ -3,14 +3,18 @@ import Header from "../../components/header/Header";
 import AccordionListBrouillon from "../../components/list/AccordionListBrouillon";
 import { useState, useEffect } from "react";
 import AccordionListMyDocs from "../../components/list/AccordionListMyDocs";
+import AccordionListMyDocsToHandle from "../../components/list/AccordionListMyDocsToHandle";
 
 export default function Brouillon(){
     
     const [currentUser, setCurrentUser] = useState(null);
+    const [allUsers, setAllUsers] = useState([]);
 
     const [myDrafts, setMyDrafts] = useState([]);
     const [myToBeVerified, setMyToBeVerified] = useState([]);
     const [myToBeApproved, setMyToBeApproved] = useState([]);
+    const [myToVerify, setMyToVerify] = useState([]);
+    const [myToApprove, setMyToApprove] = useState([]);
     
     const [filteredData, setFilteredData] = useState([]);
 
@@ -21,6 +25,7 @@ export default function Brouillon(){
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
+                    "part": "1",
                     "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
@@ -37,6 +42,7 @@ export default function Brouillon(){
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
+                    "part": "1",
                     "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
@@ -53,11 +59,29 @@ export default function Brouillon(){
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
+                    "part": "1",
                     "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
             });
             setMyToBeApproved(response.data);
+        } catch (error) {
+            console.error('Error fetching drafts:', error);
+        }
+    }
+
+    const fetchMyToVerify = async (userMatricule, documentState) => {
+        const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
+
+        try {
+            const response = await axios.get(backEnd + '/document/get', {
+                params: {
+                    "part": "2",
+                    "userMatricule": userMatricule,
+                    "documentState": documentState,
+                }
+            });
+            setMyToVerify(response.data);
         } catch (error) {
             console.error('Error fetching drafts:', error);
         }
@@ -72,16 +96,31 @@ export default function Brouillon(){
         fetchMyDrafts(currentUser.user_matricule, 1);
         fetchMyToBeVerified(currentUser.user_matricule, 2);
         fetchMyToBeApproved(currentUser.user_matricule, 4);
+        fetchMyToVerify(currentUser.user_matricule, 2);
+
+        setAllUsers(localStorage.getItem("users"));
     }, []);
 
-    console.log(myDrafts);
+    // console.log(myDrafts);
     console.log(myToBeVerified);
+    console.log(myToVerify);
+    
+    // console.log(allUsers);
+    
     
 
     const myDocs = [
         {idType: 1, status: "Broullion", listeDocument: myDrafts},
         {idType: 2, status: "En cours de vérification", listeDocument: myToBeVerified},
         {idType: 2, status: "En cours d\'approbation", listeDocument: myToBeApproved},
+    ];
+
+    const myDocsToverify = [
+        {matricule: '', full_name: 'Josiane Raharimalala', listeDocument: myToVerify},
+    ];
+
+    const myDocsToApprove = [
+
     ];
 
     const data =
@@ -119,7 +158,7 @@ export default function Brouillon(){
                 {/* End My Docs */}
 
                 {/* To Be verified */}
-                <AccordionListBrouillon section="A vérifier" data={data}></AccordionListBrouillon>
+                <AccordionListMyDocsToHandle section="A vérifier" data={myDocsToverify}></AccordionListMyDocsToHandle>
                 <br/>
                 <br/>
                 {/* End To Be verified */}

@@ -1,31 +1,22 @@
 // import '../../assets/fomantic/dist/semantic.min.css';
 import Navbar from "../../components/navbar/Navbar";
 import Schema from "../../components/schema/Schema";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getDataFromUrl } from "../../function";
 import { useLocation } from "react-router-dom";
+import axios from 'axios';
 
 
 export default function Home() {
 
+    const [userList, setUserList] = useState([]);
     const [listeProcessus , setListeProcessus] = useState([]);
     const [isLoading , setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
 
     const location = useLocation();
-    const apiUrl = "http://localhost:8080";
 
     useEffect(() => {
-        /**
-         * Lazy User Fetching
-         */
-        // const queryParams = new URLSearchParams(location.search);
-        // const user = queryParams.get("user");
-        // if (user) {
-        //     console.log("Received user:", decodeURIComponent(user));
-        //     localStorage.setItem("user", decodeURIComponent(user));
-        // }
-
         /**
          * Token User Fetching
          */
@@ -65,6 +56,22 @@ export default function Home() {
             }
         };
         fetchData();
+
+        /**
+         * All Users Fetching
+         */
+        const fetchAllUsers = async () => {
+            const response = await axios.get(backEndNode + '/users/all', {
+                headers: {
+                    'Cache-Control': 'no-cache',
+                }
+            });
+            const userList = response.data.all_users;
+
+            localStorage.setItem('users', JSON.stringify(userList));
+            setUserList(userList);
+        };
+        fetchAllUsers();
     },[location]);
 
     

@@ -1,9 +1,8 @@
 import axios from "axios";
 import Header from "../../components/header/Header";
-import AccordionListBrouillon from "../../components/list/AccordionListBrouillon";
 import { useState, useEffect } from "react";
 import AccordionListMyDocs from "../../components/list/AccordionListMyDocs";
-import AccordionListMyDocsToHandle from "../../components/list/AccordionListMyDocsToHandle";
+import AccordionListMyDocsToAct from "../../components/list/AccordionListMyDocsToAct";
 
 export default function Brouillon(){
     
@@ -13,6 +12,7 @@ export default function Brouillon(){
     const [myDrafts, setMyDrafts] = useState([]);
     const [myToBeVerified, setMyToBeVerified] = useState([]);
     const [myToBeApproved, setMyToBeApproved] = useState([]);
+    
     const [myToVerify, setMyToVerify] = useState([]);
     const [myToApprove, setMyToApprove] = useState([]);
     
@@ -25,7 +25,6 @@ export default function Brouillon(){
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
-                    "part": "1",
                     "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
@@ -42,7 +41,6 @@ export default function Brouillon(){
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
-                    "part": "1",
                     "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
@@ -59,7 +57,6 @@ export default function Brouillon(){
         try {
             const response = await axios.get(backEnd + '/document/get', {
                 params: {
-                    "part": "1",
                     "userMatricule": userMatricule,
                     "documentState": documentState,
                 }
@@ -70,18 +67,93 @@ export default function Brouillon(){
         }
     }
 
-    const fetchMyToVerify = async (userMatricule, documentState) => {
+    const fetchMyToVerify = async (userMatricule) => {
         const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
+        const myToVerifyArray = [];
 
         try {
-            const response = await axios.get(backEnd + '/document/get', {
+            const response = await axios.get(backEnd + '/document/to-verify', {
                 params: {
-                    "part": "2",
                     "userMatricule": userMatricule,
-                    "documentState": documentState,
                 }
             });
-            setMyToVerify(response.data);
+
+            const data = response.data;
+            const users = JSON.parse(localStorage.getItem("users"));
+
+            for (let i = 0; i < data.length; i++) {
+                const currentUserMatricule = data[i].matricule;
+                
+                const matchingUser = users.find(user => user.matricule === currentUserMatricule);
+                const nom = matchingUser?.nom || "Unknown";
+                const prenom = matchingUser?.prenom || "Unknown";
+                const nomComplet = prenom + " " + nom;
+                
+                let documentList = []
+                for (let j = 0; j < data[i].documents.length; j++) {
+                    const documentData = await axios.get(backEnd + '/document/get/by-ref', {
+                        params: {
+                            "refDocument": data[i].documents[j],
+                        }
+                    });
+                    documentList.push(documentData.data);
+                }
+
+                const object = {
+                    matricule: currentUserMatricule, nomComplet: nomComplet,
+                    listeDocument: documentList,
+                }
+
+                myToVerifyArray.push(object);
+            }
+            // console.log(myToVerifyArray);
+            setMyToVerify(myToVerifyArray);
+        } catch (error) {
+            console.error('Error fetching drafts:', error);
+        }
+    }
+
+    const fetchMyToApprove = async (userMatricule) => {
+        const backEnd = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'http://10.192.193.81:8080';
+        const myToApproveArray = [];
+
+        try {
+            const response = await axios.get(backEnd + '/document/to-approve', {
+                params: {
+                    "userMatricule": userMatricule,
+                }
+            });
+
+            const data = response.data;
+            const users = JSON.parse(localStorage.getItem("users"));
+
+            for (let i = 0; i < data.length; i++) {
+                const currentUserMatricule = data[i].matricule;
+
+                const matchingUser = users.find(user => user.matricule === currentUserMatricule);
+                const nom = matchingUser?.nom || "Unknown";
+                const prenom = matchingUser?.prenom || "Unknown";
+                const nomComplet = prenom + " " + nom;
+                
+                let documentList = []
+                for (let j = 0; j < data[i].documents.length; j++) {
+                    const documentData = await axios.get(backEnd + '/document/get/by-ref', {
+                        params: {
+                            "refDocument": data[i].documents[j],
+                        }
+                    });
+                    documentList.push(documentData.data);
+                }
+
+                const object = {
+                    matricule: currentUserMatricule, nomComplet: nomComplet,
+                    listeDocument: documentList,
+                }
+
+                myToApproveArray.push(object);
+            }
+            // console.log(myToApproveArray);
+            setMyToApprove(myToApproveArray);
         } catch (error) {
             console.error('Error fetching drafts:', error);
         }
@@ -90,23 +162,16 @@ export default function Brouillon(){
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem("user"));
         setCurrentUser(currentUser);
-        console.log(currentUser.user_matricule);
-        
 
+        setAllUsers(localStorage.getItem("users"));
+        
         fetchMyDrafts(currentUser.user_matricule, 1);
         fetchMyToBeVerified(currentUser.user_matricule, 2);
         fetchMyToBeApproved(currentUser.user_matricule, 4);
-        fetchMyToVerify(currentUser.user_matricule, 2);
 
-        setAllUsers(localStorage.getItem("users"));
+        fetchMyToVerify(currentUser.user_matricule);
+        fetchMyToApprove(currentUser.user_matricule);
     }, []);
-
-    // console.log(myDrafts);
-    console.log(myToBeVerified);
-    console.log(myToVerify);
-    
-    // console.log(allUsers);
-    
     
 
     const myDocs = [
@@ -115,36 +180,35 @@ export default function Brouillon(){
         {idType: 2, status: "En cours d\'approbation", listeDocument: myToBeApproved},
     ];
 
-    const myDocsToverify = [
-        {matricule: '', full_name: 'Josiane Raharimalala', listeDocument: myToVerify},
-    ];
+    console.log(myDrafts);
+    
 
-    const myDocsToApprove = [
+    const myDocsToverify = myToVerify;
 
-    ];
+    const myDocsToApprove = myToApprove;
 
-    const data =
-    [
-        {idMatricule : '3569' , nom : 'Teddy Rakotoarison' , listeDocument : [
-            {id:2,referenceDocument:'FI4150-20241112-2',nomStatus:'Validation',status:'En attente d\'approbation',dateCreation: '12/11/2024',idTypeDocument: 3 ,nomTypeDocument : 'Fiche d`\instruction',nom:"Gestion des EPI"},
-            {id:4, referenceDocument:'NA2100-20240723-5', nomStatus:'Brouillon', status:'Brouillon', dateCreation: '23/08/2024', idTypeDocument:5, nomTypeDocument:'Enregistrement', nom:"Planification Budgetaire 2025"},
-        ]},
-        {idMatricule : '4520' , nom : 'Aina Razafindrakoto' , listeDocument : [
-            {id:2,referenceDocument:'EN3200-20240418-1',nomStatus:'Redaction',status:'En attente de vérification',dateCreation: '18/08/2024',idTypeDocument: 4 ,nomTypeDocument : 'Enregistrement',nom:"Gestion des incidents des transporteurs"},
-            {id:4,referenceDocument:'NA2100-20240723-5',nomStatus:'Brouillon',status:'Brouillon',dateCreation: '23/08/2024',idTypeDocument:5 ,nomTypeDocument : 'Navigateur',nom:"TERMINAL - Description de fonction Agent d'expédition"},
-            {id:3,referenceDocument:'SP3100-20230830-2',nomStatus:'Validation',status:'En attente de signature',dateCreation: '30/08/2023',idTypeDocument:2 ,nomTypeDocument : 'Sous processus',nom:"Mobile banking"}
-        ]},
-        {idMatricule : '2567' , nom : 'Aina Andriamahenina' , listeDocument : [
-            {id:1,referenceDocument:'EN3200-20240418-1',nomStatus:'Redaction',status:'En attente de vérification',dateCreation: '18/08/2024',idTypeDocument: 4 ,nomTypeDocument : 'Enregistrement',nom:"Procedure d'exploitation Silo"},
-            {id:5,referenceDocument:'FI4150-20241112-2',nomStatus:'Approbation',status:'Demande de révision',dateCreation: '12/11/2024',idTypeDocument: 3 ,nomTypeDocument : 'Fiche d`\instruction',nom:"Gestion des EPI"}
-        ]},
-        {idMatricule : '2456' , nom : 'Eddy Randria' , listeDocument : [
-            {id:1,referenceDocument:'EN3200-20240418-1',nomStatus:'Brouillon',status:'Brouillon',dateCreation: '18/08/2024',idTypeDocument: 4 ,nomTypeDocument : 'Enregistrement',nom:"Meraki Serveur"},
-        ]},
-        {idMatricule : '4726' , nom : 'Tiavina Rakototafika' , listeDocument : [
-            {id:1,referenceDocument:'FI3100-20240418-1',nomStatus:'Brouillon',status:'Redaction',dateCreation: '21/07/2024',idTypeDocument: 2 ,nomTypeDocument : 'Sous Processus',nom:"Implication securite routiere"},
-        ]},
-    ];
+    // const data =
+    // [
+    //     {idMatricule : '3569' , nom : 'Teddy Rakotoarison' , listeDocument : [
+    //         {id:2,referenceDocument:'FI4150-20241112-2',nomStatus:'Validation',status:'En attente d\'approbation',dateCreation: '12/11/2024',idTypeDocument: 3 ,nomTypeDocument : 'Fiche d`\instruction',nom:"Gestion des EPI"},
+    //         {id:4, referenceDocument:'NA2100-20240723-5', nomStatus:'Brouillon', status:'Brouillon', dateCreation: '23/08/2024', idTypeDocument:5, nomTypeDocument:'Enregistrement', nom:"Planification Budgetaire 2025"},
+    //     ]},
+    //     {idMatricule : '4520' , nom : 'Aina Razafindrakoto' , listeDocument : [
+    //         {id:2,referenceDocument:'EN3200-20240418-1',nomStatus:'Redaction',status:'En attente de vérification',dateCreation: '18/08/2024',idTypeDocument: 4 ,nomTypeDocument : 'Enregistrement',nom:"Gestion des incidents des transporteurs"},
+    //         {id:4,referenceDocument:'NA2100-20240723-5',nomStatus:'Brouillon',status:'Brouillon',dateCreation: '23/08/2024',idTypeDocument:5 ,nomTypeDocument : 'Navigateur',nom:"TERMINAL - Description de fonction Agent d'expédition"},
+    //         {id:3,referenceDocument:'SP3100-20230830-2',nomStatus:'Validation',status:'En attente de signature',dateCreation: '30/08/2023',idTypeDocument:2 ,nomTypeDocument : 'Sous processus',nom:"Mobile banking"}
+    //     ]},
+    //     {idMatricule : '2567' , nom : 'Aina Andriamahenina' , listeDocument : [
+    //         {id:1,referenceDocument:'EN3200-20240418-1',nomStatus:'Redaction',status:'En attente de vérification',dateCreation: '18/08/2024',idTypeDocument: 4 ,nomTypeDocument : 'Enregistrement',nom:"Procedure d'exploitation Silo"},
+    //         {id:5,referenceDocument:'FI4150-20241112-2',nomStatus:'Approbation',status:'Demande de révision',dateCreation: '12/11/2024',idTypeDocument: 3 ,nomTypeDocument : 'Fiche d`\instruction',nom:"Gestion des EPI"}
+    //     ]},
+    //     {idMatricule : '2456' , nom : 'Eddy Randria' , listeDocument : [
+    //         {id:1,referenceDocument:'EN3200-20240418-1',nomStatus:'Brouillon',status:'Brouillon',dateCreation: '18/08/2024',idTypeDocument: 4 ,nomTypeDocument : 'Enregistrement',nom:"Meraki Serveur"},
+    //     ]},
+    //     {idMatricule : '4726' , nom : 'Tiavina Rakototafika' , listeDocument : [
+    //         {id:1,referenceDocument:'FI3100-20240418-1',nomStatus:'Brouillon',status:'Redaction',dateCreation: '21/07/2024',idTypeDocument: 2 ,nomTypeDocument : 'Sous Processus',nom:"Implication securite routiere"},
+    //     ]},
+    // ];
     
     return(
         <>
@@ -158,13 +222,14 @@ export default function Brouillon(){
                 {/* End My Docs */}
 
                 {/* To Be verified */}
-                <AccordionListMyDocsToHandle section="A vérifier" data={myDocsToverify}></AccordionListMyDocsToHandle>
+                {/* <AccordionListMyDocsToHandle section="A vérifier" data={myDocsToverify}></AccordionListMyDocsToHandle> */}
+                <AccordionListMyDocsToAct section="A vérifier" data={myDocsToverify}></AccordionListMyDocsToAct>
                 <br/>
                 <br/>
                 {/* End To Be verified */}
 
                 {/* To Be approved */}
-                <AccordionListBrouillon section="A approuver" data={data}></AccordionListBrouillon>
+                <AccordionListMyDocsToAct section="A approuver" data={myDocsToApprove}></AccordionListMyDocsToAct>
                 <br/>
                 <br/>
                 {/* End To Be approved */}

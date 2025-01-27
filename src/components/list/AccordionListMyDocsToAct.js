@@ -11,7 +11,7 @@ import ListContentMyDocs from "./ListContentMyDocs";
 
 
 
-export default class AccordionListMyDocsToHandle extends Component {
+export default class AccordionListMyDocsToAct extends Component {
 
     state = { 
         activeIndices: [],
@@ -51,12 +51,14 @@ export default class AccordionListMyDocsToHandle extends Component {
                 <div style={{ marginBottom: '1em' }}>
                     {/* Buttons to expand/collapse all */}
                     <h2>{section}</h2>
-                    <button onClick={this.expandAll} disabled={allExpanded}>
-                        Tout développer
-                    </button>
-                    <button onClick={this.collapseAll} disabled={!allExpanded}>
-                        Tout réduire
-                    </button>
+                    <div style={{ display: 'flex', gap: '1%' }}>
+                        <button onClick={this.expandAll} disabled={allExpanded}>
+                            Tout développer
+                        </button>
+                        <button onClick={this.collapseAll} disabled={!allExpanded}>
+                            Tout réduire
+                        </button>
+                    </div>
                 </div>
 
                 <Accordion fluid>
@@ -73,7 +75,7 @@ export default class AccordionListMyDocsToHandle extends Component {
                                     className="accordion-title-brouillon"
                                 >
                                     <Icon name="dropdown" />
-                                    {item.full_name}
+                                    {item.nomComplet}
                                 </section>
                             </AccordionTitle>
                             

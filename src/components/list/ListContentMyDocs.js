@@ -41,11 +41,11 @@ export default function ListContentMyDocs(props) {
     return(
         <div className="content">
             {dataList.map((item, index) => (
-                <div className="ui grid container liste" key={index} >
+                <div className="ui grid container liste" key={index} onClick={() => handleShowDocument(item.refDocument, 1, item.idType, item.status)} >
                     <div className="row">
-                        <div className="two wide column">{item.nom}</div>
+                        <div className="two wide column"><b>{item.nom}</b></div>
                         <div className="three wide column">{item.refDocument}</div>
-                        <div className="three wide column">{item.titre}</div>
+                        <div className="three wide column"><b>{item.titre}</b></div>
                         <div className="four wide column">{item.dateHeureEtat.split("T")[0]}</div>             
                     </div>
                 </div>

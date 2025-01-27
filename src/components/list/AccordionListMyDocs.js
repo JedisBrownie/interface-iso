@@ -51,12 +51,14 @@ export default class AccordionListMyDocs extends Component {
                 <div style={{ marginBottom: '1em' }}>
                     {/* Buttons to expand/collapse all */}
                     <h2>{section}</h2>
-                    <button onClick={this.expandAll} disabled={allExpanded}>
-                        Tout développer
-                    </button>
-                    <button onClick={this.collapseAll} disabled={!allExpanded}>
-                        Tout réduire
-                    </button>
+                    <div style={{ display: 'flex', gap: '1%' }}>
+                        <button onClick={this.expandAll} disabled={allExpanded}>
+                            Tout développer
+                        </button>
+                        <button onClick={this.collapseAll} disabled={!allExpanded}>
+                            Tout réduire
+                        </button>
+                    </div>
                 </div>
 
                 <Accordion fluid>

@@ -37,7 +37,6 @@ export default function ListContentBrouillon(props){
             {dataList.map((item,index) => (
                 <div className="ui grid container liste" key={index} onClick={() => handleShowDocument(item.referenceDocument,item.id,item.idTypeDocument,item.nomStatus)}>
                     <div className="row">
-                              
                         <div className="four wide column" style={{display:'flex'}}>
                             <div className="key"></div>
                             <div>{item.status}</div>
